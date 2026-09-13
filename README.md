@@ -94,7 +94,3 @@ the table is read from Hugging Face on every load.
 - The repository index uses the names exactly as they appear on GitHub. If a
   repository is renamed, change its entry in the `REPOS` array (and in `DSETS`
   for the Hugging Face dataset of the same name) in the same commit.
-- The Hugging Face dataset `qiime2_antibiotic_microbiome_analysis` reports a
-  `DatasetGenerationCastError` in the dataset viewer. The error is visible to
-  anyone who opens the dataset, so it is worth resolving before the address is
-  circulated.

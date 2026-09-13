@@ -63,19 +63,36 @@ async function profile() {
   return out;
 }
 
+async function unchanged(path, next, ignore) {
+  try {
+    const prev = JSON.parse(await readFile(path, 'utf8'));
+    const strip = o => { const c = { ...o }; ignore.forEach(k => delete c[k]); return JSON.stringify(c); };
+    return strip(prev) === strip(next);
+  } catch { return false; }
+}
+
 const p = await profile();
-await writeFile('data/profile.json', JSON.stringify(p, null, 2) + '\n');
-console.log('profile.json written:', p.public_repos, 'repositories,', p.datasets, 'datasets');
+if (await unchanged('data/profile.json', p, ['generated_at'])) {
+  console.log('profile.json unchanged:', p.public_repos, 'repositories,', p.datasets, 'datasets');
+} else {
+  await writeFile('data/profile.json', JSON.stringify(p, null, 2) + '\n');
+  console.log('profile.json written:', p.public_repos, 'repositories,', p.datasets, 'datasets');
+}
 
 try {
   const c = await contributions();
   if (c) {
-    await writeFile('data/activity.json', JSON.stringify({
+    const next = {
       generated_at: new Date().toISOString(),
       source: 'GitHub contributionsCollection, trailing twelve months',
       user: USER, total: c.total, days: c.days
-    }, null, 2) + '\n');
-    console.log('activity.json written:', c.days.length, 'active days,', c.total, 'contributions');
+    };
+    if (await unchanged('data/activity.json', next, ['generated_at'])) {
+      console.log('activity.json unchanged:', c.days.length, 'active days,', c.total, 'contributions');
+    } else {
+      await writeFile('data/activity.json', JSON.stringify(next, null, 2) + '\n');
+      console.log('activity.json written:', c.days.length, 'active days,', c.total, 'contributions');
+    }
   }
 } catch (err) {
   console.warn('Contribution calendar not refreshed:', err.message);

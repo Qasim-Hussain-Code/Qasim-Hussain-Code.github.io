@@ -41,7 +41,7 @@ assets/Qasim_Hussain_CV.pdf    curriculum vitae
 data/activity.json             daily contribution record, rewritten nightly
 data/profile.json              repository and dataset counts, rewritten nightly
 scripts/refresh.mjs            the nightly refresh job
-.github/workflows/refresh.yml  schedules the job at 06:00 Taipei time
+.github/workflows/refresh.yml  runs the job every two hours
 ```
 
 ## Publishing
@@ -61,16 +61,16 @@ repository secret `GH_TOKEN` and appears nowhere else: not in a file, not in a
 commit message, and not in this document.
 
 Once the secret exists, running the workflow "Refresh site data" from the
-Actions tab confirms that it works; thereafter it runs on its own. Each run
-writes `data/activity.json` and `data/profile.json` and commits them under
-the repository owner's name. Without the token the job still writes
+Actions tab confirms that it works; thereafter it runs every two hours. A run
+rewrites `data/activity.json` and `data/profile.json` only when a figure has
+changed, and commits them under the repository owner's name, so the record on
+the page is never more than a few hours old and quiet days add no commits. Without the token the job still writes
 `data/profile.json`, and the page falls back to the public activity feed,
 which covers roughly ninety days. Nothing breaks; the window shown is simply
 shorter.
 
-Two cautions are worth recording. Scheduled workflows can start up to an hour
-late at busy times, so the calendar should not be expected to update at a
-precise minute. A fine grained token expires, and when it does the failure is
+Two cautions are worth recording. Scheduled workflows can start late at busy
+times, so the calendar should not be expected to update at a precise minute. A fine grained token expires, and when it does the failure is
 silent: the page reverts to the shorter window. A reminder set a week before
 the expiry date avoids the surprise.
 

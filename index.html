@@ -1099,25 +1099,33 @@ var SERIES_DAY=(function(){
     .catch(function(){render('Activity record not reachable');});
 })();
 
-/* ---------- live counts ---------- */
+/* ---------- live counts ----------
+   Read live from GitHub and Hugging Face on each load. If either request
+   fails, for example when the GitHub rate limit is reached, the figures
+   written by the nightly job to data/profile.json are used instead. */
 (function(){
   function set(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
+  function title(id){return id.replace(/[_-]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();});}
+  function repos(n){set('ghCount',n);set('fRepos',n);var s=document.getElementById('sum-code');if(s)s.textContent=n;}
+  function data(n,top){
+    set('hfCount',n);set('fData',n);var s=document.getElementById('sum-data');if(s)s.textContent=n;
+    if(top&&top.length>=5)drawData(top.slice(0,12).map(function(d){return [title(d.id),d.id,d.downloads];}));
+  }
+  var stored=fetch('data/profile.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
   fetch('https://api.github.com/users/'+CONFIG.githubUser).then(function(r){return r.ok?r.json():null;})
-    .then(function(j){if(j&&j.public_repos){set('ghCount',j.public_repos);set('fRepos',j.public_repos);
-      var s=document.getElementById('sum-code');if(s)s.textContent=j.public_repos;}}).catch(function(){});
+    .then(function(j){
+      if(j&&j.public_repos)repos(j.public_repos);
+      else return stored.then(function(p){if(p&&p.public_repos)repos(p.public_repos);});
+    }).catch(function(){return stored.then(function(p){if(p&&p.public_repos)repos(p.public_repos);});});
   fetch('https://huggingface.co/api/datasets?author='+CONFIG.hfUser+'&limit=200')
     .then(function(r){return r.ok?r.json():null;})
     .then(function(j){
-      if(!Array.isArray(j)||!j.length)return;
-      set('hfCount',j.length);set('fData',j.length);
-      var s=document.getElementById('sum-data');if(s)s.textContent=j.length;
-      var top=j.filter(function(d){return typeof d.downloads==='number';})
-               .sort(function(a,b){return b.downloads-a.downloads;});
-      if(top.length>=5)drawData(top.slice(0,12).map(function(d){
-        var id=d.id.split('/')[1];
-        return [id.replace(/[_-]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();}),id,d.downloads];
-      }));
-    }).catch(function(){});
+      if(!Array.isArray(j)||!j.length)throw 0;
+      data(j.length,j.filter(function(d){return typeof d.downloads==='number';})
+        .sort(function(a,b){return b.downloads-a.downloads;})
+        .map(function(d){return {id:d.id.split('/')[1],downloads:d.downloads};}));
+    })
+    .catch(function(){return stored.then(function(p){if(p&&p.datasets)data(p.datasets,p.top_datasets||[]);});});
 })();
 
 /* ---------- summary panel ---------- */

@@ -3,7 +3,8 @@
  *
  * Writes two files that the page reads at load time:
  *   data/activity.json   one entry per day of GitHub contributions, twelve months
- *   data/profile.json    repository and dataset counts, with the top datasets
+ *   data/profile.json    repository and dataset counts, with the top datasets;
+ *                        used by the page when the live API requests fail
  *
  * The GitHub contribution calendar is only available through the GraphQL API,
  * which requires a token. A fine grained token with no scopes beyond public

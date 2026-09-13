@@ -113,13 +113,13 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--canva
   radial-gradient(1100px 620px at 92% 0%,var(--tint) 0,transparent 60%),
   linear-gradient(180deg,var(--sunken) 0,var(--canvas) 100%);
   border-bottom:1px solid var(--line)}
-.hero{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);gap:clamp(28px,6vw,80px);
-  align-items:start;padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(36px,5vw,64px)}
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,680px) minmax(280px,420px);justify-content:start;gap:clamp(32px,5vw,72px);
+  align-items:stretch;padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(36px,5vw,64px)}
 @media (max-width:880px){.hero{grid-template-columns:1fr;gap:30px;padding-top:34px;padding-bottom:28px}}
 .status{display:inline-flex;align-items:center;gap:9px;padding:6px 13px 6px 10px;border:1px solid var(--line);
   border-radius:999px;font-size:13px;color:var(--mute);background:var(--panel)}
 .status b{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--tint)}
-h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.8vw,72px);letter-spacing:-.028em;
+h1{margin-top:0;font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.8vw,72px);letter-spacing:-.028em;
   line-height:1.02;max-width:18ch;color:var(--ink)}
 .hero .serif{margin-top:28px;max-width:60ch;color:var(--body);font-size:17.5px;line-height:1.72}
 .hero .serif + .serif{margin-top:12px}
@@ -129,12 +129,12 @@ h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(38px
 .btn:hover{border-color:var(--ink);text-decoration:none}
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
-.shot{position:relative;justify-self:end;width:100%;max-width:440px;margin:0;padding-top:clamp(0px,2vw,28px)}
-.shot img{position:relative;z-index:1;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;
+.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0}
+.shot img{position:relative;z-index:1;width:100%;flex:1 1 auto;min-height:0;height:auto;object-fit:cover;object-position:50% 20%;
   border-radius:var(--radius);display:block;border:1px solid var(--line);
   box-shadow:0 1px 1px rgba(14,16,19,.04),0 24px 60px -12px rgba(14,16,19,.22)}
 .shot figcaption{position:relative;z-index:1;margin-top:16px;font:400 12px/1.6 var(--mono);color:var(--mute);max-width:40ch;letter-spacing:.01em}
-@media (max-width:880px){.shot{justify-self:start;max-width:240px;padding-top:0}}
+@media (max-width:880px){.hero{grid-template-columns:1fr;justify-content:stretch}.shot{max-width:none}.shot img{aspect-ratio:4/5;flex:none}}
 
 /* key figures under the hero */
 .figures{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:0;
@@ -324,21 +324,22 @@ table.t .n{font-family:var(--mono);font-size:12px;color:var(--mute);white-space:
 /* ==========================================================================
    11. Close
    ========================================================================== */
-.close{margin-top:clamp(72px,9vw,120px);background:var(--ink);color:var(--canvas);
+.close{margin-top:clamp(72px,9vw,120px);background:#10306F;color:#FFFFFF;
   padding:clamp(56px,7vw,92px) 0 28px}
-.close h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.2vw,50px);max-width:20ch;color:var(--canvas);letter-spacing:-.02em}
-.close .serif{margin-top:18px;max-width:54ch;color:color-mix(in srgb,var(--canvas) 78%,transparent)}
+.close h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.2vw,50px);max-width:20ch;color:#FFFFFF;letter-spacing:-.02em}
+.close .serif{margin-top:18px;max-width:54ch;color:#D6DEF3}
 .reach{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
 .reach a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:14px 0;
-  border-bottom:1px solid color-mix(in srgb,var(--canvas) 18%,transparent);color:var(--canvas);font-size:15.5px;font-weight:600}
-.reach a span{font-family:var(--mono);font-size:12px;color:color-mix(in srgb,var(--canvas) 60%,transparent);font-weight:400;
+  border-bottom:1px solid rgba(255,255,255,.18);color:#FFFFFF;font-size:15.5px;font-weight:600}
+.reach a span{font-family:var(--mono);font-size:12px;color:#BFCBEA;font-weight:400;
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.reach a:hover{text-decoration:none;color:var(--accent-hi)}
+
+.reach a:hover{text-decoration:underline;color:#FFFFFF}
 @media (max-width:640px){.reach{grid-template-columns:1fr}}
-footer{margin-top:36px;padding-top:22px;border-top:1px solid color-mix(in srgb,var(--canvas) 18%,transparent);
-  font-size:12.5px;color:color-mix(in srgb,var(--canvas) 60%,transparent);
+footer{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);
+  font-size:12.5px;color:#BFCBEA;
   display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
-.close :focus-visible{outline-color:var(--canvas)}
+.close :focus-visible{outline-color:#FFFFFF}
 #toTop{position:fixed;right:18px;bottom:18px;z-index:45;opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .22s ease,visibility .22s;box-shadow:var(--lift)}
 #toTop.on{opacity:1;visibility:visible;pointer-events:auto}
@@ -389,7 +390,6 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid color-mix(in srgb,v
 <div class="band">
 <div class="wrap hero" id="top">
   <div class="rise">
-    <span class="status"><b></b>Taipei, Taiwan. Seeking a funded doctoral position for 2027 entry.</span>
     <h1>Hybrid researcher: wet lab and dry lab.</h1>
     <p class="serif">Most people who work on infection choose a room. One sits at a bench with a pipette and
       a plate of cells; another sits at a screen with a genome and a model. Most also choose an organism:

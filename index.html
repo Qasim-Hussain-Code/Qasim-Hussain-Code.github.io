@@ -260,14 +260,14 @@ section{padding:clamp(64px,8vw,112px) 0 0}
   background:var(--panel);color:var(--ink);font:400 13.5px var(--ui)}
 .find::placeholder{color:var(--faint)}
 .list{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
-.row{display:grid;grid-template-columns:13px minmax(0,1fr) auto;gap:14px;align-items:center;
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;
   padding:11px 20px;border-bottom:1px solid var(--line-soft)}
 .row:last-child{border-bottom:0}
 .row:hover{background:var(--sunken)}
 .row i{width:8px;height:8px;border-radius:2px}
 .row .nm{font-family:var(--mono);font-size:13px;color:var(--ink);word-break:break-all}
 .row .tag{font-size:12px;color:var(--mute);white-space:nowrap}
-@media (max-width:680px){.row{grid-template-columns:13px 1fr}.row .tag{display:none}}
+@media (max-width:680px){.row{grid-template-columns:1fr}.row .tag{display:none}}
 
 /* datasets */
 .drow{display:grid;grid-template-columns:minmax(0,1fr) 140px 84px;gap:18px;align-items:center;
@@ -947,21 +947,26 @@ var REPOS=[
 ];
 var COL={},NAME={};
 GROUPS.forEach(function(g){COL[g.id]=g.c;NAME[g.id]=g.name;});
+NAME.other='Other';COL.other='var(--faint)';
 function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
 
 (function(){
   var chips=document.getElementById('chips'),host=document.getElementById('repos'),
       tail=document.getElementById('repoTail'),find=document.getElementById('find'),active='all';
-  chips.innerHTML=[{id:'all',t:'All '+REPOS.length}].concat(GROUPS.map(function(g){
-    return {id:g.id,t:g.short+' '+sizeOf(g.id)};})).map(function(o){
-    return '<button class="chip" type="button" data-id="'+o.id+'" aria-pressed="'+(o.id==='all')+'">'+o.t+'</button>';
-  }).join('');
+  function drawChips(){
+    var extra=sizeOf('other')?[{id:'other',t:'Other '+sizeOf('other')}]:[];
+    chips.innerHTML=[{id:'all',t:'All '+REPOS.length}].concat(GROUPS.map(function(g){
+      return {id:g.id,t:g.short+' '+sizeOf(g.id)};}),extra).map(function(o){
+      return '<button class="chip" type="button" data-id="'+o.id+'" aria-pressed="'+(o.id===active)+'">'+o.t+'</button>';
+    }).join('');
+  }
+  drawChips();
   function draw(){
     var q=(find.value||'').toLowerCase().trim();
     var rows=REPOS.filter(function(r){
       return (active==='all'||r[1]===active)&&(!q||r[0].toLowerCase().indexOf(q)>-1);});
     host.innerHTML=rows.length?rows.map(function(r){
-      return '<div class="row"><i role="img" aria-label="'+NAME[r[1]]+'" style="background:'+COL[r[1]]+'"></i>'+
+      return '<div class="row">'+
         '<a class="nm" href="https://github.com/'+CONFIG.githubUser+'/'+r[0]+'">'+r[0]+'</a>'+
         '<span class="tag">'+NAME[r[1]]+'</span></div>';}).join('')
       :'<div class="row" style="grid-template-columns:1fr"><span style="color:var(--mute);font-size:14px">Nothing matches that search. Clear the field to see all '+REPOS.length+'.</span></div>';
@@ -975,6 +980,20 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
   });
   find.addEventListener('input',draw);
   draw();
+  /* follow GitHub: keep the family of every known name, list unknown names under Other,
+     drop names that no longer exist. Falls back to the list above if the request fails. */
+  function page(n,acc){
+    return fetch('https://api.github.com/users/'+CONFIG.githubUser+'/repos?per_page=100&type=owner&sort=full_name&page='+n)
+      .then(function(r){return r.ok?r.json():null;})
+      .then(function(j){if(!Array.isArray(j))throw 0;acc=acc.concat(j);return j.length===100?page(n+1,acc):acc;});
+  }
+  page(1,[]).then(function(list){
+    if(!list.length)return;
+    var fam={};REPOS.forEach(function(r){fam[r[0].toLowerCase()]=r[1];});
+    REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name);}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
+    drawChips();draw();
+    var P=document.getElementById('sum-code');if(P)P.textContent=REPOS.length;
+  }).catch(function(){});
 })();
 
 /* ---------- datasets ---------- */

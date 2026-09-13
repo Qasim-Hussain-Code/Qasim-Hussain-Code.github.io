@@ -1,10 +1,12 @@
-# Refreshes the live figures on the site once a day and whenever main changes.
-# Runs inside the free allowance for public repositories.
+# Refreshes the live figures on the site every two hours and whenever main
+# changes. Files are rewritten only when a figure has changed, so a quiet
+# period produces no commits. Runs inside the free allowance for public
+# repositories.
 name: Refresh site data
 
 on:
   schedule:
-    - cron: "0 22 * * *"      # 06:00 Taipei
+    - cron: "0 */2 * * *"     # every two hours, on the hour (UTC)
   workflow_dispatch:
   push:
     branches: [main]

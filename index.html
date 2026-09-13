@@ -222,8 +222,14 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .cal{margin-top:22px;overflow-x:auto;padding-bottom:4px}
 .cal{--cell:11px;--cgap:3px}
 @media (min-width:1400px){.cal{--cgap:4px}}
-.calgrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);grid-auto-columns:minmax(var(--cell),1fr);gap:var(--cgap);width:100%}
-.calgrid i{display:block;width:auto;height:auto;aspect-ratio:1;border-radius:2px;background:var(--h0)}
+.cal{--lab:2.6em}
+.calmonths{display:grid;grid-template-columns:var(--lab) repeat(var(--cols,52),minmax(var(--cell),1fr));gap:var(--cgap);margin-bottom:6px;font:400 11px/1 var(--mono);color:var(--mute)}
+.calmonths span{grid-row:1;white-space:nowrap;overflow:visible}
+.calgrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);grid-template-columns:var(--lab);grid-auto-columns:minmax(var(--cell),1fr);gap:var(--cgap);width:100%}
+.calgrid .wd{font:400 11px/1 var(--mono);color:var(--mute);align-self:center}
+.calgrid .d{display:block;width:auto;height:auto;aspect-ratio:1;border-radius:2px;background:var(--h0)}
+.calgrid .d:hover,.calgrid .d:focus-visible{outline:2px solid var(--ink);outline-offset:1px;z-index:1}
+.calgo{margin-top:10px;font-size:13.5px}
 .calkey{display:flex;align-items:center;gap:6px;margin-top:14px;font-size:13.5px;color:var(--faint)}
 .calkey i{width:12px;height:12px;border-radius:2px;display:inline-block}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
@@ -488,8 +494,9 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         <h3>Contributions to public repositories</h3>
         <p class="say">One cell per day, darker where the day carried more commits. A day with no recorded
           contribution is left empty rather than filled in.</p>
-        <div class="cal"><div class="calgrid" id="calgrid" role="img"
-          aria-label="Calendar of daily contributions to public GitHub repositories."></div></div>
+        <div class="cal"><div class="calmonths" id="calmonths" aria-hidden="true"></div>
+          <div class="calgrid" id="calgrid" aria-label="Calendar of daily contributions to public GitHub repositories."></div></div>
+        <p class="calgo"><a href="https://github.com/Qasim-Hussain-Code">Open the full contribution graph on GitHub</a></p>
         <p class="calkey">
           <span>Fewer</span>
           <i style="background:var(--h0)"></i><i style="background:var(--h1)"></i>
@@ -1100,9 +1107,18 @@ var SERIES_DAY=(function(){
       else if(i===cells.length-1){continue;}
       else break;
     }
-    grid.innerHTML=cells.map(function(c){
+    var cols=Math.ceil(cells.length/7),months=[],prev=-1;
+    for(var w=0;w<cols;w++){
+      var fd=new Date(cells[w*7].k+'T00:00:00'),m=fd.getMonth();
+      if(m!==prev){if(w===0||fd.getDate()<=7)months.push('<span style="grid-column:'+(w+2)+'">'+fd.toLocaleDateString('en-GB',{month:'short'})+'</span>');prev=m;}
+    }
+    var mrow=document.getElementById('calmonths');
+    if(mrow){mrow.style.setProperty('--cols',cols);mrow.innerHTML=months.join('');}
+    var wd=['Mon','','Wed','','Fri','',''].map(function(t){return '<span class="wd">'+t+'</span>';}).join('');
+    grid.innerHTML=wd+cells.map(function(c){
       var d=new Date(c.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-      return '<i style="background:var(--h'+c.l+')" title="'+c.n+' contribution'+(c.n===1?'':'s')+' on '+d+'"></i>';
+      var t=c.n+' contribution'+(c.n===1?'':'s')+' on '+d;
+      return '<a class="d" href="https://github.com/'+CONFIG.githubUser+'?tab=overview&amp;from='+c.k+'&amp;to='+c.k+'" tabindex="-1" style="background:var(--h'+c.l+')" title="'+t+'" aria-label="'+t+'"></a>';
     }).join('');
     document.getElementById('stCur').textContent=now;
     document.getElementById('stMax').textContent=best;

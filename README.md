@@ -104,11 +104,3 @@ the table is read from Hugging Face on every load.
   `DatasetGenerationCastError` in the dataset viewer. The error is visible to
   anyone who opens the dataset, so it is worth resolving before the address is
   circulated.
-
-## Deliberately absent
-
-- Any description of unpublished work beyond what the publication list already
-  states.
-- Analytics, tracking, cookie banners and third party scripts of every kind.
-  The page loads two font files from Google Fonts and nothing else, so there is
-  nothing to consent to and nothing is collected from a visitor.

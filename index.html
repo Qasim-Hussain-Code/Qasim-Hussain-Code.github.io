@@ -47,11 +47,11 @@
   --canvas:#FFFFFF; --sunken:#F3F5F6; --panel:#FFFFFF;
   --ink:#141A1F; --body:#333A42; --mute:#5B646E; --faint:#606972;
   --line:#DDE1E5; --line-soft:#EAEDF0; --line-strong:#7C858F; --rule:#141A1F;
-  --accent:#1F4D3F; --accent-hi:#16382E; --tint:#E3EAE3; --on-accent:#FFFFFF;
+  --accent:#9E5E00; --accent-hi:#7F4B00; --tint:#FFF3DC; --on-accent:#FFFFFF; --brand:#FFA500; --brand-hi:#E68F00;
   --g1:#3C5A8A; --g2:#2E6E5A; --g3:#9A4A38; --g4:#8A6A2A;
   --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52;
-  --h0:#E8ECEF; --h1:#C4D4C7; --h2:#8FB19C; --h3:#4E7F68; --h4:#1F4D3F;
-  --close:#1E3D33; --close-text:#F4F7F5; --close-mute:#C3D1C6; --close-line:rgba(244,247,245,.22);
+  --h0:#E8ECEF; --h1:#FFF1D6; --h2:#FFE0A8; --h3:#FFC65C; --h4:#FFA500;
+  --close:#FFA500; --close-text:#141A1F; --close-mute:#4A3000; --close-line:rgba(20,26,31,.28);
   --lift:none;
   --serif:"Literata",Georgia,"Times New Roman",serif;
   --ui:"Literata",Georgia,"Times New Roman",serif;
@@ -379,6 +379,19 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
   .close h2,.close .serif,.reach a,footer{color:#000}
   a{color:#000;text-decoration:underline}
 }
+
+/* the orange itself is used only as a surface under dark text; the darker
+   orange token above carries every use of the colour as text */
+.btn.key{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.btn.key:hover{background:var(--brand-hi);border-color:var(--brand-hi);color:var(--ink)}
+.sbar i{background:var(--brand)}
+.drow .gauge i{background:var(--brand)}
+#arc{stroke:var(--brand)}
+.nav a[aria-current="true"]{border-bottom-color:var(--brand)}
+.stab[aria-selected="true"]{border-bottom-color:var(--brand)}
+.hero .serif:first-of-type::first-letter{color:#C97600}
+.close .serif{color:var(--close-text)}
+.close :focus-visible{outline-color:var(--close-text)}
 </style>
 </head>
 <body>

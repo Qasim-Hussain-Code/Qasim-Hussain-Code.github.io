@@ -1,0 +1,7 @@
+# Never commit these
+node_modules/
+.vscode/
+Thumbs.db
+desktop.ini
+*:Zone.Identifier
+.DS_Store

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://qasim-hussain-code.github.io/sitemap.xml

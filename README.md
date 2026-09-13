@@ -62,8 +62,8 @@ commit message, and not in this document.
 
 Once the secret exists, running the workflow "Refresh site data" from the
 Actions tab confirms that it works; thereafter it runs on its own. Each run
-writes `data/activity.json` and `data/profile.json` and commits them as
-`github-actions[bot]`. Without the token the job still writes
+writes `data/activity.json` and `data/profile.json` and commits them under
+the repository owner's name. Without the token the job still writes
 `data/profile.json`, and the page falls back to the public activity feed,
 which covers roughly ninety days. Nothing breaks; the window shown is simply
 shorter.

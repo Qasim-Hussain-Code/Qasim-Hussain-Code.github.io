@@ -529,7 +529,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         <div class="tri">
           <div><p class="n" id="hfCount">19</p><p class="k">Datasets published</p></div>
           <div><p class="n" id="ghCount">71</p><p class="k">Repositories published</p></div>
-          <div><p class="n">4</p><p class="k">Chapters completed</p></div>
+          <div><p class="n" id="chapNum">4</p><p class="k">Chapters completed</p></div>
         </div>
         <p class="say" style="margin-top:16px"><a href="https://www.linkedin.com/in/qasim--hussain">Read the series on LinkedIn</a></p>
       </div>
@@ -935,8 +935,8 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 var CONFIG={
   githubUser:'Qasim-Hussain-Code',
   hfUser:'QasimHussain',
-  seriesStart:'2026-07-24',   /* day 1 of Machine Learning for Biology */
-  seriesChapters:4,
+  seriesStart:'2026-07-24',   /* day 1 of Machine Learning for Biology; data/series.json overrides */
+  seriesChapters:4,           /* chapters complete; edit data/series.json, not this line */
   weeks:52
 };
 
@@ -1062,16 +1062,22 @@ function drawData(list){
 drawData(DSETS);
 
 /* ---------- day counter ---------- */
-var SERIES_DAY=(function(){
-  var s=new Date(CONFIG.seriesStart+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);
+function seriesDay(start){
+  var s=new Date(start+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);
   var d=Math.floor((t-s)/86400000)+1;return d<1?1:d;
-})();
-(function(){
+}
+var SERIES_DAY=seriesDay(CONFIG.seriesStart);
+/* The day advances on the calendar. The chapter count is the one value kept
+   by hand: it is read from data/series.json, so it can be changed on GitHub
+   without touching this file. */
+function paintSeries(start,chapters){
+  SERIES_DAY=seriesDay(start);
   document.getElementById('dayNum').textContent=SERIES_DAY;
   document.getElementById('fDay').textContent=SERIES_DAY;
+  var ch=document.getElementById('chapNum');if(ch)ch.textContent=chapters;
   document.getElementById('daySay').textContent='Day '+SERIES_DAY+', written daily since '+
-    new Date(CONFIG.seriesStart+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+
-    '. '+CONFIG.seriesChapters+' chapters complete.';
+    new Date(start+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+
+    '. '+chapters+' chapter'+(chapters===1?'':'s')+' complete.';
   var arc=document.getElementById('arc'),C=2*Math.PI*45,pct=(SERIES_DAY%100)/100;
   arc.setAttribute('stroke-dasharray',C.toFixed(1));
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -1080,7 +1086,11 @@ var SERIES_DAY=(function(){
     arc.style.transition='stroke-dashoffset 1s cubic-bezier(.22,1,.36,1)';
     requestAnimationFrame(function(){arc.setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));});
   }
-})();
+}
+paintSeries(CONFIG.seriesStart,CONFIG.seriesChapters);
+fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
+  if(j&&typeof j.chapters==='number')paintSeries(j.start||CONFIG.seriesStart,j.chapters);
+}).catch(function(){});
 
 /* ---------- contribution calendar ----------
    data/activity.json (nightly) first, then the public activity feed, then a

@@ -6,7 +6,7 @@
 <title>Qasim Hussain | Computational biology of infection and the microbiome</title>
 <meta name="description" content="Qasim Hussain builds reproducible pipelines for microbial and viral genomics, microbiome science and machine learning, and runs the cell culture work that tests their predictions. Public analysis pipelines on GitHub, curated datasets on Hugging Face, and peer reviewed publications.">
 <meta name="author" content="Qasim Hussain">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#fcfcfa">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://qasim-hussain-code.github.io/">
 <meta property="og:type" content="profile">
@@ -44,9 +44,9 @@
    in the repository index and nowhere else.
    ========================================================================== */
 :root{
-  --canvas:#FFFFFF; --sunken:#F5F6F8; --panel:#FFFFFF;
+  --canvas:#FCFCFA; --sunken:#F4F4F1; --panel:#FFFFFF;
   --ink:#0E1013; --body:#3E434B; --mute:#646A73; --faint:#6B717A;
-  --line:#E4E6EA; --line-soft:#EEF0F3; --line-strong:#7F858E; --rule:#0E1013;
+  --line:#E3E4E0; --line-soft:#EDEEEA; --line-strong:#7F858E; --rule:#0E1013;
   --accent:#17439B; --accent-hi:#0F3079; --tint:#EDF1FA; --on-accent:#FFFFFF;
   --g1:#2F5DA8; --g2:#1B7561; --g3:#A4442F; --g4:#8A6420;
   --g5:#5B4392; --g6:#28687E; --g7:#4F6B2B; --g8:#6E5D52;
@@ -73,7 +73,7 @@ a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thic
 h1,h2,h3,h4{margin:0;color:var(--ink);font-weight:700;line-height:1.1;letter-spacing:-.03em}
 p,ul,ol,dl{margin:0}
 em{font-style:italic}
-.wrap{max-width:1520px;margin:0 auto;padding:0 var(--gut)}
+.wrap{max-width:1760px;margin:0 auto;padding:0 var(--gut)}
 .serif{font-family:var(--serif);font-size:18px;line-height:1.7;letter-spacing:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:fixed;left:-9999px;top:10px;z-index:99;background:var(--accent);color:var(--on-accent);
@@ -86,7 +86,7 @@ em{font-style:italic}
 header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--canvas) 84%,transparent);
   backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
-.mark{display:flex;align-items:center;gap:11px;color:var(--ink);font-weight:700;font-size:15px;letter-spacing:-.02em}
+.mark{display:flex;align-items:center;gap:11px;color:var(--ink);font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:-.01em}
 .mark img{width:30px;height:30px;border-radius:50%;object-fit:cover;border:1px solid var(--line)}
 .mark:hover{text-decoration:none}
 .nav{display:flex;gap:2px;font-size:14px}
@@ -114,14 +114,14 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--canva
   linear-gradient(180deg,var(--sunken) 0,var(--canvas) 100%);
   border-bottom:1px solid var(--line)}
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);gap:clamp(28px,6vw,80px);
-  align-items:center;padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(36px,5vw,64px)}
+  align-items:start;padding-top:clamp(48px,8vw,104px);padding-bottom:clamp(36px,5vw,64px)}
 @media (max-width:880px){.hero{grid-template-columns:1fr;gap:30px;padding-top:34px;padding-bottom:28px}}
 .status{display:inline-flex;align-items:center;gap:9px;padding:6px 13px 6px 10px;border:1px solid var(--line);
   border-radius:999px;font-size:13px;color:var(--mute);background:var(--panel)}
 .status b{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--tint)}
-h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(36px,5.6vw,68px);letter-spacing:-.025em;
-  line-height:1.04;max-width:18ch;color:var(--ink)}
-.hero .serif{margin-top:26px;max-width:62ch;color:var(--body)}
+h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(38px,5.8vw,72px);letter-spacing:-.028em;
+  line-height:1.02;max-width:18ch;color:var(--ink)}
+.hero .serif{margin-top:28px;max-width:60ch;color:var(--body);font-size:17.5px;line-height:1.72}
 .hero .serif + .serif{margin-top:12px}
 .buttons{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px}
 .btn{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:12px;
@@ -129,12 +129,12 @@ h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(36px
 .btn:hover{border-color:var(--ink);text-decoration:none}
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
-.shot{position:relative;justify-self:end;width:100%;max-width:420px;margin:0}
-.shot img{position:relative;z-index:1;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 25%;
+.shot{position:relative;justify-self:end;width:100%;max-width:440px;margin:0;padding-top:clamp(0px,2vw,28px)}
+.shot img{position:relative;z-index:1;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;
   border-radius:var(--radius);display:block;border:1px solid var(--line);
   box-shadow:0 1px 1px rgba(14,16,19,.04),0 24px 60px -12px rgba(14,16,19,.22)}
-.shot figcaption{position:relative;z-index:1;margin-top:16px;font-size:12.5px;color:var(--mute);line-height:1.55;max-width:38ch}
-@media (max-width:880px){.shot{justify-self:start;max-width:260px}}
+.shot figcaption{position:relative;z-index:1;margin-top:16px;font:400 12px/1.6 var(--mono);color:var(--mute);max-width:40ch;letter-spacing:.01em}
+@media (max-width:880px){.shot{justify-self:start;max-width:240px;padding-top:0}}
 
 /* key figures under the hero */
 .figures{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:0;
@@ -142,7 +142,7 @@ h1{margin-top:26px;font-family:var(--serif);font-weight:600;font-size:clamp(36px
 .figures > div{padding:26px 24px 26px 0}
 .figures > div + div{padding-left:24px;border-left:1px solid var(--line)}
 .figures .n{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.2vw,40px);color:var(--ink);letter-spacing:-.03em;line-height:1}
-.figures .k{margin-top:8px;font-size:13px;color:var(--mute);line-height:1.42;max-width:24ch}
+.figures .k{margin-top:9px;font:400 12px/1.5 var(--mono);color:var(--mute);max-width:26ch;letter-spacing:.01em}
 @media (max-width:700px){
   .figures{grid-template-columns:1fr 1fr}
   .figures > div{padding:20px 16px 20px 0}
@@ -159,7 +159,7 @@ section{padding:clamp(64px,8vw,112px) 0 0}
 #summary .head{border:0;padding:0;margin:0}
 .head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px 22px;align-items:baseline;
   margin-bottom:clamp(26px,3.4vw,40px);padding-top:18px;border-top:1px solid var(--rule)}
-.head h2{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.4vw,42px);letter-spacing:-.02em;line-height:1.08}
+.head h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,46px);letter-spacing:-.022em;line-height:1.06}
 .head h2:not(.sr)::before{counter-increment:sec;content:counter(sec,decimal-leading-zero);
   display:inline-block;margin-right:16px;font:500 12px var(--mono);letter-spacing:.14em;color:var(--mute);vertical-align:.55em}
 .head h2.sr{counter-increment:sec}
@@ -223,7 +223,9 @@ section{padding:clamp(64px,8vw,112px) 0 0}
 /* ==========================================================================
    7. Research entries, editorial rather than boxed
    ========================================================================== */
-.entries{border-top:1px solid var(--rule)}
+.entries{border-top:1px solid var(--rule);counter-reset:ent}
+.entry > div:first-child::before{counter-increment:ent;content:counter(ent,decimal-leading-zero);display:block;
+  margin-bottom:12px;font:500 12px var(--mono);letter-spacing:.14em;color:var(--mute)}
 .entry{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(18px,4vw,56px);
   padding:clamp(26px,3.4vw,36px) 0;border-bottom:1px solid var(--line)}
 @media (max-width:820px){.entry{grid-template-columns:1fr;gap:14px}}
@@ -251,9 +253,12 @@ section{padding:clamp(64px,8vw,112px) 0 0}
   background:var(--panel);color:var(--ink);font:400 13.5px var(--ui)}
 .find::placeholder{color:var(--faint)}
 .list{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+@media (min-width:1000px){#repos{display:grid;grid-template-columns:1fr 1fr}#repos .row:nth-child(even){border-left:1px solid var(--line-soft)}
+  #repos .row:nth-last-child(-n+2){border-bottom:0}}
 .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;
   padding:11px 20px;border-bottom:1px solid var(--line-soft)}
 .row:last-child{border-bottom:0}
+.row{transition:background .15s ease}
 .row:hover{background:var(--sunken)}
 .row i{width:8px;height:8px;border-radius:2px}
 .row .nm{font-family:var(--mono);font-size:13px;color:var(--ink);word-break:break-all}

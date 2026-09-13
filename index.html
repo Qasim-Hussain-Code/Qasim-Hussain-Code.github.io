@@ -121,7 +121,7 @@ header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--canva
 @media (max-width:880px){.hero{grid-template-columns:1fr;gap:28px;padding:32px 0 24px}}
 .status{display:inline-flex;align-items:center;gap:9px;padding:6px 13px 6px 9px;border:1px solid var(--line);
   border-radius:999px;font-size:13px;color:var(--mute);background:var(--panel)}
-.status b{width:7px;height:7px;border-radius:50%;background:var(--g2)}
+.status b{width:7px;height:7px;border-radius:50%;background:var(--accent)}
 h1{margin-top:22px;font-size:clamp(32px,5.1vw,58px);font-weight:700;letter-spacing:-.042em;
   line-height:1.02;max-width:15ch;color:var(--ink)}
 .hero .serif{margin-top:22px;max-width:56ch}
@@ -260,7 +260,7 @@ section{padding:clamp(56px,7vw,92px) 0 0}
   padding:11px 17px;border-bottom:1px solid var(--line-soft);font-size:14.5px}
 .drow:last-child{border-bottom:0}
 .drow .gauge{height:5px;border-radius:3px;background:var(--line-soft);overflow:hidden}
-.drow .gauge i{display:block;height:100%;background:var(--g2);border-radius:3px}
+.drow .gauge i{display:block;height:100%;background:var(--accent);border-radius:3px}
 .drow .dl{font-family:var(--mono);font-size:12px;color:var(--mute);text-align:right}
 @media (max-width:680px){.drow{grid-template-columns:1fr 74px}.drow .gauge{display:none}}
 
@@ -1124,7 +1124,7 @@ var SERIES_DAY=(function(){
 (function(){
   var P=[
    {k:'Code',h:'Public analysis pipelines',v:'<span id="sum-code">'+REPOS.length+'</span>',
-    u:'repositories in eight methodological families, released under the MIT licence and refreshed nightly from GitHub.',
+    u:'repositories in eight methodological families, most released under the MIT licence, with the count read live from GitHub.',
     rows:GROUPS.map(function(g){return [g.name,sizeOf(g.id)+' repositories'];})},
    {k:'Data',h:'Curated datasets',v:'<span id="sum-data">19</span>',
     u:'datasets published with documentation on Hugging Face, ordered here by download count.',

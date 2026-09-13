@@ -76,6 +76,8 @@ body{margin:0;background:var(--canvas);color:var(--body);
   font-variant-numeric:tabular-nums;letter-spacing:-.006em}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+/* links inside running text are underlined so colour is not their only cue */
+.serif a,.head a,.tail a,.say a,.src a,.go a,.de a,.gist a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
 h1,h2,h3,h4{margin:0;color:var(--ink);font-weight:700;line-height:1.1;letter-spacing:-.032em}
 p,ul,ol,dl{margin:0}

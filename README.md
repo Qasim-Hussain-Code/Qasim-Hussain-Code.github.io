@@ -37,7 +37,7 @@ Code behaves the same way.
 index.html                     the entire site: markup, styles and script
 assets/portrait.jpg            portrait, 570 by 760 pixels, used for the social card
 assets/portrait-square.jpg     square portrait, used as the favicon
-assets/Qasim_Hussain_CV.pdf    curriculum vitae; the page links to it, add it here
+assets/Qasim_Hussain_CV.pdf    curriculum vitae
 data/activity.json             daily contribution record, rewritten nightly
 data/profile.json              repository and dataset counts, rewritten nightly
 scripts/refresh.mjs            the nightly refresh job
@@ -91,15 +91,9 @@ the table is read from Hugging Face on every load.
 
 ## Known items
 
-- `assets/Qasim_Hussain_CV.pdf` does not yet exist. Until it is added, the two
-  links that point to it return a 404 response.
-- Two repositories carry misspelt names on GitHub:
-  `qiime2_micobiome_analysis` and `cell_profiler_nuclei_to_cytoplasm_ration`.
-  The page uses the corrected spelling for the second, so that entry resolves
-  only after the repository is renamed. For the first, the page keeps the
-  current name, because the Hugging Face dataset of the same name leaves no
-  redirect when renamed; the `REPOS` and `DSETS` entries should be changed in
-  the same commit as the renames.
+- The repository index uses the names exactly as they appear on GitHub. If a
+  repository is renamed, change its entry in the `REPOS` array (and in `DSETS`
+  for the Hugging Face dataset of the same name) in the same commit.
 - The Hugging Face dataset `qiime2_antibiotic_microbiome_analysis` reports a
   `DatasetGenerationCastError` in the dataset viewer. The error is visible to
   anyone who opens the dataset, so it is worth resolving before the address is

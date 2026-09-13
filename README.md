@@ -85,7 +85,9 @@ seriesChapters: 3
 
 The day counter is calendar based and reads day 52 on 13 September 2026. It
 advances on its own. Everything else is either fetched live or listed in the
-`REPOS` and `DSETS` arrays, whose maintenance is described in
+`REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in the
+form `['repository_name','group_id']`; a new dataset needs nothing, because
+the table is read from Hugging Face on every load.
 
 ## Known items
 
@@ -106,7 +108,7 @@ advances on its own. Everything else is either fetched live or listed in the
 ## Deliberately absent
 
 - The *Biomedicines* 13(7):1785 paper, at the author's request. It is indexed
-  on PubMed under PMID 40722855. The steps for adding it are given in
+  on PubMed under PMID 40722855.
 - Any description of unpublished work beyond what the publication list already
   states.
 - Analytics, tracking, cookie banners and third party scripts of every kind.

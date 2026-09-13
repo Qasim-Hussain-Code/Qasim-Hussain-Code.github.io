@@ -1,0 +1,68 @@
+{
+  "generated_at": "2026-09-13T07:44:31.279Z",
+  "public_repos": 71,
+  "datasets": 19,
+  "top_datasets": [
+    {
+      "id": "Human_Gut_Microbiome_Atlas",
+      "downloads": 549,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_micobiome_analysis",
+      "downloads": 375,
+      "likes": 0
+    },
+    {
+      "id": "Campylobacter-PanGWAS",
+      "downloads": 147,
+      "likes": 0
+    },
+    {
+      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "downloads": 109,
+      "likes": 0
+    },
+    {
+      "id": "Nature2022_Spneumo_Pangenome",
+      "downloads": 101,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_antibiotic_microbiome_analysis",
+      "downloads": 98,
+      "likes": 0
+    },
+    {
+      "id": "B.longum_CAZyme_Profiling",
+      "downloads": 76,
+      "likes": 0
+    },
+    {
+      "id": "p.aeruginosa-panimmunophagomics",
+      "downloads": 70,
+      "likes": 1
+    },
+    {
+      "id": "spatial-transcriptomics-atlas-demo",
+      "downloads": 63,
+      "likes": 0
+    },
+    {
+      "id": "ppanggolin_pangenomics_helicobacter_pylori",
+      "downloads": 58,
+      "likes": 0
+    },
+    {
+      "id": "hiv_scrnaseq_atlas",
+      "downloads": 53,
+      "likes": 0
+    },
+    {
+      "id": "viral_cancer_tcga",
+      "downloads": 49,
+      "likes": 0
+    }
+  ],
+  "models": 0
+}

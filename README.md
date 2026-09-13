@@ -22,7 +22,7 @@ assets/portrait.jpg            full resolution portrait
 assets/portrait-square.jpg     social card and favicon
 assets/Qasim_Hussain_CV.pdf    add this; the page already links to it
 data/activity.json             daily contribution record, rewritten nightly
-data/profile.json              counts, written nightly
+data/profile.json              counts, written nightly, used if the live APIs fail
 scripts/refresh.mjs            the refresh job
 .github/workflows/refresh.yml  runs it at 06:00 Taipei
 ```
@@ -69,9 +69,12 @@ phase 5.
 
 - `assets/Qasim_Hussain_CV.pdf` does not exist yet. Add it or remove the two
   links that point at it.
-- Two repositories need renaming on GitHub before their index entries resolve:
+- Two repositories carry misspelt names on GitHub:
   `qiime2_micobiome_analysis` and `cell_profiler_nuclei_to_cytoplasm_ration`.
-  The page already uses the corrected spellings.
+  The page already uses the corrected spelling for the second, so that entry
+  returns 404 until the rename. For the first the page keeps the live name,
+  because the Hugging Face dataset of the same name has no redirect; change
+  the `REPOS` and `DSETS` entries in the same commit as the renames.
 - The Hugging Face dataset `qiime2_antibiotic_microbiome_analysis` shows a
   `DatasetGenerationCastError` in the viewer. That error is visible to anyone
   who opens it, so it is worth fixing before the address is circulated.

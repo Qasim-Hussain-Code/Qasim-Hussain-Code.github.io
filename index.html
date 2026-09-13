@@ -1069,7 +1069,8 @@ var SERIES_DAY=(function(){
   }
   fetch('data/activity.json').then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(j){
-      (j.days||[]).forEach(function(d){counts[d.date]=d.count;});
+      if(!j||!Array.isArray(j.days)||!j.days.length)throw 0;
+      j.days.forEach(function(d){counts[d.date]=d.count;});
       render('GitHub contribution record, refreshed '+String(j.generated_at||'').slice(0,10));
     })
     .catch(function(){

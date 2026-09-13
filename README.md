@@ -39,7 +39,8 @@ assets/portrait.jpg            portrait, 570 by 760 pixels, used for the social 
 assets/portrait-square.jpg     square portrait, used as the favicon
 assets/Qasim_Hussain_CV.pdf    curriculum vitae
 data/activity.json             daily contribution record, rewritten nightly
-data/profile.json              repository and dataset counts, rewritten nightly
+data/profile.json              repository and dataset counts, written by the job
+data/series.json               chapters completed, the one value edited by hand
 scripts/refresh.mjs            the nightly refresh job
 .github/workflows/refresh.yml  runs the job every two hours
 ```
@@ -76,17 +77,25 @@ the expiry date avoids the surprise.
 
 ## What is maintained by hand
 
-Two values, at the top of the script block in `index.html`:
+One value: the number of chapters completed in Machine Learning for Biology.
+It lives in `data/series.json`:
 
-```js
-seriesStart: '2026-07-24',   // day 1 of Machine Learning for Biology
-seriesChapters: 3
+```json
+{
+  "start": "2026-07-24",
+  "chapters": 4
+}
 ```
 
-The day counter is calendar based and reads day 52 on 13 September 2026. It
-advances on its own. Everything else is either fetched live or listed in the
-`REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in the
-form `['repository_name','group_id']`; a new dataset needs nothing, because
+When a chapter is finished, change the number and commit; the page reads the
+file on every load, so the figure updates within a minute of the push. The
+easiest way is to open the file on GitHub, press the pencil, change the
+number and choose "Commit changes". The day counter is calendar based and
+advances on its own from the start date.
+
+Everything else is either fetched live from GitHub and Hugging Face, or listed
+in the `REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in
+the form `['repository_name','group_id']`; a new dataset needs nothing, because
 the table is read from Hugging Face on every load.
 
 ## Known items

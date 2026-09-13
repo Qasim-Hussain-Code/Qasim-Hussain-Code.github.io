@@ -85,7 +85,9 @@ seriesChapters: 3
 
 The day counter is calendar based and reads day 52 on 13 September 2026. It
 advances on its own. Everything else is either fetched live or listed in the
-`REPOS` and `DSETS` arrays, whose maintenance is described in
+`REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in the
+form `['repository_name','group_id']`; a new dataset needs nothing, because
+the table is read from Hugging Face on every load.
 
 ## Known items
 

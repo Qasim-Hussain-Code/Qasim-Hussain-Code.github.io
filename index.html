@@ -45,8 +45,8 @@
    ========================================================================== */
 :root{
   --canvas:#FFFFFF; --sunken:#F6F7F9; --panel:#FFFFFF;
-  --ink:#0E1013; --body:#4A4F58; --mute:#767C86; --faint:#9BA1AA;
-  --line:#E7E9EC; --line-soft:#F0F1F4;
+  --ink:#0E1013; --body:#4A4F58; --mute:#646A73; --faint:#6B717A;
+  --line:#E7E9EC; --line-soft:#F0F1F4; --line-strong:#7F858E;
   --accent:#17439B; --accent-hi:#0F3079; --tint:#EDF1FA; --on-accent:#FFFFFF;
   --g1:#2F5DA8; --g2:#1B7561; --g3:#A4442F; --g4:#8A6420;
   --g5:#5B4392; --g6:#28687E; --g7:#4F6B2B; --g8:#6E5D52;
@@ -59,8 +59,8 @@
 }
 html[data-theme="dark"]{
   --canvas:#0B0C0E; --sunken:#101216; --panel:#131519;
-  --ink:#F2F3F5; --body:#B4BAC3; --mute:#868C96; --faint:#6A707A;
-  --line:#20242A; --line-soft:#191C21;
+  --ink:#F2F3F5; --body:#B4BAC3; --mute:#868C96; --faint:#7C828C;
+  --line:#20242A; --line-soft:#191C21; --line-strong:#666C76;
   --accent:#8FAAF5; --accent-hi:#B2C5FF; --tint:#161C2B; --on-accent:#0B0C0E;
   --g1:#7EA2E4; --g2:#3DBB9C; --g3:#E58469; --g4:#D6A648;
   --g5:#A991E8; --g6:#59AECB; --g7:#9AC05C; --g8:#BFA694;
@@ -69,6 +69,7 @@ html[data-theme="dark"]{
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+@media (max-width:1000px){html{scroll-padding-top:116px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
 body{margin:0;background:var(--canvas);color:var(--body);
   font:400 15.5px/1.6 var(--ui);-webkit-font-smoothing:antialiased;
@@ -167,6 +168,9 @@ section{padding:clamp(56px,7vw,92px) 0 0}
 .stabs{display:flex;gap:2px;padding:9px 10px;border-bottom:1px solid var(--line);background:var(--sunken);
   overflow-x:auto;scrollbar-width:none}
 .stabs::-webkit-scrollbar{display:none}
+.stabs [role="tablist"]{display:flex;gap:2px;flex-wrap:inherit}
+.stabs #spause{margin-left:auto}
+@media (max-width:600px){.stabs{flex-wrap:wrap}}
 .stab{flex:0 0 auto;border:0;background:transparent;border-radius:8px;padding:8px 13px;
   font:600 13px var(--ui);color:var(--mute);cursor:pointer;letter-spacing:-.01em}
 .stab:hover{color:var(--ink)}
@@ -238,7 +242,7 @@ section{padding:clamp(56px,7vw,92px) 0 0}
   font:600 13px var(--ui);color:var(--body);cursor:pointer;letter-spacing:-.01em}
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--canvas)}
-.find{flex:1;min-width:180px;height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;
+.find{flex:1;min-width:180px;height:36px;padding:0 14px;border:1px solid var(--line-strong);border-radius:999px;
   background:var(--panel);color:var(--ink);font:400 13.5px var(--ui)}
 .find::placeholder{color:var(--faint)}
 .list{border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}
@@ -287,7 +291,7 @@ section{padding:clamp(56px,7vw,92px) 0 0}
    ========================================================================== */
 .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,52px)}
 @media (max-width:900px){.duo{grid-template-columns:1fr;gap:34px}}
-h4{margin:0 0 4px;font-size:15px;font-weight:700;color:var(--ink)}
+.sub{margin:0 0 4px;font-size:15px;font-weight:700;color:var(--ink);letter-spacing:-.02em;line-height:1.3}
 .block + .block{margin-top:38px}
 .rl .r{padding:14px 0;border-bottom:1px solid var(--line)}
 .rl .r:first-of-type{border-top:1px solid var(--line)}
@@ -305,7 +309,7 @@ table.t .n{font-family:var(--mono);font-size:12px;color:var(--mute);white-space:
 @media (max-width:600px){.quad{grid-template-columns:1fr}}
 .quad ul{list-style:none;padding:0;font-size:13.8px;color:var(--body)}
 .quad li{padding:7px 0;border-top:1px solid var(--line-soft);line-height:1.45}
-.quad h4{margin-bottom:6px}
+.quad .sub{margin-bottom:6px}
 
 /* ==========================================================================
    11. Close
@@ -323,9 +327,9 @@ table.t .n{font-family:var(--mono);font-size:12px;color:var(--mute);white-space:
 @media (max-width:640px){.reach{grid-template-columns:1fr}}
 footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);
   display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between}
-#toTop{position:fixed;right:18px;bottom:18px;z-index:45;opacity:0;pointer-events:none;
-  transition:opacity .22s ease;box-shadow:var(--lift)}
-#toTop.on{opacity:1;pointer-events:auto}
+#toTop{position:fixed;right:18px;bottom:18px;z-index:45;opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .22s ease,visibility .22s;box-shadow:var(--lift)}
+#toTop.on{opacity:1;visibility:visible;pointer-events:auto}
 
 /* one orchestrated entrance, hero only */
 @media (prefers-reduced-motion:no-preference){
@@ -410,7 +414,8 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
         or read the full detail in the sections that follow.</p>
     </div>
     <div class="summary">
-      <div class="stabs" role="tablist" aria-label="Summary of output" id="stabs"></div>
+      <div class="stabs"><div role="tablist" aria-label="Summary of output" id="stabs"></div>
+        <button class="stab" type="button" id="spause" aria-pressed="false">Pause</button></div>
       <div class="sbar"><i id="sbar"></i></div>
       <div class="spanes" id="spanes"></div>
     </div>
@@ -436,7 +441,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
           <span>Fewer</span>
           <i style="background:var(--h0)"></i><i style="background:var(--h1)"></i>
           <i style="background:var(--h2)"></i><i style="background:var(--h3)"></i><i style="background:var(--h4)"></i>
-          <span>More</span><span style="margin-left:auto" id="calsrc">Loading</span>
+          <span>More</span><span style="margin-left:auto" id="calsrc" role="status">Loading</span>
         </p>
         <div class="tri">
           <div><p class="n" id="stCur">0</p><p class="k">Current run of consecutive days</p></div>
@@ -484,7 +489,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g3)"></i>Antivirals against the PEDV spike protein, from screen to bench</h3>
+          <h3><i role="img" aria-label="Viral genomics and virology" style="background:var(--g3)"></i>Antivirals against the PEDV spike protein, from screen to bench</h3>
           <p class="meta">Master's thesis, NPUST, 2024 to 2026<br>In silico screening and wet laboratory validation</p>
         </div>
         <div class="qm">
@@ -500,7 +505,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g1)"></i>Two annotators, one gene caller, half the product names different</h3>
+          <h3><i role="img" aria-label="Pangenomics and comparative genomics" style="background:var(--g1)"></i>Two annotators, one gene caller, half the product names different</h3>
           <p class="meta">bakta_prokka_disagreement_prediction<br>Python, random forest</p>
         </div>
         <div class="qm">
@@ -516,7 +521,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g5)"></i>Ranking colorectal cancer risk beyond tumour stage</h3>
+          <h3><i role="img" aria-label="Human genetics and disease" style="background:var(--g5)"></i>Ranking colorectal cancer risk beyond tumour stage</h3>
           <p class="meta">cancer_survival_ml_pipeline<br>Python, gradient boosting against a Cox baseline</p>
         </div>
         <div class="qm">
@@ -532,7 +537,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g2)"></i>Does TMAO carry information after a coronary intervention?</h3>
+          <h3><i role="img" aria-label="Microbiome and metagenomics" style="background:var(--g2)"></i>Does TMAO carry information after a coronary intervention?</h3>
           <p class="meta">tmao_cardiovascular_risk_prediction<br>Python, pre-registered analysis</p>
         </div>
         <div class="qm">
@@ -549,7 +554,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g3)"></i>The within host variome of a single influenza infection</h3>
+          <h3><i role="img" aria-label="Viral genomics and virology" style="background:var(--g3)"></i>The within host variome of a single influenza infection</h3>
           <p class="meta">nf-core-viralrecon-influenza<br>Nextflow, Bowtie2, iVar</p>
         </div>
         <div class="qm">
@@ -566,7 +571,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
 
       <article class="entry">
         <div>
-          <h3><i style="background:var(--g1)"></i>Penicillin resistance across 604 pneumococcal isolates</h3>
+          <h3><i role="img" aria-label="Pangenomics and comparative genomics" style="background:var(--g1)"></i>Penicillin resistance across 604 pneumococcal isolates</h3>
           <p class="meta">pyseer_bgwas_analysis<br>Shell, k-mer bacterial GWAS</p>
         </div>
         <div class="qm">
@@ -602,7 +607,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
              aria-label="Search repositories by name">
     </div>
     <div class="list" id="repos"></div>
-    <p class="tail" id="repoTail"></p>
+    <p class="tail" id="repoTail" role="status"></p>
   </div>
 </section>
 
@@ -696,9 +701,10 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
       </article>
 
     </div>
+    <p class="sr" role="status" id="copyStatus"></p>
 
     <div class="block" style="margin-top:44px">
-      <h4>Conference posters</h4>
+      <h3 class="sub">Conference posters</h3>
       <p class="tail" style="margin:6px 0 14px">Authorship position stated for each.</p>
       <div class="duo">
         <div class="rl">
@@ -733,7 +739,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
     <div class="duo">
       <div>
         <div class="block">
-          <h4>Education and appointments</h4>
+          <h3 class="sub">Education and appointments</h3>
           <div class="rl">
             <div class="r"><p class="yr">August 2026 to present</p>
               <p class="ti">Research Assistant, Cardiovascular Research Group</p>
@@ -750,7 +756,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
           </div>
         </div>
         <div class="block">
-          <h4>Teaching and public engagement</h4>
+          <h3 class="sub">Teaching and public engagement</h3>
           <div class="rl">
             <div class="r"><p class="yr">August 2025 to January 2026</p>
               <p class="ti">English Language Teaching Assistant, 209 service sessions</p>
@@ -766,7 +772,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
       </div>
       <div>
         <div class="block">
-          <h4>Honours and awards</h4>
+          <h3 class="sub">Honours and awards</h3>
           <div class="rl">
             <div class="r"><p class="yr">June 2026</p><p class="ti">Outstanding Researcher Award</p>
               <p class="de">National Pingtung University of Science and Technology, for outstanding research performance.</p></div>
@@ -781,7 +787,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
           </div>
         </div>
         <div class="block">
-          <h4>Assessed coursework</h4>
+          <h3 class="sub">Assessed coursework</h3>
           <p class="tail" style="margin:6px 0 12px">Forty four hours on DataCamp in statistical computing and
             genomic data analysis, in addition to the Harvard course.</p>
           <table class="t">
@@ -813,7 +819,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
       <p>Laboratory competencies are listed first because they are the less common half of this combination.</p>
     </div>
     <div class="quad">
-      <div><h4>Laboratory</h4><ul>
+      <div><h3 class="sub">Laboratory</h3><ul>
         <li>Cell culture: freezing, thawing, passaging, counting, cloning</li>
         <li>Virus culture and titration, including PEDV, avian reovirus and PRRSV</li>
         <li>Cytotoxicity, virus inhibition and G to F actin assays</li>
@@ -822,7 +828,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
         <li>SDS-PAGE, western blotting, confocal microscopy</li>
         <li>Murine and avian models: handling, restraint, dosing, welfare compliance</li>
       </ul></div>
-      <div><h4>Sequencing analysis</h4><ul>
+      <div><h3 class="sub">Sequencing analysis</h3><ul>
         <li>Whole genome sequencing: short read, long read, hybrid</li>
         <li>Whole exome sequencing and variant calling</li>
         <li>Bulk and single cell RNA sequencing, spatial transcriptomics</li>
@@ -831,7 +837,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
         <li>Pangenomics, pan-GWAS, TWAS, WGCNA</li>
         <li>Resistance, CAZyme, gene cluster and secretion system profiling</li>
       </ul></div>
-      <div><h4>Structure and learning</h4><ul>
+      <div><h3 class="sub">Structure and learning</h3><ul>
         <li>Molecular docking and molecular dynamics simulation</li>
         <li>Virtual screening of chemical and peptide libraries</li>
         <li>Protein structure prediction and modelling</li>
@@ -840,7 +846,7 @@ footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-si
         <li>Supervised learning with SHAP and counterfactual explanation</li>
         <li>Survival modelling and calibration assessment</li>
       </ul></div>
-      <div><h4>Computing</h4><ul>
+      <div><h3 class="sub">Computing</h3><ul>
         <li>Python, R, Bash, SQL</li>
         <li>Nextflow, nf-core, Snakemake</li>
         <li>Git and version controlled analysis</li>
@@ -977,7 +983,7 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
     var rows=REPOS.filter(function(r){
       return (active==='all'||r[1]===active)&&(!q||r[0].toLowerCase().indexOf(q)>-1);});
     host.innerHTML=rows.length?rows.map(function(r){
-      return '<div class="row"><i style="background:'+COL[r[1]]+'"></i>'+
+      return '<div class="row"><i role="img" aria-label="'+NAME[r[1]]+'" style="background:'+COL[r[1]]+'"></i>'+
         '<a class="nm" href="https://github.com/'+CONFIG.githubUser+'/'+r[0]+'">'+r[0]+'</a>'+
         '<span class="tag">'+NAME[r[1]]+'</span></div>';}).join('')
       :'<div class="row" style="grid-template-columns:1fr"><span style="color:var(--mute);font-size:14px">Nothing matches that search. Clear the field to see all '+REPOS.length+'.</span></div>';
@@ -1070,6 +1076,8 @@ var SERIES_DAY=(function(){
     document.getElementById('stMax').textContent=best;
     document.getElementById('stTot').textContent=total.toLocaleString();
     src.textContent=label;
+    grid.setAttribute('aria-label','Calendar of daily contributions to public GitHub repositories over the last '+
+      CONFIG.weeks+' weeks: '+total+' contributions, current run '+now+' days, longest run '+best+' days. '+label+'.');
   }
   fetch('data/activity.json').then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(j){
@@ -1159,12 +1167,13 @@ var SERIES_DAY=(function(){
           ['Machine Learning for Biology','Day '+SERIES_DAY+', ongoing']]}
   ];
   var tabs=document.getElementById('stabs'),panes=document.getElementById('spanes'),
-      bar=document.getElementById('sbar'),i=0,t0=0,DUR=7200,hold=false;
+      bar=document.getElementById('sbar'),pause=document.getElementById('spause'),
+      i=0,t0=0,DUR=7200,hold=false,paused=false;
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   tabs.innerHTML=P.map(function(p,j){
-    return '<button class="stab" type="button" role="tab" id="st'+j+'" aria-controls="sp'+j+'" aria-selected="'+(j===0)+'">'+p.k+'</button>';}).join('');
+    return '<button class="stab" type="button" role="tab" id="st'+j+'" aria-controls="sp'+j+'" aria-selected="'+(j===0)+'" tabindex="'+(j===0?0:-1)+'">'+p.k+'</button>';}).join('');
   panes.innerHTML=P.map(function(p,j){
-    return '<div class="spane" role="tabpanel" id="sp'+j+'" aria-labelledby="st'+j+'" data-on="'+(j===0?1:0)+'">'+
+    return '<div class="spane" role="tabpanel" id="sp'+j+'" aria-labelledby="st'+j+'" tabindex="0" data-on="'+(j===0?1:0)+'">'+
       '<div class="lede"><span class="v">'+p.v+'</span><span class="u"><b style="color:var(--ink);font-weight:600">'+p.h+'.</b> '+p.u+'</span></div>'+
       '<div class="rows">'+p.rows.map(function(r){
         return '<div><span>'+r[0]+'</span><span class="q">'+r[1]+'</span></div>';}).join('')+'</div></div>';
@@ -1172,21 +1181,35 @@ var SERIES_DAY=(function(){
   function show(n){
     i=n;t0=performance.now();
     panes.querySelectorAll('.spane').forEach(function(el,j){el.setAttribute('data-on',j===n?1:0);});
-    tabs.querySelectorAll('.stab').forEach(function(el,j){el.setAttribute('aria-selected',String(j===n));});
+    tabs.querySelectorAll('.stab').forEach(function(el,j){
+      el.setAttribute('aria-selected',String(j===n));el.setAttribute('tabindex',j===n?'0':'-1');});
   }
+  function setPaused(p){
+    paused=p;t0=performance.now();
+    pause.textContent=p?'Resume':'Pause';pause.setAttribute('aria-pressed',String(p));
+    pause.setAttribute('aria-label',p?'Resume the automatic advance of the summary panel':'Pause the automatic advance of the summary panel');
+    if(p)bar.style.width='100%';
+  }
+  /* an explicit choice of heading holds the panel, on every kind of input */
   tabs.addEventListener('click',function(e){
     var b=e.target.closest('.stab');if(!b)return;
-    show(Array.prototype.indexOf.call(tabs.children,b));});
+    show(Array.prototype.indexOf.call(tabs.children,b));setPaused(true);});
   tabs.addEventListener('keydown',function(e){
-    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
-    e.preventDefault();
-    var n=(i+(e.key==='ArrowRight'?1:P.length-1))%P.length;show(n);tabs.children[n].focus();});
+    var n;
+    if(e.key==='ArrowRight')n=(i+1)%P.length;
+    else if(e.key==='ArrowLeft')n=(i+P.length-1)%P.length;
+    else if(e.key==='Home')n=0;
+    else if(e.key==='End')n=P.length-1;
+    else return;
+    e.preventDefault();show(n);setPaused(true);tabs.children[n].focus();});
+  pause.addEventListener('click',function(){setPaused(!paused);});
   var box=panes.parentNode;
   ['mouseenter','focusin'].forEach(function(ev){box.addEventListener(ev,function(){hold=true;});});
   ['mouseleave','focusout'].forEach(function(ev){box.addEventListener(ev,function(){hold=false;t0=performance.now();});});
-  if(reduce){bar.style.width='100%';return;}
+  if(reduce){bar.style.width='100%';pause.hidden=true;return;}
   t0=performance.now();
   (function tick(now){
+    if(paused){requestAnimationFrame(tick);return;}
     if(!hold){
       var e=now-t0;bar.style.width=Math.min(100,e/DUR*100)+'%';
       if(e>=DUR){show((i+1)%P.length);bar.style.width='0%';}
@@ -1205,7 +1228,9 @@ document.addEventListener('click',function(e){
   var b=e.target.closest('[data-bib]');if(!b)return;
   var txt=BIB[b.dataset.bib];if(!txt)return;
   var label=b.textContent;
-  function done(){b.textContent='Copied';setTimeout(function(){b.textContent=label;},1600);}
+  var st=document.getElementById('copyStatus');
+  function done(){b.textContent='Copied';if(st)st.textContent='BibTeX copied to the clipboard.';
+    setTimeout(function(){b.textContent=label;if(st)st.textContent='';},1600);}
   function manual(){
     var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';
     document.body.appendChild(ta);ta.select();
@@ -1233,7 +1258,8 @@ document.addEventListener('click',function(e){
     targets.forEach(function(t){io.observe(t);});
   }
   var top=document.getElementById('toTop');
-  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  top.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});});
   addEventListener('scroll',function(){top.classList.toggle('on',scrollY>900);},{passive:true});
 })();
 

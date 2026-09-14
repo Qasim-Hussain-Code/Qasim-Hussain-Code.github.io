@@ -1,4 +1,4 @@
-# Qasim Hussain, research site
+# Portfolio site
 
 This repository holds the source of a personal research site, published at
 <https://qasim-hussain-code.github.io/> through GitHub Pages. The site consists of

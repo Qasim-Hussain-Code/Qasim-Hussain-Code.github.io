@@ -121,8 +121,6 @@ header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1
 h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.3vw,66px);letter-spacing:-.012em;
   line-height:1.06;color:var(--ink);max-width:21ch;text-wrap:balance}
 .kicker{margin:0 0 18px;font-size:16.5px;color:var(--accent)}
-/* lift the two small-caps labels so their capitals sit on the top edge of the portrait frame */
-@media (min-width:881px){.kicker{margin-top:-8px}.toc{padding-top:0;margin-top:-5px}}
 .hero .serif{margin-top:26px;max-width:66ch;color:var(--body);font-size:17.5px;line-height:1.68}
 .hero .serif + .serif{margin-top:12px}
 .hero .serif:first-of-type::first-letter{font-weight:500;color:var(--accent)}
@@ -141,6 +139,8 @@ h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.
 .shot figcaption{position:relative;z-index:1;margin:20px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
 .toc{align-self:start;min-width:0;padding-top:6px}
 .toc .sub{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--rule);color:var(--ink)}
+/* lift the two small-caps labels so their capitals sit on the top edge of the portrait frame */
+@media (min-width:881px){.kicker{margin-top:-8px}.toc{padding-top:0;margin-top:-5px}}
 .toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
 .toc li{counter-increment:toc}
 .toc a{display:flex;align-items:baseline;gap:10px;padding:7px 0;border-bottom:1px solid var(--line-soft);color:var(--ink);font-size:15.5px}

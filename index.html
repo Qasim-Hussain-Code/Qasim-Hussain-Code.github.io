@@ -399,6 +399,19 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 .hero .serif:first-of-type::first-letter{color:#C97600}
 .close .serif{color:var(--close-text)}
 .close :focus-visible{outline-color:var(--close-text)}
+/* closing block: statement and actions left, the six addresses right */
+.closelab{font-size:14.5px;color:var(--close-mute);margin-bottom:26px}
+.close h2{text-wrap:balance}
+.closegrid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px clamp(48px,6vw,128px);align-items:start}
+.closegrid .reach{margin-top:6px;grid-template-columns:1fr;border-top:1px solid var(--close-line)}
+.reach a{padding:15px 0}
+.reach a span{font-size:13.5px}
+.close .buttons{margin-top:32px}
+.close .btn{border-color:var(--close-text);color:var(--close-text);background:transparent}
+.close .btn:hover{background:rgba(20,26,31,.08);border-color:var(--close-text)}
+.close .btn.dark{background:var(--close-text);border-color:var(--close-text);color:#fff}
+.close .btn.dark:hover{background:#000;border-color:#000;color:#fff}
+@media (max-width:880px){.closegrid{grid-template-columns:1fr;gap:36px}.closegrid .reach{margin-top:0}}
 </style>
 </head>
 <body>
@@ -912,9 +925,17 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 
 <div class="close" id="contact">
   <div class="wrap">
-    <h2>Applying for a fully funded doctoral position beginning in 2027.</h2>
-    <p class="serif">I am based in Taipei, available for interview across time zones, and willing to
-      relocate.</p>
+    <div class="sc closelab">Contact</div>
+    <div class="closegrid">
+      <div class="closesay">
+        <h2>Applying for a fully funded doctoral position beginning in 2027.</h2>
+        <p class="serif">I am based in Taipei, available for interview across time zones, and willing to
+          relocate.</p>
+        <div class="buttons">
+          <a class="btn dark" href="mailto:qasimhussain6798@gmail.com">Write to me</a>
+          <a class="btn" href="assets/Qasim_Hussain_CV.pdf">Curriculum vitae</a>
+        </div>
+      </div>
     <div class="reach">
       <a href="mailto:qasimhussain6798@gmail.com">Email<span>qasimhussain6798@gmail.com</span></a>
       <a href="https://github.com/Qasim-Hussain-Code">GitHub<span>Qasim-Hussain-Code</span></a>
@@ -922,6 +943,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
       <a href="https://scholar.google.com/citations?hl=en&amp;user=AjRm7h8AAAAJ">Google Scholar<span>AjRm7h8AAAAJ</span></a>
       <a href="https://orcid.org/0009-0000-7097-0262">ORCID<span>0009-0000-7097-0262</span></a>
       <a href="https://www.linkedin.com/in/qasim--hussain">LinkedIn<span>qasim--hussain</span></a>
+    </div>
     </div>
     <footer><span>Qasim Hussain, Taipei-Keelung metropolitan area, Taiwan.</span><span id="stamp"></span></footer>
   </div>

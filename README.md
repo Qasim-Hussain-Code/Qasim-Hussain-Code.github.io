@@ -35,7 +35,7 @@ Code behaves the same way.
 
 ```text
 index.html                     the entire site: markup, styles and script
-assets/portrait.jpg            portrait, 570 by 760 pixels, used for the social card
+assets/portrait.jpeg           portrait, 464 by 651 pixels, used for the social card
 assets/portrait-square.jpg     square portrait, used as the favicon
 assets/Qasim_Hussain_CV.pdf    curriculum vitae
 data/activity.json             daily contribution record, rewritten nightly

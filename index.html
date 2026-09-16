@@ -479,7 +479,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 
 <div class="wrap">
   <div class="figures">
-    <div><p class="n" id="fRepos">71</p><p class="k">public analysis pipelines on GitHub</p></div>
+    <div><p class="n" id="fRepos">72</p><p class="k">public analysis pipelines on GitHub</p></div>
     <div><p class="n" id="fData">19</p><p class="k">curated datasets on Hugging Face</p></div>
     <div><p class="n">2 + 1</p><p class="k">journal articles and a book chapter, two under review</p></div>
     <div><p class="n" id="fDay">52</p><p class="k">consecutive days of Machine Learning for Biology</p></div>
@@ -545,7 +545,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         </div>
         <div class="tri">
           <div><p class="n" id="hfCount">19</p><p class="k">Datasets published</p></div>
-          <div><p class="n" id="ghCount">71</p><p class="k">Repositories published</p></div>
+          <div><p class="n" id="ghCount">73</p><p class="k">Repositories published</p></div>
           <div><p class="n" id="chapNum">4</p><p class="k">Chapters completed</p></div>
         </div>
         <p class="say" style="margin-top:16px"><a href="https://www.linkedin.com/in/qasim--hussain">Read the series on LinkedIn</a></p>
@@ -999,7 +999,7 @@ var REPOS=[
  ['viral_attenuation_in_venezuelan_equine_encephalitis','viro'],['HCV_Riboseq','viro'],
  ['HIV1-Host-Interactome-ssGSEA','viro'],['hiv_scrnaseq_atlas','viro'],['viral_cancer_tcga','viro'],
  ['ViralSeq-QC','viro'],['Immuno-Epitope-Predictor','viro'],
- ['nf_core_ribo_seq_te_pipeline','tx'],['rnaseq_analysis_of_Methanosarcina_mazei_strain_G-1','tx'],
+ ['HRIBO_Ribo_Seq_Analysis','tx'],['nf_core_ribo_seq_te_pipeline','tx'],['rnaseq_analysis_of_Methanosarcina_mazei_strain_G-1','tx'],
  ['reademption_docker_container','tx'],['rnaseq_analysis_of_Salmonella_typhimurium','tx'],
  ['RNA-seq_Burkholderia','tx'],['rnaseq_paired_end','tx'],['campylobacter-resistome-wgcna','tx'],
  ['Transcriptome-Health-Dashboard','tx'],
@@ -1061,6 +1061,7 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
     REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name);}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
     drawChips();draw();
     var P=document.getElementById('sum-code');if(P)P.textContent=REPOS.length;
+    var F=document.getElementById('fRepos');if(F)F.textContent=REPOS.length;
   }).catch(function(){});
 })();
 
@@ -1190,7 +1191,9 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
 (function(){
   function set(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
   function title(id){return id.replace(/[_-]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();});}
-  function repos(n){set('ghCount',n);set('fRepos',n);var s=document.getElementById('sum-code');if(s)s.textContent=n;}
+  /* GitHub's total includes this site's own repository, so it feeds only the
+     published count; the pipeline figures count the index (REPOS) */
+  function repos(n){set('ghCount',n);}
   function data(n,top){
     set('hfCount',n);set('fData',n);var s=document.getElementById('sum-data');if(s)s.textContent=n;
     if(top&&top.length>=5)drawData(top.slice(0,12).map(function(d){return [title(d.id),d.id,d.downloads];}));

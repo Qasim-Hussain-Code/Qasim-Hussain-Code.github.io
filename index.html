@@ -196,7 +196,7 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .stab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent)}
 .stab:focus-visible{outline-offset:-3px}
 .sbar{height:2px;background:var(--line-soft)}
-.sbar i{display:block;height:100%;width:0;background:var(--accent)}
+.sbar i{display:block;height:100%;width:100%;transform:scaleX(0);transform-origin:0 50%;background:var(--accent)}
 .spanes{position:relative}
 .spane{position:absolute;inset:0;padding:clamp(22px,3vw,36px) clamp(22px,3vw,40px);opacity:0;visibility:hidden;
   transition:opacity .3s ease,visibility .3s}
@@ -1358,17 +1358,41 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
       '<div class="rows">'+p.rows.map(function(r){
         return '<div><span>'+r[0]+'</span><span class="q">'+r[1]+'</span></div>';}).join('')+'</div></div>';
   }).join('');
+  /* the panel keeps the height of its tallest pane, so the page below it never
+     shifts when the pane changes */
+  function fit(){
+    var h=0;panes.querySelectorAll('.spane').forEach(function(el){h=Math.max(h,el.scrollHeight);});
+    panes.style.minHeight=h+'px';
+  }
+  fit();window.fitSummary=fit;
+  var fitT;addEventListener('resize',function(){clearTimeout(fitT);fitT=setTimeout(fit,150);},{passive:true});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
+  /* the advance is a timer and the bar is a CSS transition, so nothing runs
+     per frame; both stop while the panel is off screen or the tab is hidden */
+  var visible=true,timer=null,left=DUR,started=0;
+  function setBar(pct,ms){bar.style.transition=ms?'transform '+ms+'ms linear':'none';bar.style.transform='scaleX('+(pct/100)+')';}
+  function running(){return !paused&&!hold&&visible&&!document.hidden;}
+  function start(){
+    if(timer||!running())return;
+    started=performance.now();setBar(100-left/DUR*100,0);void bar.offsetWidth;setBar(100,left);
+    timer=setTimeout(function(){timer=null;left=DUR;show((i+1)%P.length);start();},left);
+  }
+  function stop(){
+    if(!timer)return;clearTimeout(timer);timer=null;
+    left=Math.max(0,left-(performance.now()-started));setBar(100-left/DUR*100,0);
+  }
+  function sync(){if(running())start();else stop();}
   function show(n){
-    i=n;t0=performance.now();
+    i=n;stop();left=DUR;setBar(0,0);
     panes.querySelectorAll('.spane').forEach(function(el,j){el.setAttribute('data-on',j===n?1:0);});
     tabs.querySelectorAll('.stab').forEach(function(el,j){
       el.setAttribute('aria-selected',String(j===n));el.setAttribute('tabindex',j===n?'0':'-1');});
   }
   function setPaused(p){
-    paused=p;t0=performance.now();
+    paused=p;
     pause.textContent=p?'Resume':'Pause';pause.setAttribute('aria-pressed',String(p));
     pause.setAttribute('aria-label',p?'Resume the automatic advance of the summary panel':'Pause the automatic advance of the summary panel');
-    if(p)bar.style.width='100%';
+    if(p){stop();setBar(100,0);}else{left=DUR;setBar(0,0);start();}
   }
   /* an explicit choice of heading holds the panel, on every kind of input */
   tabs.addEventListener('click',function(e){
@@ -1384,18 +1408,14 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     e.preventDefault();show(n);setPaused(true);tabs.children[n].focus();});
   pause.addEventListener('click',function(){setPaused(!paused);});
   var box=panes.parentNode;
-  ['mouseenter','focusin'].forEach(function(ev){box.addEventListener(ev,function(){hold=true;});});
-  ['mouseleave','focusout'].forEach(function(ev){box.addEventListener(ev,function(){hold=false;t0=performance.now();});});
-  if(reduce){bar.style.width='100%';pause.hidden=true;return;}
-  t0=performance.now();
-  (function tick(now){
-    if(paused){requestAnimationFrame(tick);return;}
-    if(!hold){
-      var e=now-t0;bar.style.width=Math.min(100,e/DUR*100)+'%';
-      if(e>=DUR){show((i+1)%P.length);bar.style.width='0%';}
-    }else{t0=now;}
-    requestAnimationFrame(tick);
-  })(performance.now());
+  ['mouseenter','focusin'].forEach(function(ev){box.addEventListener(ev,function(){hold=true;stop();});});
+  ['mouseleave','focusout'].forEach(function(ev){box.addEventListener(ev,function(){hold=false;left=DUR;setBar(0,0);start();});});
+  if(reduce){setBar(100,0);pause.hidden=true;return;}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){visible=es[0].isIntersecting;sync();},{threshold:0}).observe(box);
+  }
+  document.addEventListener('visibilitychange',sync);
+  start();
 })();
 
 /* ---------- BibTeX ---------- */
@@ -1431,8 +1451,11 @@ document.addEventListener('click',function(e){
       es.forEach(function(en){
         if(!en.isIntersecting)return;
         links.forEach(function(a){a.setAttribute('aria-current',String(a.getAttribute('href')==='#'+en.target.id));});
-        var on=document.querySelector('#navM a[aria-current="true"]');
-        if(on&&on.scrollIntoView)on.scrollIntoView({block:'nearest',inline:'nearest'});
+        /* bring the current link into the strip by moving the strip alone; scrollIntoView
+           would also move the page, which on a phone pulled the reader back up */
+        var on=document.querySelector('#navM a[aria-current="true"]'),row=on&&on.parentNode;
+        if(row){var x=on.offsetLeft-(row.clientWidth-on.offsetWidth)/2;
+          if(row.scrollTo)row.scrollTo({left:x,behavior:'smooth'});else row.scrollLeft=x;}
       });
     },{rootMargin:'-100px 0px -72% 0px',threshold:0});
     targets.forEach(function(t){io.observe(t);});

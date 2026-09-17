@@ -1144,8 +1144,14 @@ function chaptersOf(s){
   if(s.chapterEnds){var d=seriesCount(s);return s.chapterEnds.filter(function(e){return e<=d;}).length;}
   return 0;
 }
+var INTRO_PRE="Two series. Machine Learning for Biology is written daily: each instalment takes one method, "+
+  "a loss function, a regulariser or an embedding, and shows it working on real biological data, with "+
+  "models and training data released on Hugging Face. Immunology for Everybody begins on 21 September "+
+  "2026 and will teach the basics of the subject from scratch in 165 daily posts and sixteen chapters, "+
+  "each post checked against Janeway's Immunobiology and mapped to a free source.";
 function seriesRows(){
-  return SERIES.filter(function(s){return seriesLive(s.start);}).map(function(s){
+  return SERIES.map(function(s){
+    if(!seriesLive(s.start))return [s.name,'begins '+longDate(s.start)];
     var n=seriesCount(s),done=!!(s.length&&n>=s.length);
     return [s.name,'Day '+n+(s.length?' of '+s.length:'')+(done?', complete':', ongoing')];});
 }
@@ -1157,7 +1163,7 @@ function paintSeries(list){
   SERIES_DAY=seriesDay(a.start);
   setText('dayNum',SERIES_DAY);
   var say=document.getElementById('daySay');say.textContent='';
-  if(live){var n1=document.createElement('b');n1.textContent=a.name+'.';say.appendChild(n1);say.appendChild(document.createTextNode(' '));}
+  if(b){var n1=document.createElement('b');n1.textContent=a.name+'.';say.appendChild(n1);say.appendChild(document.createTextNode(' '));}
   say.appendChild(document.createTextNode('Day '+SERIES_DAY+', written daily since '+longDate(a.start)+'. '+chapterText(chaptersOf(a))));
   drawArc('arc',(SERIES_DAY%100)/100);
   var r2=document.getElementById('ring2');
@@ -1170,6 +1176,13 @@ function paintSeries(list){
     drawArc('arc2',b.length?d2/b.length:(d2%100)/100);
     setText('serH','Daily writing');setText('serIntro',INTRO_TWO);setText('serLink','Read both series on LinkedIn');
     setText('fDay',SERIES_DAY+' + '+d2);setText('fDayK','consecutive days of '+a.name+' and of '+b.name);
+  }else if(b){
+    /* dated but not begun: announced, with no day count */
+    r2.hidden=false;setText('dayNum2','0');setText('dayOf2',b.length?'of '+b.length:'day');
+    var say3=document.getElementById('daySay2');say3.textContent='';
+    var n3=document.createElement('b');n3.textContent=b.name+'.';say3.appendChild(n3);
+    say3.appendChild(document.createTextNode(' Begins '+longDate(b.start)+(b.length?', with '+b.length+' daily posts':'')+'.'));
+    drawArc('arc2',0);setText('serH','Daily writing');setText('serIntro',INTRO_PRE);setText('fDay',SERIES_DAY);
   }else{
     r2.hidden=true;setText('fDay',SERIES_DAY);
   }

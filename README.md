@@ -77,21 +77,30 @@ the expiry date avoids the surprise.
 
 ## What is maintained by hand
 
-One value: the number of chapters completed in Machine Learning for Biology.
-It lives in `data/series.json`:
+One file, `data/series.json`, which describes the daily writing:
 
 ```json
 {
-  "start": "2026-07-24",
-  "chapters": 4
+  "series": [
+    { "name": "Machine Learning for Biology", "start": "2026-07-24", "chapters": 5 },
+    { "name": "Immunology for Everybody", "start": "2026-09-21", "length": 165,
+      "chapterEnds": [15, 26, 39, 48, 57, 66, 72, 81, 92, 103, 112, 119, 130, 138, 147, 158] }
+  ]
 }
 ```
 
-When a chapter is finished, change the number and commit; the page reads the
-file on every load, so the figure updates within a minute of the push. The
-easiest way is to open the file on GitHub, press the pencil, change the
-number and choose "Commit changes". The day counter is calendar based and
-advances on its own from the start date.
+The day counts are calendar based and advance on their own from each `start`.
+A series appears on the page from its start date, so moving the date delays
+it. `length` is the planned number of posts and sets the dial's scale; leave
+it out for an open-ended series.
+
+Chapters are counted in one of two ways. For a series with a fixed plan,
+`chapterEnds` lists the day on which each chapter's last post appears, and the
+page counts the chapters whose end day has passed. For an open-ended series,
+`chapters` is raised by hand when a chapter is finished: open the file on
+GitHub, press the pencil, change the number and choose "Commit changes". If
+both are present, `chapters` wins, so a slipped schedule can be corrected by
+hand.
 
 Everything else is either fetched live from GitHub and Hugging Face, or listed
 in the `REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in

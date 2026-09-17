@@ -244,6 +244,9 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .ring .mid{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
 .ring .mid b{display:block;font-family:var(--serif);font-size:30px;font-weight:400;color:var(--ink);line-height:1}
 .ring .mid span{font-size:12px;color:var(--mute);letter-spacing:.04em}
+.ring[hidden]{display:none}
+.ring+.ring{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.ring p b{font-weight:500;color:var(--ink)}
 
 /* ==========================================================================
    7. Research entries, set like numbered essays rather than boxed
@@ -395,7 +398,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 .btn.key:hover{background:var(--brand-hi);border-color:var(--brand-hi);color:var(--ink)}
 .sbar i{background:var(--brand)}
 .drow .gauge i{background:var(--brand)}
-#arc{stroke:var(--brand)}
+#arc,#arc2{stroke:var(--brand)}
 .nav a[aria-current="true"]{border-bottom-color:var(--brand)}
 .stab[aria-selected="true"]{border-bottom-color:var(--brand)}
 .hero .serif:first-of-type::first-letter{color:#C97600}
@@ -482,7 +485,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     <div><p class="n" id="fRepos">72</p><p class="k">public analysis pipelines on GitHub</p></div>
     <div><p class="n" id="fData">19</p><p class="k">curated datasets on Hugging Face</p></div>
     <div><p class="n">2 + 1</p><p class="k">journal articles and a book chapter, two under review</p></div>
-    <div><p class="n" id="fDay">52</p><p class="k">consecutive days of Machine Learning for Biology</p></div>
+    <div><p class="n" id="fDay">52</p><p class="k" id="fDayK">consecutive days of Machine Learning for Biology</p></div>
   </div>
 </div>
 </div>
@@ -527,8 +530,8 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         </div>
       </div>
       <div class="card">
-        <h3>Machine Learning for Biology</h3>
-        <p class="say">A daily written series. Each instalment takes one method, a loss function, a
+        <h3 id="serH">Machine Learning for Biology</h3>
+        <p class="say" id="serIntro">A daily written series. Each instalment takes one method, a loss function, a
           regulariser or an embedding, and shows it working on real biological data without removing the
           mathematics. Models and training data are being released alongside it on Hugging Face, so that
           each written argument has a reproducible artefact attached.</p>
@@ -543,12 +546,23 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           </div>
           <p style="font-size:14.5px" id="daySay">Loading.</p>
         </div>
+        <div class="ring" id="ring2" hidden>
+          <div class="dial">
+            <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
+              <circle cx="52" cy="52" r="45" fill="none" stroke="var(--line-soft)" stroke-width="8"></circle>
+              <circle id="arc2" cx="52" cy="52" r="45" fill="none" stroke="var(--accent)" stroke-width="8"
+                      stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"></circle>
+            </svg>
+            <div class="mid"><b id="dayNum2">1</b><span id="dayOf2">of 165</span></div>
+          </div>
+          <p style="font-size:14.5px" id="daySay2">Loading.</p>
+        </div>
         <div class="tri">
           <div><p class="n" id="hfCount">19</p><p class="k">Datasets published</p></div>
           <div><p class="n" id="ghCount">73</p><p class="k">Repositories published</p></div>
           <div><p class="n" id="chapNum">4</p><p class="k">Chapters completed</p></div>
         </div>
-        <p class="say" style="margin-top:16px"><a href="https://www.linkedin.com/in/qasim--hussain">Read the series on LinkedIn</a></p>
+        <p class="say" style="margin-top:16px"><a id="serLink" href="https://www.linkedin.com/in/qasim--hussain">Read the series on LinkedIn</a></p>
       </div>
     </div>
   </div>
@@ -961,8 +975,11 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 var CONFIG={
   githubUser:'Qasim-Hussain-Code',
   hfUser:'QasimHussain',
-  seriesStart:'2026-07-24',   /* day 1 of Machine Learning for Biology; data/series.json overrides */
-  seriesChapters:4,           /* chapters complete; edit data/series.json, not this line */
+  series:[                    /* defaults only; data/series.json is the file edited by hand */
+    {name:'Machine Learning for Biology',start:'2026-07-24',chapters:5},
+    {name:'Immunology for Everybody',start:'2026-09-21',length:165,
+     chapterEnds:[15,26,39,48,57,66,72,81,92,103,112,119,130,138,147,158]}
+  ],
   weeks:52
 };
 
@@ -1088,24 +1105,18 @@ function drawData(list){
 }
 drawData(DSETS);
 
-/* ---------- day counter ---------- */
+/* ---------- day counters ---------- */
 function seriesDay(start){
   var s=new Date(start+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);
   var d=Math.floor((t-s)/86400000)+1;return d<1?1:d;
 }
-var SERIES_DAY=seriesDay(CONFIG.seriesStart);
-/* The day advances on the calendar. The chapter count is the one value kept
-   by hand: it is read from data/series.json, so it can be changed on GitHub
-   without touching this file. */
-function paintSeries(start,chapters){
-  SERIES_DAY=seriesDay(start);
-  document.getElementById('dayNum').textContent=SERIES_DAY;
-  document.getElementById('fDay').textContent=SERIES_DAY;
-  var ch=document.getElementById('chapNum');if(ch)ch.textContent=chapters;
-  document.getElementById('daySay').textContent='Day '+SERIES_DAY+', written daily since '+
-    new Date(start+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+
-    '. '+chapters+' chapter'+(chapters===1?'':'s')+' complete.';
-  var arc=document.getElementById('arc'),C=2*Math.PI*45,pct=(SERIES_DAY%100)/100;
+function seriesLive(start){var t=new Date();t.setHours(0,0,0,0);return t>=new Date(start+'T00:00:00');}
+function seriesCount(s){var d=seriesDay(s.start);return s.length?Math.min(d,s.length):d;}
+function longDate(iso){return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
+function chapterText(n){return n===0?'No chapter complete yet.':n+' chapter'+(n===1?'':'s')+' complete.';}
+function setText(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
+function drawArc(id,pct){
+  var arc=document.getElementById(id),C=2*Math.PI*45;
   arc.setAttribute('stroke-dasharray',C.toFixed(1));
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
     arc.setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));
@@ -1114,9 +1125,65 @@ function paintSeries(start,chapters){
     requestAnimationFrame(function(){arc.setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));});
   }
 }
-paintSeries(CONFIG.seriesStart,CONFIG.seriesChapters);
+var SERIES=CONFIG.series,SERIES_DAY=seriesDay(SERIES[0].start);
+var INTRO_TWO='Two series, written daily. Machine Learning for Biology takes one method per instalment, '+
+  'a loss function, a regulariser or an embedding, and shows it working on real biological data, with '+
+  'models and training data released on Hugging Face. Immunology for Everybody teaches the basics of the '+
+  'subject from scratch in 165 daily posts and sixteen chapters, each post checked against Janeway\'s '+
+  'Immunobiology and mapped to a free source.';
+function chaptersOf(s){
+  if(typeof s.chapters==='number')return s.chapters;
+  if(s.chapterEnds){var d=seriesCount(s);return s.chapterEnds.filter(function(e){return e<=d;}).length;}
+  return 0;
+}
+function seriesRows(){
+  return SERIES.filter(function(s){return seriesLive(s.start);}).map(function(s){
+    var n=seriesCount(s),done=!!(s.length&&n>=s.length);
+    return [s.name,'Day '+n+(s.length?' of '+s.length:'')+(done?', complete':', ongoing')];});
+}
+/* The day counts advance on the calendar. Start dates, planned lengths and
+   chapter counts are read from data/series.json, so they can be changed on
+   GitHub without touching this file. A series appears on its start date. */
+function paintSeries(list){
+  SERIES=list;var a=list[0],b=list[1],live=!!(b&&seriesLive(b.start));
+  SERIES_DAY=seriesDay(a.start);
+  setText('dayNum',SERIES_DAY);
+  var say=document.getElementById('daySay');say.textContent='';
+  if(live){var n1=document.createElement('b');n1.textContent=a.name+'.';say.appendChild(n1);say.appendChild(document.createTextNode(' '));}
+  say.appendChild(document.createTextNode('Day '+SERIES_DAY+', written daily since '+longDate(a.start)+'. '+chapterText(chaptersOf(a))));
+  drawArc('arc',(SERIES_DAY%100)/100);
+  var r2=document.getElementById('ring2');
+  if(live){
+    var d2=seriesCount(b);r2.hidden=false;
+    setText('dayNum2',d2);setText('dayOf2',b.length?'of '+b.length:'day');
+    var say2=document.getElementById('daySay2');say2.textContent='';
+    var n2=document.createElement('b');n2.textContent=b.name+'.';say2.appendChild(n2);
+    say2.appendChild(document.createTextNode(' Day '+d2+(b.length?' of '+b.length:'')+', written daily since '+longDate(b.start)+'. '+chapterText(chaptersOf(b))));
+    drawArc('arc2',b.length?d2/b.length:(d2%100)/100);
+    setText('serH','Daily writing');setText('serIntro',INTRO_TWO);setText('serLink','Read both series on LinkedIn');
+    setText('fDay',SERIES_DAY+' + '+d2);setText('fDayK','consecutive days of '+a.name+' and of '+b.name);
+  }else{
+    r2.hidden=true;setText('fDay',SERIES_DAY);
+  }
+  setText('chapNum',chaptersOf(a)+(live?chaptersOf(b):0));
+  /* the rows in the summary table, if it has been drawn */
+  var rows=document.querySelectorAll('#spanes .rows > div'),host=null,have={};
+  rows.forEach(function(r){var k=r.firstElementChild.textContent;list.forEach(function(s){if(k===s.name){have[s.name]=r;host=r.parentNode;}});});
+  if(host)seriesRows().forEach(function(row){
+    var r=have[row[0]];
+    if(!r){r=document.createElement('div');r.innerHTML='<span></span><span class="q"></span>';r.firstElementChild.textContent=row[0];host.appendChild(r);}
+    r.lastElementChild.textContent=row[1];
+  });
+}
+paintSeries(CONFIG.series);
 fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
-  if(j&&typeof j.chapters==='number')paintSeries(j.start||CONFIG.seriesStart,j.chapters);
+  if(!j)return;
+  var list=Array.isArray(j.series)?j.series:(typeof j.chapters==='number'?[{start:j.start,chapters:j.chapters}]:null);
+  if(!list)return;
+  paintSeries(list.map(function(s,i){var d=CONFIG.series[i]||{};
+    var o={name:s.name||d.name,start:s.start||d.start,length:s.length||d.length,chapterEnds:s.chapterEnds||d.chapterEnds};
+    if(typeof s.chapters==='number')o.chapters=s.chapters;else if(!o.chapterEnds)o.chapters=d.chapters||0;
+    return o;}));
 }).catch(function(){});
 
 /* ---------- contribution calendar ----------
@@ -1259,7 +1326,7 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     rows:[['English Language Teaching Assistant','209 sessions'],
           ['ELTA orientation training','18 hours'],
           ['Lecture on animal vaccines, Pingtung Science Park','August 2026'],
-          ['Machine Learning for Biology','Day '+SERIES_DAY+', ongoing']]}
+          ].concat(seriesRows())}
   ];
   var tabs=document.getElementById('stabs'),panes=document.getElementById('spanes'),
       bar=document.getElementById('sbar'),pause=document.getElementById('spause'),

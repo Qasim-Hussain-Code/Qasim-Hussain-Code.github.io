@@ -238,6 +238,12 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .tri .n{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
 .tri .k{margin-top:7px;font-size:14px;color:var(--mute);line-height:1.45}
+.tri{row-gap:22px}
+@media (min-width:1600px){#practice .tri{grid-template-columns:repeat(6,minmax(0,1fr))}}
+/* the two activity cards end together: the figure rows sit at the foot */
+.card{display:flex;flex-direction:column}
+.card>.tri{margin-top:auto;padding-top:20px}
+.card>:has(+.tri){margin-bottom:22px}
 .ring{display:flex;align-items:center;gap:20px;margin-top:22px}
 .ring .dial{position:relative;width:108px;height:108px;flex:0 0 auto}
 .ring .dial svg{transform:rotate(-90deg)}
@@ -246,7 +252,14 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .ring .mid span{font-size:12px;color:var(--mute);letter-spacing:.04em}
 .ring[hidden]{display:none}
 .ring+.ring{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.ring p b{font-weight:500;color:var(--ink)}
+.chead{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.chead a{font-size:14.5px;white-space:nowrap}
+.ring{align-items:flex-start}
+.ring .rtext{min-width:0;padding-top:4px}
+.ring .rname{display:block;font-size:17px;font-weight:500;color:var(--ink);line-height:1.3}
+.ring .meta{margin:6px 0 8px;font-family:var(--mono);font-size:12.5px;color:var(--mute);line-height:1.6;word-break:break-word}
+.ring .rtext p:not(.meta){margin:0;font-size:14.5px;line-height:1.55;color:var(--body)}
+@media (max-width:640px){.ring{flex-direction:column;gap:12px}.ring .rtext{padding-top:0}.calkey{flex-wrap:wrap;row-gap:6px}}
 
 /* ==========================================================================
    7. Research entries, set like numbered essays rather than boxed
@@ -527,14 +540,14 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           <div><p class="n" id="stCur">0</p><p class="k">Current run of consecutive days</p></div>
           <div><p class="n" id="stMax">0</p><p class="k">Longest run in the window</p></div>
           <div><p class="n" id="stTot">0</p><p class="k">Contributions in the window</p></div>
+          <div><p class="n" id="stAct">0</p><p class="k">Active days in the window</p></div>
+          <div><p class="n" id="stBusy">0</p><p class="k" id="stBusyK">Contributions on the busiest day</p></div>
+          <div><p class="n" id="stAvg">0</p><p class="k">Contributions per active day</p></div>
         </div>
       </div>
       <div class="card">
-        <h3 id="serH">Machine Learning for Biology</h3>
-        <p class="say" id="serIntro">A daily written series. Each instalment takes one method, a loss function, a
-          regulariser or an embedding, and shows it working on real biological data without removing the
-          mathematics. Models and training data are being released alongside it on Hugging Face, so that
-          each written argument has a reproducible artefact attached.</p>
+        <div class="chead"><h3 id="serH">Daily writing</h3>
+          <a id="serLink" href="https://www.linkedin.com/in/qasim--hussain">Read on LinkedIn</a></div>
         <div class="ring">
           <div class="dial">
             <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
@@ -544,7 +557,13 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
             </svg>
             <div class="mid"><b id="dayNum">52</b><span>day</span></div>
           </div>
-          <p style="font-size:14.5px" id="daySay">Loading.</p>
+          <div class="rtext">
+            <b class="rname" id="name1">Machine Learning for Biology</b>
+            <p class="meta" id="meta1">Loading.</p>
+            <p id="daySay">Each instalment takes one method, a loss function, a regulariser or an embedding, and
+              shows it working on real biological data without removing the mathematics. Models and training
+              data are released alongside it on Hugging Face.</p>
+          </div>
         </div>
         <div class="ring" id="ring2" hidden>
           <div class="dial">
@@ -555,14 +574,13 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
             </svg>
             <div class="mid"><b id="dayNum2">1</b><span id="dayOf2">of 165</span></div>
           </div>
-          <p style="font-size:14.5px" id="daySay2">Loading.</p>
+          <div class="rtext">
+            <b class="rname" id="name2">Immunology for Everybody</b>
+            <p class="meta" id="meta2">Loading.</p>
+            <p id="daySay2">The basics of the subject from scratch in 165 daily posts and sixteen chapters, each
+              post checked against Janeway's Immunobiology and mapped to a free source.</p>
+          </div>
         </div>
-        <div class="tri">
-          <div><p class="n" id="hfCount">19</p><p class="k">Datasets published</p></div>
-          <div><p class="n" id="ghCount">73</p><p class="k">Repositories published</p></div>
-          <div><p class="n" id="chapNum">4</p><p class="k">Chapters completed</p></div>
-        </div>
-        <p class="say" style="margin-top:16px"><a id="serLink" href="https://www.linkedin.com/in/qasim--hussain">Read the series on LinkedIn</a></p>
       </div>
     </div>
   </div>
@@ -1113,7 +1131,7 @@ function seriesDay(start){
 function seriesLive(start){var t=new Date();t.setHours(0,0,0,0);return t>=new Date(start+'T00:00:00');}
 function seriesCount(s){var d=seriesDay(s.start);return s.length?Math.min(d,s.length):d;}
 function longDate(iso){return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
-function chapterText(n){return n===0?'No chapter complete yet.':n+' chapter'+(n===1?'':'s')+' complete.';}
+function chapterMeta(n){return n===0?'no chapter complete yet':n+' chapter'+(n===1?'':'s')+' complete';}
 function setText(id,v){var e=document.getElementById(id);if(e)e.textContent=v;}
 function drawArc(id,pct){
   var arc=document.getElementById(id),C=2*Math.PI*45;
@@ -1126,21 +1144,11 @@ function drawArc(id,pct){
   }
 }
 var SERIES=CONFIG.series,SERIES_DAY=seriesDay(SERIES[0].start);
-var INTRO_TWO='Two series, written daily. Machine Learning for Biology takes one method per instalment, '+
-  'a loss function, a regulariser or an embedding, and shows it working on real biological data, with '+
-  'models and training data released on Hugging Face. Immunology for Everybody teaches the basics of the '+
-  'subject from scratch in 165 daily posts and sixteen chapters, each post checked against Janeway\'s '+
-  'Immunobiology and mapped to a free source.';
 function chaptersOf(s){
   if(typeof s.chapters==='number')return s.chapters;
   if(s.chapterEnds){var d=seriesCount(s);return s.chapterEnds.filter(function(e){return e<=d;}).length;}
   return 0;
 }
-var INTRO_PRE="Two series. Machine Learning for Biology is written daily: each instalment takes one method, "+
-  "a loss function, a regulariser or an embedding, and shows it working on real biological data, with "+
-  "models and training data released on Hugging Face. Immunology for Everybody begins on 21 September "+
-  "2026 and will teach the basics of the subject from scratch in 165 daily posts and sixteen chapters, "+
-  "each post checked against Janeway's Immunobiology and mapped to a free source.";
 function seriesRows(){
   return SERIES.map(function(s){
     if(!seriesLive(s.start))return [s.name,'begins '+longDate(s.start)];
@@ -1153,32 +1161,23 @@ function seriesRows(){
 function paintSeries(list){
   SERIES=list;var a=list[0],b=list[1],live=!!(b&&seriesLive(b.start));
   SERIES_DAY=seriesDay(a.start);
-  setText('dayNum',SERIES_DAY);
-  var say=document.getElementById('daySay');say.textContent='';
-  if(b){var n1=document.createElement('b');n1.textContent=a.name+'.';say.appendChild(n1);say.appendChild(document.createTextNode(' '));}
-  say.appendChild(document.createTextNode('Day '+SERIES_DAY+', written daily since '+longDate(a.start)+'. '+chapterText(chaptersOf(a))));
+  setText('dayNum',SERIES_DAY);setText('name1',a.name);
+  setText('meta1','Day '+SERIES_DAY+', since '+longDate(a.start)+', '+chapterMeta(chaptersOf(a)));
   drawArc('arc',(SERIES_DAY%100)/100);
   var r2=document.getElementById('ring2');
-  if(live){
-    var d2=seriesCount(b);r2.hidden=false;
-    setText('dayNum2',d2);setText('dayOf2',b.length?'of '+b.length:'day');
-    var say2=document.getElementById('daySay2');say2.textContent='';
-    var n2=document.createElement('b');n2.textContent=b.name+'.';say2.appendChild(n2);
-    say2.appendChild(document.createTextNode(' Day '+d2+(b.length?' of '+b.length:'')+', written daily since '+longDate(b.start)+'. '+chapterText(chaptersOf(b))));
-    drawArc('arc2',b.length?d2/b.length:(d2%100)/100);
-    setText('serH','Daily writing');setText('serIntro',INTRO_TWO);setText('serLink','Read both series on LinkedIn');
-    setText('fDay',SERIES_DAY+' + '+d2);setText('fDayK','consecutive days of '+a.name+' and of '+b.name);
-  }else if(b){
-    /* dated but not begun: announced, with no day count */
-    r2.hidden=false;setText('dayNum2','0');setText('dayOf2',b.length?'of '+b.length:'day');
-    var say3=document.getElementById('daySay2');say3.textContent='';
-    var n3=document.createElement('b');n3.textContent=b.name+'.';say3.appendChild(n3);
-    say3.appendChild(document.createTextNode(' Begins '+longDate(b.start)+(b.length?', with '+b.length+' daily posts':'')+'.'));
-    drawArc('arc2',0);setText('serH','Daily writing');setText('serIntro',INTRO_PRE);setText('fDay',SERIES_DAY);
-  }else{
-    r2.hidden=true;setText('fDay',SERIES_DAY);
-  }
-  setText('chapNum',chaptersOf(a)+(live?chaptersOf(b):0));
+  if(b){
+    r2.hidden=false;setText('name2',b.name);setText('dayOf2',b.length?'of '+b.length:'day');
+    if(live){
+      var d2=seriesCount(b);setText('dayNum2',d2);
+      setText('meta2','Day '+d2+(b.length?' of '+b.length:'')+', since '+longDate(b.start)+', '+chapterMeta(chaptersOf(b)));
+      drawArc('arc2',b.length?d2/b.length:(d2%100)/100);
+      setText('fDay',SERIES_DAY+' + '+d2);setText('fDayK','consecutive days of '+a.name+' and of '+b.name);
+    }else{
+      /* dated but not begun: announced, with no day count */
+      setText('dayNum2','0');setText('meta2','Begins '+longDate(b.start)+(b.length?', '+b.length+' daily posts':''));
+      drawArc('arc2',0);setText('fDay',SERIES_DAY);
+    }
+  }else{r2.hidden=true;setText('fDay',SERIES_DAY);}
   /* the rows in the summary table, if it has been drawn */
   var rows=document.querySelectorAll('#spanes .rows > div'),host=null,have={};
   rows.forEach(function(r){var k=r.firstElementChild.textContent;list.forEach(function(s){if(k===s.name){have[s.name]=r;host=r.parentNode;}});});
@@ -1187,6 +1186,7 @@ function paintSeries(list){
     if(!r){r=document.createElement('div');r.innerHTML='<span></span><span class="q"></span>';r.firstElementChild.textContent=row[0];host.appendChild(r);}
     r.lastElementChild.textContent=row[1];
   });
+  if(window.fitSummary)window.fitSummary();
 }
 paintSeries(CONFIG.series);
 fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(function(j){
@@ -1240,6 +1240,11 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     document.getElementById('stCur').textContent=now;
     document.getElementById('stMax').textContent=best;
     document.getElementById('stTot').textContent=total.toLocaleString();
+    var active=cells.filter(function(c){return c.n>0;}).length,busy=cells.reduce(function(m,c){return c.n>m.n?c:m;},cells[0]);
+    document.getElementById('stAct').textContent=active;
+    document.getElementById('stBusy').textContent=busy.n;
+    document.getElementById('stBusyK').textContent='Contributions on the busiest day, '+new Date(busy.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'});
+    document.getElementById('stAvg').textContent=active?(total/active).toFixed(1):'0';
     src.textContent=label;
     grid.setAttribute('aria-label','Calendar of daily contributions to public GitHub repositories over the last '+
       CONFIG.weeks+' weeks: '+total+' contributions, current run '+now+' days, longest run '+best+' days. '+label+'.');

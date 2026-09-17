@@ -239,7 +239,8 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .tri .n{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
 .tri .k{margin-top:7px;font-size:14px;color:var(--mute);line-height:1.45}
 .tri{row-gap:22px}
-@media (min-width:1600px){#practice .tri{grid-template-columns:repeat(6,minmax(0,1fr))}}
+#practice .tri{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:640px){#practice .tri{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* the two activity cards end together: the figure rows sit at the foot */
 .card{display:flex;flex-direction:column}
 .card>.tri{margin-top:auto;padding-top:20px}
@@ -537,12 +538,10 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           <span>More</span><span style="margin-left:auto" id="calsrc" role="status">Loading</span>
         </p>
         <div class="tri">
-          <div><p class="n" id="stCur">0</p><p class="k">Current run of consecutive days</p></div>
-          <div><p class="n" id="stMax">0</p><p class="k">Longest run in the window</p></div>
           <div><p class="n" id="stTot">0</p><p class="k">Contributions in the window</p></div>
-          <div><p class="n" id="stAct">0</p><p class="k">Active days in the window</p></div>
+          <div><p class="n" id="st90">0</p><p class="k">Contributions in the last 90 days</p></div>
+          <div><p class="n" id="st10">0</p><p class="k">Days with 10 or more contributions</p></div>
           <div><p class="n" id="stBusy">0</p><p class="k" id="stBusyK">Contributions on the busiest day</p></div>
-          <div><p class="n" id="stAvg">0</p><p class="k">Contributions per active day</p></div>
         </div>
       </div>
       <div class="card">
@@ -1237,17 +1236,17 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
       var t=c.n+' contribution'+(c.n===1?'':'s')+' on '+d;
       return '<a class="d" href="https://github.com/'+CONFIG.githubUser+'?tab=overview&amp;from='+c.k+'&amp;to='+c.k+'" tabindex="-1" style="background:var(--h'+c.l+')" title="'+t+'" aria-label="'+t+'"></a>';
     }).join('');
-    document.getElementById('stCur').textContent=now;
-    document.getElementById('stMax').textContent=best;
+    var s90=new Date(today);s90.setDate(s90.getDate()-89);
+    var c90=cells.filter(function(c){return new Date(c.k+'T00:00:00')>=s90;}).reduce(function(a,c){return a+c.n;},0);
+    var d10=cells.filter(function(c){return c.n>=10;}).length,busy=cells.reduce(function(m,c){return c.n>m.n?c:m;},cells[0]);
     document.getElementById('stTot').textContent=total.toLocaleString();
-    var active=cells.filter(function(c){return c.n>0;}).length,busy=cells.reduce(function(m,c){return c.n>m.n?c:m;},cells[0]);
-    document.getElementById('stAct').textContent=active;
+    document.getElementById('st90').textContent=c90.toLocaleString();
+    document.getElementById('st10').textContent=d10;
     document.getElementById('stBusy').textContent=busy.n;
     document.getElementById('stBusyK').textContent='Contributions on the busiest day, '+new Date(busy.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'});
-    document.getElementById('stAvg').textContent=active?(total/active).toFixed(1):'0';
     src.textContent=label;
     grid.setAttribute('aria-label','Calendar of daily contributions to public GitHub repositories over the last '+
-      CONFIG.weeks+' weeks: '+total+' contributions, current run '+now+' days, longest run '+best+' days. '+label+'.');
+      CONFIG.weeks+' weeks: '+total+' contributions, '+c90+' in the last 90 days, '+d10+' days with 10 or more, most on one day '+busy.n+'. '+label+'.');
   }
   fetch('data/activity.json').then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(j){

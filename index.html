@@ -235,12 +235,6 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .calgo{margin-top:10px;font-size:13.5px}
 .calkey{display:flex;align-items:center;gap:6px;margin-top:14px;font-size:13.5px;color:var(--faint)}
 .calkey i{width:12px;height:12px;border-radius:2px;display:inline-block}
-#calmonths2{margin-top:16px}
-@media (max-width:640px){.cal{--cell:10px;--cgap:2px}}
-/* the two activity cards end together: each figure row sits at the foot of its card */
-.card{display:flex;flex-direction:column}
-.card>.tri{margin-top:auto;padding-top:20px}
-.card>:has(+.tri){margin-bottom:22px}
 .tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 .tri .n{font-family:var(--serif);font-weight:400;font-size:34px;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
 .tri .k{margin-top:7px;font-size:14px;color:var(--mute);line-height:1.45}
@@ -521,9 +515,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         <p class="say">One cell per day, darker where the day carried more commits. A day with no recorded
           contribution is left empty rather than filled in.</p>
         <div class="cal"><div class="calmonths" id="calmonths" aria-hidden="true"></div>
-          <div class="calgrid" id="calgrid" aria-label="Calendar of daily contributions to public GitHub repositories, first half of the year."></div>
-          <div class="calmonths" id="calmonths2" aria-hidden="true"></div>
-          <div class="calgrid" id="calgrid2" aria-label="Calendar of daily contributions to public GitHub repositories, second half of the year."></div></div>
+          <div class="calgrid" id="calgrid" aria-label="Calendar of daily contributions to public GitHub repositories."></div></div>
         <p class="calgo"><a href="https://github.com/Qasim-Hussain-Code">Open the full contribution graph on GitHub</a></p>
         <p class="calkey">
           <span>Fewer</span>
@@ -1232,25 +1224,19 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
       else if(i===cells.length-1){continue;}
       else break;
     }
-    /* drawn as two half-year rows, so that each cell is large enough to read */
-    var cols=Math.ceil(cells.length/7),half=Math.ceil(cols/2);
-    function drawHalf(mid,gid,part){
-      var n=Math.ceil(part.length/7),months=[],prev=-1;
-      for(var w=0;w<n;w++){
-        var fd=new Date(part[w*7].k+'T00:00:00'),m=fd.getMonth();
-        if(m!==prev){if(w===0||fd.getDate()<=7)months.push('<span style="grid-column:'+(w+2)+'">'+fd.toLocaleDateString('en-GB',{month:'short'})+'</span>');prev=m;}
-      }
-      var mrow=document.getElementById(mid);
-      if(mrow){mrow.style.setProperty('--cols',n);mrow.innerHTML=months.join('');}
-      var wd=['Mon','','Wed','','Fri','',''].map(function(t){return '<span class="wd">'+t+'</span>';}).join('');
-      document.getElementById(gid).innerHTML=wd+part.map(function(c){
-        var d=new Date(c.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
-        var t=c.n+' contribution'+(c.n===1?'':'s')+' on '+d;
-        return '<a class="d" href="https://github.com/'+CONFIG.githubUser+'?tab=overview&amp;from='+c.k+'&amp;to='+c.k+'" tabindex="-1" style="background:var(--h'+c.l+')" title="'+t+'" aria-label="'+t+'"></a>';
-      }).join('');
+    var cols=Math.ceil(cells.length/7),months=[],prev=-1;
+    for(var w=0;w<cols;w++){
+      var fd=new Date(cells[w*7].k+'T00:00:00'),m=fd.getMonth();
+      if(m!==prev){if(w===0||fd.getDate()<=7)months.push('<span style="grid-column:'+(w+2)+'">'+fd.toLocaleDateString('en-GB',{month:'short'})+'</span>');prev=m;}
     }
-    drawHalf('calmonths','calgrid',cells.slice(0,half*7));
-    drawHalf('calmonths2','calgrid2',cells.slice(half*7));
+    var mrow=document.getElementById('calmonths');
+    if(mrow){mrow.style.setProperty('--cols',cols);mrow.innerHTML=months.join('');}
+    var wd=['Mon','','Wed','','Fri','',''].map(function(t){return '<span class="wd">'+t+'</span>';}).join('');
+    grid.innerHTML=wd+cells.map(function(c){
+      var d=new Date(c.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+      var t=c.n+' contribution'+(c.n===1?'':'s')+' on '+d;
+      return '<a class="d" href="https://github.com/'+CONFIG.githubUser+'?tab=overview&amp;from='+c.k+'&amp;to='+c.k+'" tabindex="-1" style="background:var(--h'+c.l+')" title="'+t+'" aria-label="'+t+'"></a>';
+    }).join('');
     document.getElementById('stCur').textContent=now;
     document.getElementById('stMax').textContent=best;
     document.getElementById('stTot').textContent=total.toLocaleString();

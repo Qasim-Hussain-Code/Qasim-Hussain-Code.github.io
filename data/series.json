@@ -1,4 +1,32 @@
 {
-  "start": "2026-07-24",
-  "chapters": 5
+  "series": [
+    {
+      "name": "Machine Learning for Biology",
+      "start": "2026-07-24",
+      "chapters": 5
+    },
+    {
+      "name": "Immunology for Everybody",
+      "start": "2026-09-21",
+      "length": 165,
+      "chapterEnds": [
+        15,
+        26,
+        39,
+        48,
+        57,
+        66,
+        72,
+        81,
+        92,
+        103,
+        112,
+        119,
+        130,
+        138,
+        147,
+        158
+      ]
+    }
+  ]
 }

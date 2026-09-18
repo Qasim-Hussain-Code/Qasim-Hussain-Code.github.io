@@ -1059,7 +1059,8 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
   function drawChips(){
     var extra=sizeOf('other')?[{id:'other',t:'Other '+sizeOf('other')}]:[];
     chips.innerHTML=[{id:'all',t:'All '+REPOS.length}].concat(GROUPS.map(function(g){
-      return {id:g.id,t:g.short+' '+sizeOf(g.id)};}),extra).map(function(o){
+      /* a family of one is named without a count */
+      var n=sizeOf(g.id);return {id:g.id,t:g.short+(n>1?' '+n:'')};}),extra).map(function(o){
       return '<button class="chip" type="button" data-id="'+o.id+'" aria-pressed="'+(o.id===active)+'">'+o.t+'</button>';
     }).join('');
   }

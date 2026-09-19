@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-09-18T13:59:55.267Z",
-  "public_repos": 74,
+  "generated_at": "2026-09-19T13:36:53.689Z",
+  "public_repos": 75,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 393,
+      "downloads": 395,
       "likes": 0
     },
     {
@@ -15,12 +15,12 @@
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 210,
+      "downloads": 215,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 146,
+      "downloads": 148,
       "likes": 0
     },
     {
@@ -30,26 +30,26 @@
     },
     {
       "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 93,
+      "downloads": 92,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 87,
+      "downloads": 86,
       "likes": 0
     },
     {
       "id": "p.aeruginosa-panimmunophagomics",
-      "downloads": 72,
+      "downloads": 71,
       "likes": 1
     },
     {
-      "id": "spatial-transcriptomics-atlas-demo",
+      "id": "pan_biosynthetic_gene_cluster_atlas",
       "downloads": 71,
       "likes": 0
     },
     {
-      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "id": "spatial-transcriptomics-atlas-demo",
       "downloads": 67,
       "likes": 0
     },
@@ -60,7 +60,7 @@
     },
     {
       "id": "PanCancer_scRNA_Atlas",
-      "downloads": 53,
+      "downloads": 56,
       "likes": 0
     }
   ],

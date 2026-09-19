@@ -1050,6 +1050,8 @@ var REPOS=[
 ];
 var COL={},NAME={};
 GROUPS.forEach(function(g){COL[g.id]=g.c;NAME[g.id]=g.name;});
+/* the pipelines figure counts the index from the start; the live GitHub list replaces it when it arrives */
+(function(){var F=document.getElementById('fRepos');if(F)F.textContent=REPOS.length;})();
 NAME.other='Other';COL.other='var(--faint)';
 function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
 

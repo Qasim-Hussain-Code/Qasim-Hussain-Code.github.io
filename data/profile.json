@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-09-20T13:50:41.389Z",
+  "generated_at": "2026-09-21T16:07:19.815Z",
   "public_repos": 76,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 395,
+      "downloads": 413,
       "likes": 0
     },
     {
       "id": "qiime2_micobiome_analysis",
-      "downloads": 342,
+      "downloads": 326,
       "likes": 0
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 217,
+      "downloads": 222,
       "likes": 0
     },
     {
@@ -25,7 +25,12 @@
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads": 114,
+      "downloads": 115,
+      "likes": 0
+    },
+    {
+      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "downloads": 102,
       "likes": 0
     },
     {
@@ -35,27 +40,22 @@
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 88,
-      "likes": 0
-    },
-    {
-      "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 82,
-      "likes": 0
-    },
-    {
-      "id": "PanCancer_scRNA_Atlas",
-      "downloads": 73,
+      "downloads": 91,
       "likes": 0
     },
     {
       "id": "p.aeruginosa-panimmunophagomics",
-      "downloads": 71,
+      "downloads": 73,
       "likes": 1
     },
     {
+      "id": "PanCancer_scRNA_Atlas",
+      "downloads": 72,
+      "likes": 0
+    },
+    {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 58,
+      "downloads": 62,
       "likes": 0
     },
     {

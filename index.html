@@ -49,7 +49,7 @@
   --line:#DDE1E5; --line-soft:#EAEDF0; --line-strong:#7C858F; --rule:#141A1F;
   --accent:#9E5E00; --accent-hi:#7F4B00; --tint:#FFF3DC; --on-accent:#FFFFFF; --brand:#FFA500; --brand-hi:#E68F00;
   --g1:#3C5A8A; --g2:#2E6E5A; --g3:#9A4A38; --g4:#8A6A2A;
-  --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52; --g9:#7A3F5E;
+  --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52; --g9:#7A3F5E; --g10:#3F5E7A;
   --h0:#E8ECEF; --h1:#FFF1D6; --h2:#FFE0A8; --h3:#FFC65C; --h4:#FFA500;
   --close:#FFA500; --close-text:#141A1F; --close-mute:#4A3000; --close-line:rgba(20,26,31,.28);
   --lift:none;
@@ -1008,9 +1008,10 @@ var GROUPS=[
  {id:'tx',   short:'Transcriptomics',name:'Transcriptomics and translation',      c:'var(--g4)'},
  {id:'human',short:'Human genetics', name:'Human genetics and disease',           c:'var(--g5)'},
  {id:'sc',   short:'Single cell',    name:'Single cell, spatial and multi-omics', c:'var(--g6)'},
- {id:'ml',   short:'Machine learning',name:'Machine learning and structure',      c:'var(--g7)'},
+ {id:'ml',   short:'Machine learning',name:'Machine learning',                    c:'var(--g7)'},
  {id:'asm',  short:'Assembly',       name:'Assembly, imaging and tooling',        c:'var(--g8)'},
- {id:'prot', short:'Proteomics',     name:'Proteomics',                           c:'var(--g9)'}
+ {id:'prot', short:'Proteomics',     name:'Proteomics',                           c:'var(--g9)'},
+ {id:'struct',short:'Structural bioinformatics',name:'Structural bioinformatics',  c:'var(--g10)'}
 ];
 var REPOS=[
  ['anvio_pangenomics_analysis_of_Bacteroides','pan'],['anvio_pangenomic_analysis_of_Chlamydia_trachomatis','pan'],
@@ -1043,8 +1044,8 @@ var REPOS=[
  ['cancer_survival_ml_pipeline','human'],['tmao_cardiovascular_risk_prediction','human'],
  ['PanCancer_scRNA_Atlas','sc'],['Human_Immune_Multiomics_Atlas','sc'],['msqrob2_lfq_proteomics_pipeline','prot'],['sage_lfq_proteomics_pipeline','prot'],['msqrob2_tmt_proteomics_pipeline','prot'],
  ['Spatial_Transcriptomics_Atlas','sc'],['alzheimer_cellular_vulnerability_sst_neurons_snRNA','sc'],
- ['vina_gnina_pose_benchmark_pipeline','ml'],['neoantigen_immunogenicity_prediction','ml'],['RESPONSA','ml'],['peptide_mhc_binding_prediction','ml'],
- ['campylobacter_amr_phenotype_prediction','ml'],['stanford-rna-fold','ml'],
+ ['vina_gnina_pose_benchmark_pipeline','struct'],['neoantigen_immunogenicity_prediction','ml'],['RESPONSA','ml'],['peptide_mhc_binding_prediction','ml'],
+ ['campylobacter_amr_phenotype_prediction','ml'],['stanford-rna-fold','struct'],
  ['hybrid_genome_assembly','asm'],['long_reads_assembly','asm'],['short_reads_assembly','asm'],
  ['cell_profiler_nuclei_to_cytoplasm_ration','asm'],['iron-scholar','asm']
 ];
@@ -1307,7 +1308,7 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
 (function(){
   var P=[
    {k:'Code',h:'Public analysis pipelines',v:'<span id="sum-code">'+REPOS.length+'</span>',
-    u:'repositories in nine methodological families, most released under the MIT licence, with the count read live from GitHub.',
+    u:'repositories in ten methodological families, most released under the MIT licence, with the count read live from GitHub.',
     rows:GROUPS.map(function(g){return [g.name,sizeOf(g.id)+' repositories'];})},
    {k:'Data',h:'Curated datasets',v:'<span id="sum-data">19</span>',
     u:'datasets published with documentation on Hugging Face, ordered here by download count.',

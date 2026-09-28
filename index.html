@@ -1098,7 +1098,8 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
   page(1,[]).then(function(list){
     if(!list.length)return;
     var fam={};REPOS.forEach(function(r){fam[r[0].toLowerCase()]=r[1];});
-    REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name);}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
+    /* the site's repository and the profile README repository (named after the account) are not analyses */
+    REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name)&&x.name.toLowerCase()!==CONFIG.githubUser.toLowerCase();}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
     drawChips();draw();
     var P=document.getElementById('sum-code');if(P)P.textContent=REPOS.length;
     var F=document.getElementById('fRepos');if(F)F.textContent=REPOS.length;

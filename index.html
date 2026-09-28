@@ -69,8 +69,8 @@ body{margin:0;background:var(--canvas);color:var(--body);
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 /* links inside running text are underlined so colour is not their only cue */
-.serif a,.head a,.tail a,.say a,.src a,.go a,.de a,.gist a,table.t a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:var(--line-strong)}
-.serif a:hover,.tail a:hover,.say a:hover,.src a:hover,.go a:hover,.de a:hover,.gist a:hover,table.t a:hover{text-decoration-color:currentColor}
+.serif a,.head a,.tail a,.say a,.src a,.go a,.de a,.gist a,table.t a,.rl .ti a{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;text-decoration-color:var(--line-strong)}
+.serif a:hover,.tail a:hover,.say a:hover,.src a:hover,.go a:hover,.de a:hover,.gist a:hover,table.t a:hover,.rl .ti a:hover{text-decoration-color:currentColor}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
 h1,h2,h3,h4{margin:0;color:var(--ink);font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:0}
 p,ul,ol,dl{margin:0}
@@ -348,6 +348,7 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .rl .r:first-of-type{border-top:1px solid var(--rule)}
 .rl .yr{font-size:14px;color:var(--accent)}
 .rl .ti{margin-top:5px;font-size:17px;color:var(--ink);font-weight:500;line-height:1.35}
+.rl .ti a{color:inherit}.rl .ti a:hover{color:var(--accent)}
 .rl .de{margin-top:4px;font-size:15px;color:var(--mute);line-height:1.55}
 table.t{width:100%;border-collapse:collapse;font-size:15px}
 table.t th{text-align:left;font-weight:500;color:var(--ink);font-size:14.5px;padding:0 12px 8px 0;border-bottom:1px solid var(--rule)}
@@ -856,13 +857,13 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           <h3 class="sub">Teaching and public engagement</h3>
           <div class="rl">
             <div class="r"><p class="yr">August 2025 to January 2026</p>
-              <p class="ti">English Language Teaching Assistant, 209 service sessions</p>
+              <p class="ti"><a href="assets/certificates/elta-certificate-of-service-2026.pdf">English Language Teaching Assistant, 209 service sessions</a><span class="sr"> (certificate, PDF)</span></p>
               <p class="de">K-12 Education Administration, Ministry of Education, Taiwan. Certificate of service issued March 2026 by the Southern ELTA Educational Resource Center, National Sun Yat-sen University, Kaohsiung.</p></div>
             <div class="r"><p class="yr">January 2026</p>
-              <p class="ti">ELTA orientation training programme, 18 hours</p>
+              <p class="ti"><a href="assets/certificates/elta-orientation-training-2026.pdf">ELTA orientation training programme, 18 hours</a><span class="sr"> (certificate, PDF)</span></p>
               <p class="de">K-12 Education Administration, Ministry of Education. Certificate of completion.</p></div>
             <div class="r"><p class="yr">August 2026</p>
-              <p class="ti">English medium lecture and laboratory session on animal vaccines</p>
+              <p class="ti"><a href="assets/certificates/emi-special-lecture-nehs-2026.pdf">English medium lecture and laboratory session on animal vaccines</a><span class="sr"> (certificate, PDF)</span></p>
               <p class="de">National Experimental High School at Pingtung Science Park. Certificate of appreciation for a special lecture and accompanying experimental activities for secondary school students.</p></div>
           </div>
         </div>
@@ -871,9 +872,9 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         <div class="block">
           <h3 class="sub">Honours and awards</h3>
           <div class="rl">
-            <div class="r"><p class="yr">June 2026</p><p class="ti">Award for Graduate Students with Outstanding Research Performance</p>
+            <div class="r"><p class="yr">June 2026</p><p class="ti"><a href="assets/certificates/npust-outstanding-research-performance-award-2026.pdf">Award for Graduate Students with Outstanding Research Performance</a><span class="sr"> (certificate, PDF)</span></p>
               <p class="de">National Pingtung University of Science and Technology, Taiwan.</p></div>
-            <div class="r"><p class="yr">January 2026</p><p class="ti">Chung Hwa Rotary Educational Foundation Scholarship</p>
+            <div class="r"><p class="yr">January 2026</p><p class="ti"><a href="assets/certificates/chung-hwa-rotary-scholarship-2025-2026.pdf">Chung Hwa Rotary Educational Foundation Scholarship</a><span class="sr"> (certificate, PDF)</span></p>
               <p class="de">Elected a scholar of the foundation for the Rotary year 2025 to 2026, Taiwan.</p></div>
             <div class="r"><p class="yr">2019</p><p class="ti">University Scholarship</p>
               <p class="de">University of Education, Lahore.</p></div>
@@ -890,7 +891,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           <table class="t">
             <thead><tr><th>Course</th><th>Provider</th><th>Completed</th></tr></thead>
             <tbody>
-              <tr><td>Introduction to Databases with SQL (CS50 SQL)</td><td>Harvard CS50</td><td class="n">2026</td></tr>
+              <tr><td><a href="https://cs50.harvard.edu/certificates/dd9e6678-4636-4370-8979-78e11e88bb0e">Introduction to Databases with SQL (CS50 SQL)</a><span class="sr"> (certificate)</span></td><td>Harvard CS50</td><td class="n">2026</td></tr>
               <tr><td>Analyzing Genomic Data in R, 16 h track</td><td>DataCamp</td><td class="n">Apr 2026</td></tr>
               <tr><td>ChIP-seq with Bioconductor in R, 4 h</td><td>DataCamp</td><td class="n">Apr 2026</td></tr>
               <tr><td>Differential Expression Analysis with limma, 4 h</td><td>DataCamp</td><td class="n">Apr 2026</td></tr>

@@ -1,41 +1,41 @@
 {
-  "generated_at": "2026-09-27T22:43:28.402Z",
+  "generated_at": "2026-09-28T10:21:21.496Z",
   "public_repos": 81,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 497,
-      "likes": 0
-    },
-    {
-      "id": "qiime2_micobiome_analysis",
-      "downloads": 281,
+      "downloads": 594,
       "likes": 0
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 253,
+      "downloads": 287,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_micobiome_analysis",
+      "downloads": 284,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 163,
+      "downloads": 164,
       "likes": 0
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 133,
+      "downloads": 145,
       "likes": 0
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads": 107,
+      "downloads": 108,
       "likes": 0
     },
     {
       "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 94,
+      "downloads": 96,
       "likes": 0
     },
     {
@@ -49,18 +49,18 @@
       "likes": 0
     },
     {
-      "id": "p.aeruginosa-panimmunophagomics",
-      "downloads": 73,
-      "likes": 1
-    },
-    {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
       "downloads": 68,
       "likes": 0
     },
     {
-      "id": "spatial-transcriptomics-atlas-demo",
+      "id": "p.aeruginosa-panimmunophagomics",
       "downloads": 58,
+      "likes": 1
+    },
+    {
+      "id": "spatial-transcriptomics-atlas-demo",
+      "downloads": 57,
       "likes": 0
     }
   ],

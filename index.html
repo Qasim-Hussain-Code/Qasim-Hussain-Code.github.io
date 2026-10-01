@@ -556,7 +556,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
               <circle id="arc" cx="52" cy="52" r="45" fill="none" stroke="var(--accent)" stroke-width="8"
                       stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"></circle>
             </svg>
-            <div class="mid"><b id="dayNum">52</b><span>day</span></div>
+            <div class="mid"><b id="dayNum">52</b><span id="dayOf1">day</span></div>
           </div>
           <div class="rtext">
             <b class="rname" id="name1">Machine Learning for Biology</b>
@@ -995,7 +995,7 @@ var CONFIG={
   githubUser:'Qasim-Hussain-Code',
   hfUser:'QasimHussain',
   series:[                    /* defaults only; data/series.json is the file edited by hand */
-    {name:'Machine Learning for Biology',start:'2026-07-24',chapters:5},
+    {name:'Machine Learning for Biology',start:'2026-07-24',length:70,chapters:7},
     {name:'Immunology for Everybody',start:'2026-09-21',length:165,
      chapterEnds:[15,26,39,48,57,66,72,81,92,103,112,119,130,138,147,158]}
   ],
@@ -1151,7 +1151,7 @@ function drawArc(id,pct){
     requestAnimationFrame(function(){arc.setAttribute('stroke-dashoffset',(C*(1-pct)).toFixed(1));});
   }
 }
-var SERIES=CONFIG.series,SERIES_DAY=seriesDay(SERIES[0].start);
+var SERIES=CONFIG.series,SERIES_DAY=seriesCount(SERIES[0]);
 function chaptersOf(s){
   if(typeof s.chapters==='number')return s.chapters;
   if(s.chapterEnds){var d=seriesCount(s);return s.chapterEnds.filter(function(e){return e<=d;}).length;}
@@ -1168,10 +1168,11 @@ function seriesRows(){
    GitHub without touching this file. A series appears on its start date. */
 function paintSeries(list){
   SERIES=list;var a=list[0],b=list[1],live=!!(b&&seriesLive(b.start));
-  SERIES_DAY=seriesDay(a.start);
-  setText('dayNum',SERIES_DAY);setText('name1',a.name);
-  setText('meta1','Day '+SERIES_DAY+', since '+longDate(a.start)+', '+chapterMeta(chaptersOf(a)));
-  drawArc('arc',(SERIES_DAY%100)/100);
+  /* a series with a planned length stops counting when it is complete */
+  SERIES_DAY=seriesCount(a);
+  setText('dayNum',SERIES_DAY);setText('name1',a.name);setText('dayOf1',a.length?'of '+a.length:'day');
+  setText('meta1','Day '+SERIES_DAY+(a.length?' of '+a.length:'')+', since '+longDate(a.start)+', '+chapterMeta(chaptersOf(a)));
+  drawArc('arc',a.length?SERIES_DAY/a.length:(SERIES_DAY%100)/100);
   var r2=document.getElementById('ring2');
   if(b){
     r2.hidden=false;setText('name2',b.name);setText('dayOf2',b.length?'of '+b.length:'day');

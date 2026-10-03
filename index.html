@@ -433,6 +433,29 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 .close .btn.dark{background:var(--close-text);border-color:var(--close-text);color:#fff}
 .close .btn.dark:hover{background:#000;border-color:#000;color:#fff}
 @media (max-width:880px){.closegrid{grid-template-columns:1fr;gap:36px}.closegrid .reach{margin-top:0}}
+
+/* ===== the book ===== */
+.bk-meta{font-family:var(--mono);font-size:12.5px;color:var(--mute);line-height:1.7}
+.bk-ed{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.bk-lede{font-size:17.5px;line-height:1.68;max-width:66ch;color:var(--body);margin-top:12px}
+.bk{display:grid;grid-template-columns:clamp(190px,19vw,270px) minmax(0,1fr);gap:clamp(28px,4.5vw,72px);align-items:start}
+.bk-cover{margin:0;padding:6px}
+.bk-cover img{display:block;width:100%;height:auto;border:1px solid var(--ink);box-shadow:0 0 0 5px var(--canvas),0 0 0 6px var(--ink)}
+.bk-toc{margin-top:28px;border-top:1px solid var(--rule)}
+.bk-part{margin:20px 0 2px;font-variant-caps:all-small-caps;font-feature-settings:"smcp","c2sc";letter-spacing:.09em;color:var(--accent);font-size:15px}
+.bk-toc a{display:grid;grid-template-columns:1.8em minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:10px 0;
+  border-bottom:1px solid var(--line-soft);color:var(--ink);font-size:16.5px}
+.bk-toc a:hover{color:var(--accent);text-decoration:none}
+.bk-toc .n{font-variant-numeric:tabular-nums;color:var(--mute)}
+.bk-toc .m{font-family:var(--mono);font-size:12.5px;color:var(--mute);text-align:right;max-width:34ch}
+@media (max-width:820px){.bk{grid-template-columns:1fr}.bk-cover{max-width:210px}
+  .bk-toc a{grid-template-columns:1.6em minmax(0,1fr)}.bk-toc .m{grid-column:2;text-align:left;max-width:none}}
+.nw{white-space:nowrap}
+.chead-links{display:flex;flex-wrap:wrap;gap:6px 20px}
+.bk-beta{margin-top:12px;padding:10px 14px;border-left:3px solid var(--accent);background:var(--panel);
+  font-size:15px;line-height:1.6;color:var(--body);max-width:66ch}
+.bk-beta b{color:var(--ink);font-weight:600}
+.ring .bk-links{margin-top:10px!important;display:flex;flex-wrap:wrap;gap:8px}
 </style>
 </head>
 <body>
@@ -442,7 +465,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
   <div class="wrap top">
     <a class="mark" href="#top"><img src="assets/portrait-square.jpg" alt="">Qasim Hussain</a>
     <nav class="nav" id="navD" aria-label="Sections">
-      <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a>
+      <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
       <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#publications">Publications</a>
       <a href="#record">Background</a><a href="#methods">Skills</a>
     </nav>
@@ -452,7 +475,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
   </div>
 </header>
 <div class="navm"><div class="wrap row" id="navM">
-  <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a>
+  <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
   <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#publications">Publications</a>
   <a href="#record">Background</a><a href="#methods">Skills</a><a href="#contact">Contact</a>
 </div></div>
@@ -489,7 +512,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     <p class="sub">Contents</p>
     <ol>
       <li><a href="#summary">Summary</a></li><li><a href="#practice">Activity</a></li>
-      <li><a href="#research">Research</a></li><li><a href="#code">Repositories</a></li>
+      <li><a href="#research">Research</a></li><li><a href="#book">Book</a></li><li><a href="#code">Repositories</a></li>
       <li><a href="#data">Datasets</a></li><li><a href="#publications">Publications</a></li>
       <li><a href="#record">Background</a></li><li><a href="#methods">Skills</a></li>
     </ol>
@@ -548,7 +571,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
       </div>
       <div class="card">
         <div class="chead"><h3 id="serH">Daily writing</h3>
-          <a id="serLink" href="https://www.linkedin.com/in/qasim--hussain">Read on LinkedIn</a></div>
+          <span class="chead-links"><a id="serLink" href="https://www.linkedin.com/in/qasim--hussain">Read on LinkedIn</a><a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/">Read the book</a></span></div>
         <div class="ring">
           <div class="dial">
             <svg width="104" height="104" viewBox="0 0 104 104" aria-hidden="true">
@@ -561,9 +584,15 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
           <div class="rtext">
             <b class="rname" id="name1">Machine Learning for Biology</b>
             <p class="meta" id="meta1">Loading.</p>
-            <p id="daySay">Each instalment takes one method, a loss function, a regulariser or an embedding, and
-              shows it working on real biological data without removing the mathematics. Models and training
-              data are released alongside it on Hugging Face.</p>
+            <p id="daySay">Seventy daily posts in seven chapters, one model and one biological question to each,
+              from logistic regression to <span class="nw">k-means</span>. The series is complete and has been
+              rewritten as a book.</p>
+            <p class="bk-beta"><b>Beta edition.</b> The book will be revised, corrected and extended continuously for
+              some time yet. Suggestions for its improvement are most welcome, through an
+              <a href="https://github.com/Qasim-Hussain-Code/machine-learning-for-biology/issues">issue on its repository</a> or a message on LinkedIn.</p>
+            <p class="bk-links"><a class="small" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/">Read the book</a><a class="small"
+              href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.pdf">PDF</a><a class="small"
+              href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.epub">EPUB</a></p>
           </div>
         </div>
         <div class="ring" id="ring2" hidden>
@@ -697,6 +726,40 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
       <a href="https://responsa.streamlit.app/">RESPONSA</a>, which predicts drug sensitivity from gene
       expression with SHAP attribution, partial dependence, counterfactual perturbation and gene set
       enrichment, and <a href="https://iron-scholar.streamlit.app/">Iron Scholar</a>, a training log.</p>
+  </div>
+</section>
+
+<section id="book">
+  <div class="wrap">
+    <div class="head"><h2>Book</h2></div>
+    <div class="bk">
+      <figure class="bk-cover"><img src="assets/book-cover.webp" width="400" height="600" loading="lazy"
+        alt="Cover of Machine Learning for Biology by Qasim Hussain."></figure>
+      <div>
+        <p class="bk-meta">A book in seven chapters, beta edition, 2026. Web edition, PDF (105 pages) and EPUB.</p>
+        <p class="bk-lede">The daily series Machine Learning for Biology, rewritten as a book. Each chapter
+          pairs one model with one biological question, from logistic regression on antibiotic resistance to <span class="nw">k-means</span> on
+          immune cells, fixes its rules before any model is fitted, and reports what failed beside what held. Every
+          chapter links to the public repository it describes, pinned to the commit.</p>
+        <p class="bk-beta">This is a beta edition, under continuous revision. Corrections and suggestions are most
+          welcome, through an <a href="https://github.com/Qasim-Hussain-Code/machine-learning-for-biology/issues">issue on the book's repository</a> or a message on
+          LinkedIn.</p>
+        <nav class="bk-toc" aria-label="Chapters of the book">
+        <p class="bk-part">Part I, learning from labels</p>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-1.html"><span class="n">1</span><span>Predicting antibiotic resistance from a genome</span><span class="m">Logistic regression</span></a>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-2.html"><span class="n">2</span><span>What does a cell show to the immune system?</span><span class="m">Decision tree</span></a>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-3.html"><span class="n">3</span><span>Is a gene a fact or a call?</span><span class="m">Random forest</span></a>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-4.html"><span class="n">4</span><span>What happens to the patients who are still alive?</span><span class="m">Gradient boosting</span></a>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-5.html"><span class="n">5</span><span>Gut bacteria and cardiovascular risk</span><span class="m">Logistic regression (support vector machine planned)</span></a>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-6.html"><span class="n">6</span><span>Neoantigen immunogenicity for cancer vaccine design</span><span class="m">Neural network</span></a>
+        <p class="bk-part">Part II, learning without labels</p>
+        <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-7.html"><span class="n">7</span><span>Immune cell subtype discovery from single-cell RNA-seq</span><span class="m">k-means</span></a>
+        </nav>
+        <div class="bk-ed"><a class="btn key" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/">Read the book online</a>
+          <a class="btn" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.pdf">PDF, 105 pages</a>
+          <a class="btn" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.epub">EPUB</a></div>
+      </div>
+    </div>
   </div>
 </section>
 

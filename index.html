@@ -988,6 +988,8 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
         <li>RNA and DNA extraction, RT-qPCR, gel electrophoresis</li>
         <li>Bacterial culture, protein expression, purification and quantification (Bradford assay)</li>
         <li>SDS-PAGE, western blotting, confocal microscopy</li>
+        <li>Clinical chemistry on patient serum: AST, ALT, triglycerides, total cholesterol and glucose
+          (FUJIFILM DRI-CHEM NX500i)</li>
         <li>Murine and avian models: handling, restraint, dosing, welfare compliance</li>
       </ul></div>
       <div><h3 class="sub">Sequencing analysis</h3><ul>
@@ -1110,7 +1112,9 @@ var REPOS=[
  ['PanCancer_scRNA_Atlas','sc'],['Human_Immune_Multiomics_Atlas','sc'],['msqrob2_lfq_proteomics_pipeline','prot'],['sage_lfq_proteomics_pipeline','prot'],['msqrob2_tmt_proteomics_pipeline','prot'],
  ['Spatial_Transcriptomics_Atlas','sc'],['alzheimer_cellular_vulnerability_sst_neurons_snRNA','sc'],
  ['immune_cell_subtype_discovery','sc'],
- ['vina_gnina_pose_benchmark_pipeline','struct'],['vina_litpcba_virtual_screening_pipeline','struct'],['colabfold_boltz_structure_confidence_pipeline','struct'],['neoantigen_immunogenicity_prediction','ml'],['RESPONSA','ml'],['peptide_mhc_binding_prediction','ml'],
+ ['vina_gnina_pose_benchmark_pipeline','struct'],['vina_litpcba_virtual_screening_pipeline','struct'],
+ ['proteinmpnn_hcv_e2_decoy_design_pipeline','struct'],['hiv_multimodal_binder_campaign_pipeline','struct'],
+ ['aptamer_selex_generative_design_pipeline','ml'],['colabfold_boltz_structure_confidence_pipeline','struct'],['neoantigen_immunogenicity_prediction','ml'],['RESPONSA','ml'],['peptide_mhc_binding_prediction','ml'],
  ['campylobacter_amr_phenotype_prediction','ml'],['stanford-rna-fold','struct'],
  ['hybrid_genome_assembly','asm'],['long_reads_assembly','asm'],['short_reads_assembly','asm'],
  ['cell_profiler_nuclei_to_cytoplasm_ration','asm'],['iron-scholar','asm']
@@ -1163,8 +1167,8 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
   page(1,[]).then(function(list){
     if(!list.length)return;
     var fam={};REPOS.forEach(function(r){fam[r[0].toLowerCase()]=r[1];});
-    /* the site's repository and the profile README repository (named after the account) are not analyses */
-    REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name)&&x.name.toLowerCase()!==CONFIG.githubUser.toLowerCase();}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
+    /* the site's repository, the profile README repository (named after the account) and the book are not analyses */
+    REPOS=list.filter(function(x){return !x.fork&&!x.archived&&!/\.github\.io$/i.test(x.name)&&x.name.toLowerCase()!==CONFIG.githubUser.toLowerCase()&&x.name.toLowerCase()!=='machine-learning-for-biology';}).map(function(x){return [x.name,fam[x.name.toLowerCase()]||'other'];});
     drawChips();draw();
     var P=document.getElementById('sum-code');if(P)P.textContent=REPOS.length;
     var F=document.getElementById('fRepos');if(F)F.textContent=REPOS.length;

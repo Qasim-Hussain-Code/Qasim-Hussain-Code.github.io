@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-10-09T08:14:33.719Z",
+  "generated_at": "2026-10-09T16:44:07.851Z",
   "public_repos": 87,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 666,
+      "downloads": 626,
       "likes": 0
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 295,
+      "downloads": 287,
       "likes": 0
     },
     {
       "id": "qiime2_micobiome_analysis",
-      "downloads": 240,
+      "downloads": 236,
       "likes": 0
     },
     {
@@ -25,22 +25,22 @@
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads": 180,
+      "downloads": 179,
       "likes": 0
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 167,
+      "downloads": 170,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 147,
+      "downloads": 144,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 128,
+      "downloads": 129,
       "likes": 0
     },
     {
@@ -50,17 +50,17 @@
     },
     {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 90,
+      "downloads": 96,
       "likes": 0
     },
     {
       "id": "spatial-transcriptomics-atlas-demo",
-      "downloads": 85,
+      "downloads": 84,
       "likes": 0
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads": 53,
+      "downloads": 48,
       "likes": 0
     }
   ],

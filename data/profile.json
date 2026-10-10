@@ -1,21 +1,21 @@
 {
-  "generated_at": "2026-10-09T16:44:07.851Z",
+  "generated_at": "2026-10-10T10:19:34.808Z",
   "public_repos": 87,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 626,
+      "downloads": 620,
       "likes": 0
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 287,
+      "downloads": 276,
       "likes": 0
     },
     {
       "id": "qiime2_micobiome_analysis",
-      "downloads": 236,
+      "downloads": 230,
       "likes": 0
     },
     {
@@ -30,22 +30,22 @@
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 170,
+      "downloads": 169,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 144,
+      "downloads": 143,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 129,
+      "downloads": 128,
       "likes": 0
     },
     {
       "id": "PanCancer_scRNA_Atlas",
-      "downloads": 96,
+      "downloads": 97,
       "likes": 0
     },
     {
@@ -60,7 +60,7 @@
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads": 48,
+      "downloads": 53,
       "likes": 0
     }
   ],

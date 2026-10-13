@@ -357,6 +357,15 @@ table.t td:first-child{color:var(--ink)}
 table.t .n{font-family:var(--mono);font-size:12.5px;color:var(--mute);white-space:nowrap}
 table.t .n.wrap{white-space:normal}
 table.t td.in{padding-left:20px}
+
+/* ===== applications ===== */
+.apps{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.app{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);padding:18px 20px 16px;
+  display:flex;flex-direction:column;gap:8px}
+.app .an{font-family:var(--serif);font-size:20.5px;font-weight:500;color:var(--ink);line-height:1.3;margin:0}
+.app .ad{margin:0;font-size:15.5px;line-height:1.6;color:var(--body)}
+.app .am{margin:0;font-family:var(--mono);font-size:12.5px;color:var(--mute)}
+.app .al{margin:auto 0 0;padding-top:12px;display:flex;flex-wrap:wrap;gap:8px}
 @media (max-width:640px){table.t th:nth-child(2),table.t td:nth-child(2){display:none}}
 .quad{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,40px)}
 @media (max-width:980px){.quad{grid-template-columns:1fr 1fr}}
@@ -467,7 +476,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     <a class="mark" href="#top"><img src="assets/portrait-square.jpg" alt="">Qasim Hussain</a>
     <nav class="nav" id="navD" aria-label="Sections">
       <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
-      <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#publications">Publications</a>
+      <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#apps">Applications</a><a href="#publications">Publications</a>
       <a href="#record">Background</a><a href="#methods">Skills</a>
     </nav>
     <div class="act">
@@ -477,7 +486,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 </header>
 <div class="navm"><div class="wrap row" id="navM">
   <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
-  <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#publications">Publications</a>
+  <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#apps">Applications</a><a href="#publications">Publications</a>
   <a href="#record">Background</a><a href="#methods">Skills</a><a href="#contact">Contact</a>
 </div></div>
 
@@ -514,7 +523,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     <ol>
       <li><a href="#summary">Summary</a></li><li><a href="#practice">Activity</a></li>
       <li><a href="#research">Research</a></li><li><a href="#book">Book</a></li><li><a href="#code">Repositories</a></li>
-      <li><a href="#data">Datasets</a></li><li><a href="#publications">Publications</a></li>
+      <li><a href="#data">Datasets</a></li><li><a href="#apps">Applications</a></li><li><a href="#publications">Publications</a></li>
       <li><a href="#record">Background</a></li><li><a href="#methods">Skills</a></li>
     </ol>
   </nav>
@@ -723,10 +732,6 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
       </article>
 
     </div>
-    <p class="tail">Two applications are also deployed and open source:
-      <a href="https://responsa.streamlit.app/">RESPONSA</a>, which predicts drug sensitivity from gene
-      expression with SHAP attribution, partial dependence, counterfactual perturbation and gene set
-      enrichment, and <a href="https://iron-scholar.streamlit.app/">Iron Scholar</a>, a training log.</p>
   </div>
 </section>
 
@@ -786,6 +791,30 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     </div>
     <div class="list" id="dsets"></div>
     <p class="tail">Complete collection at <a href="https://huggingface.co/QasimHussain">huggingface.co/QasimHussain</a>.</p>
+  </div>
+</section>
+
+<section id="apps">
+  <div class="wrap">
+    <div class="head">
+      <h2>Applications</h2>
+    </div>
+    <p class="tail" style="margin:6px 0 14px">Each is deployed and public, and links to the running
+      application and to its source.</p>
+    <div class="apps">
+      <div class="app">
+        <p class="an">RESPONSA</p>
+        <p class="ad">Predicts drug sensitivity from gene expression, and shows its working: SHAP attribution, partial dependence, counterfactual perturbation and gene set enrichment.</p>
+        <p class="am">Python, Streamlit, MIT licence</p>
+        <p class="al"><a class="small" href="https://responsa.streamlit.app/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/RESPONSA">Source</a></p>
+      </div>
+      <div class="app">
+        <p class="an">Iron Scholar</p>
+        <p class="ad">A training log, for people who annotate genomes between sets.</p>
+        <p class="am">Python, Streamlit</p>
+        <p class="al"><a class="small" href="https://iron-scholar.streamlit.app/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/iron-scholar">Source</a></p>
+      </div>
+    </div>
   </div>
 </section>
 

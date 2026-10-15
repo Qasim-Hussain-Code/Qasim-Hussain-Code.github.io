@@ -118,10 +118,10 @@ header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,27vw,430px) clamp(200px,15vw,270px);
   gap:clamp(32px,4vw,72px);align-items:stretch;padding-top:clamp(40px,6vw,88px);padding-bottom:clamp(36px,5vw,72px)}
 .hero > .rise:first-child{display:flex;flex-direction:column;justify-content:center;min-width:0}
-h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.3vw,66px);letter-spacing:-.012em;
-  line-height:1.06;color:var(--ink);max-width:21ch;text-wrap:balance}
+h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4vw,60px);letter-spacing:.012em;
+  line-height:1.06;color:var(--body);max-width:21ch;text-wrap:balance}
 .kicker{margin:0 0 18px;font-size:16.5px;color:var(--accent)}
-.hero .serif{margin-top:26px;max-width:66ch;color:var(--body);font-size:17.5px;line-height:1.68}
+.hero .serif{margin-top:26px;max-width:52ch;color:var(--body);font-size:17.5px;line-height:1.68}
 .hero .serif + .serif{margin-top:12px}
 .hero .serif:first-of-type::first-letter{font-weight:500;color:var(--accent)}
 @supports (initial-letter:3){.hero .serif:first-of-type::first-letter{initial-letter:3;margin-right:.14em}}
@@ -134,8 +134,8 @@ h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(38px,4.
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
 .shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:6px;min-width:0}
 .shot img{position:relative;z-index:1;width:100%;flex:1 1 0;min-height:0;height:auto;object-fit:cover;object-position:50% 20%;
-  display:block;border:1px solid var(--ink);
-  box-shadow:0 0 0 5px var(--canvas),0 0 0 6px var(--ink)}
+  display:block;border:1px solid var(--accent);
+  box-shadow:0 0 0 5px var(--canvas),0 0 0 6px var(--accent)}
 .shot figcaption{position:relative;z-index:1;margin:20px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
 .toc{align-self:start;min-width:0;padding-top:6px}
 .toc .sub{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--rule);color:var(--ink)}

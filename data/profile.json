@@ -1,66 +1,66 @@
 {
-  "generated_at": "2026-10-19T16:43:34.905Z",
-  "public_repos": 90,
+  "generated_at": "2026-10-20T13:10:40.898Z",
+  "public_repos": 91,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 359,
-      "likes": 0
-    },
-    {
-      "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 207,
-      "likes": 0
-    },
-    {
-      "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 189,
-      "likes": 0
-    },
-    {
-      "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 174,
-      "likes": 0
-    },
-    {
-      "id": "qiime2_micobiome_analysis",
-      "downloads": 145,
-      "likes": 0
-    },
-    {
-      "id": "hiv_scrnaseq_atlas",
-      "downloads": 143,
+      "downloads": 412,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 139,
+      "downloads": 375,
+      "likes": 0
+    },
+    {
+      "id": "Human_Gut_Microbiome_Atlas",
+      "downloads": 269,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_antibiotic_microbiome_analysis",
+      "downloads": 204,
+      "likes": 0
+    },
+    {
+      "id": "hiv_scrnaseq_atlas",
+      "downloads": 159,
+      "likes": 0
+    },
+    {
+      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "downloads": 159,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_micobiome_analysis",
+      "downloads": 143,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 123,
-      "likes": 0
-    },
-    {
-      "id": "PanCancer_scRNA_Atlas",
-      "downloads": 103,
-      "likes": 0
-    },
-    {
-      "id": "spatial-transcriptomics-atlas-demo",
-      "downloads": 102,
+      "downloads": 125,
       "likes": 0
     },
     {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 91,
+      "downloads": 124,
+      "likes": 0
+    },
+    {
+      "id": "spatial-transcriptomics-atlas-demo",
+      "downloads": 112,
+      "likes": 0
+    },
+    {
+      "id": "PanCancer_scRNA_Atlas",
+      "downloads": 97,
       "likes": 0
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads": 50,
+      "downloads": 47,
       "likes": 0
     }
   ],

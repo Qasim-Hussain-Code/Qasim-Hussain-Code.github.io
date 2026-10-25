@@ -13,11 +13,11 @@
 <meta property="og:url" content="https://qasim-hussain-code.github.io/">
 <meta property="og:title" content="Qasim Hussain | Computational biology of infection and the microbiome">
 <meta property="og:description" content="Public analysis pipelines, curated datasets, peer reviewed publications, and the cell culture work that tests the predictions.">
-<meta property="og:image" content="https://qasim-hussain-code.github.io/assets/portrait.jpeg">
+<meta property="og:image" content="https://qasim-hussain-code.github.io/assets/portrait-studio.jpg">
 <meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="960">
-<meta property="og:image:height" content="1280">
-<meta property="og:image:alt" content="Qasim Hussain photographed beside the Tamsui river estuary in northern Taiwan.">
+<meta property="og:image:width" content="928">
+<meta property="og:image:height" content="1392">
+<meta property="og:image:alt" content="Studio portrait of Qasim Hussain in a dark jacket over a grey shirt.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="assets/portrait-square.jpg" type="image/jpeg" sizes="256x256">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -111,11 +111,11 @@ header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1
 @media (max-width:1359px){.navm{display:block;position:sticky;top:64px;z-index:49}}
 
 /* ==========================================================================
-   3. Title page: the headline and introduction, the portrait as a
-      frontispiece with a double rule, and a contents column on wide screens
+   3. Title page: the headline and introduction, the portrait unframed and
+      faded into the page, and a contents column on wide screens
    ========================================================================== */
 .band{position:relative;background:var(--canvas);border-bottom:1px solid var(--line)}
-.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(320px,27vw,430px) clamp(200px,15vw,270px);
+.hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,470px) clamp(200px,15vw,270px);
   gap:clamp(32px,4vw,72px);align-items:stretch;padding-top:clamp(40px,6vw,88px);padding-bottom:clamp(36px,5vw,72px)}
 .hero > .rise:first-child{display:flex;flex-direction:column;justify-content:center;min-width:0}
 h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4vw,60px);letter-spacing:.012em;
@@ -132,14 +132,14 @@ h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4v
 .btn:hover{border-color:var(--ink);text-decoration:none;background:var(--panel)}
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
-.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:6px;min-width:0}
-.shot img{position:relative;z-index:1;width:100%;flex:1 1 0;min-height:0;height:auto;object-fit:cover;object-position:50% 20%;
-  display:block;border:1px solid var(--accent);
-  box-shadow:0 0 0 5px var(--canvas),0 0 0 6px var(--accent)}
-.shot figcaption{position:relative;z-index:1;margin:20px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
+/* the portrait is never cropped: its fade is part of the photograph, so any crop would cut it */
+.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center}
+.shot img{position:relative;z-index:1;width:100%;flex:none;height:auto;aspect-ratio:2/3;max-height:620px;
+  object-fit:contain;object-position:50% 100%;display:block}
+.shot figcaption{position:relative;z-index:1;margin:-6px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
 .toc{align-self:start;min-width:0;padding-top:6px}
 .toc .sub{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--rule);color:var(--ink)}
-/* lift the two small-caps labels so their capitals sit on the top edge of the portrait frame */
+/* lift the two small-caps labels so their capitals line up across the top of the opening */
 @media (min-width:881px){.kicker{margin-top:-8px}.toc{padding-top:0;margin-top:-5px}}
 .toc ol{list-style:none;margin:0;padding:0;counter-reset:toc}
 .toc li{counter-increment:toc}
@@ -149,7 +149,7 @@ h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(36px,4v
 .toc li:last-child a{border-bottom:0}
 @media (max-width:1199px){.hero{grid-template-columns:minmax(0,1fr) clamp(300px,32vw,400px)}.toc{display:none}}
 @media (max-width:880px){.hero{grid-template-columns:1fr;gap:34px;padding-top:32px;padding-bottom:30px}
-  .shot{max-width:300px;margin:0 auto}.shot img{aspect-ratio:4/5;flex:none}}
+  .shot{max-width:300px;margin:0 auto}.shot img{max-height:none}}
 
 /* key figures beneath the title page */
 .figures{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:0;border-top:1px solid var(--line)}
@@ -410,7 +410,7 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
   body{background:#fff;color:#000;font-size:10.5pt}
   .band{background:#fff}
   .card,.list,.summary{border:1px solid #ccc;box-shadow:none}
-  .shot img{box-shadow:none;border:1px solid #000}
+  .shot img{box-shadow:none;border:0}
   .spane{position:relative!important;opacity:1!important;visibility:visible!important;transform:none!important}
   section{padding-top:20px;break-inside:avoid}
   .close{background:#fff;color:#000}
@@ -513,8 +513,8 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     </div>
   </div>
   <figure class="shot rise">
-    <img src="assets/portrait.jpeg" width="464" height="651" fetchpriority="high"
-         alt="Qasim Hussain photographed beside the Tamsui river estuary in northern Taiwan.">
+    <img src="assets/portrait-studio.jpg" width="464" height="696" fetchpriority="high"
+         alt="Studio portrait of Qasim Hussain in a dark jacket over a grey shirt.">
     <figcaption>Research Assistant, Cardiovascular Research Group, Mackay Memorial Hospital, New Taipei.
       MS Animal Vaccine Technology, NPUST, final grade 93.63 per cent.</figcaption>
   </figure>

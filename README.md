@@ -38,7 +38,7 @@ index.html                     the entire site: markup, styles and script
 assets/portrait-studio.jpg     portrait in the opening and on the social card, 928 by 1392
                                pixels, its base faded to white in the file itself
 assets/portrait.jpeg           the earlier river portrait, kept so it can be restored
-assets/portrait-square.jpg     square portrait, used as the avatar and the favicon
+assets/portrait-square.jpg     square portrait, used as the avatar in the top bar
 assets/Qasim_Hussain_CV.pdf    curriculum vitae
 data/activity.json             daily contribution record, rewritten nightly
 data/profile.json              repository and dataset counts, written by the job

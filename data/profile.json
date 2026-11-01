@@ -1,66 +1,66 @@
 {
-  "generated_at": "2026-10-25T14:02:18.013Z",
-  "public_repos": 91,
+  "generated_at": "2026-10-31T14:08:00.109Z",
+  "public_repos": 92,
   "datasets": 19,
   "top_datasets": [
     {
+      "id": "Human_Gut_Microbiome_Atlas",
+      "downloads": 1117,
+      "likes": 0
+    },
+    {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 537,
+      "downloads": 676,
       "likes": 0
     },
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 339,
-      "likes": 0
-    },
-    {
-      "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 270,
+      "downloads": 236,
       "likes": 0
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads": 166,
-      "likes": 0
-    },
-    {
-      "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 166,
-      "likes": 0
-    },
-    {
-      "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 160,
+      "downloads": 178,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 142,
-      "likes": 0
-    },
-    {
-      "id": "qiime2_micobiome_analysis",
-      "downloads": 134,
-      "likes": 0
-    },
-    {
-      "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 132,
+      "downloads": 141,
       "likes": 0
     },
     {
       "id": "spatial-transcriptomics-atlas-demo",
-      "downloads": 105,
+      "downloads": 125,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_antibiotic_microbiome_analysis",
+      "downloads": 118,
+      "likes": 0
+    },
+    {
+      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "downloads": 110,
+      "likes": 0
+    },
+    {
+      "id": "ppanggolin_pangenomics_helicobacter_pylori",
+      "downloads": 93,
+      "likes": 0
+    },
+    {
+      "id": "qiime2_micobiome_analysis",
+      "downloads": 89,
       "likes": 0
     },
     {
       "id": "PanCancer_scRNA_Atlas",
-      "downloads": 76,
+      "downloads": 75,
       "likes": 0
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads": 47,
+      "downloads": 53,
       "likes": 0
     }
   ],

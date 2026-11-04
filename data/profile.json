@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-03T17:27:05.549Z",
+  "generated_at": "2026-11-04T13:33:35.261Z",
   "public_repos": 92,
   "datasets": 19,
   "top_datasets": [
@@ -30,17 +30,17 @@
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 106,
+      "downloads": 107,
       "likes": 0
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 99,
+      "downloads": 102,
       "likes": 0
     },
     {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 89,
+      "downloads": 91,
       "likes": 0
     },
     {
@@ -50,12 +50,12 @@
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 71,
+      "downloads": 73,
       "likes": 0
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads": 48,
+      "downloads": 58,
       "likes": 0
     },
     {

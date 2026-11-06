@@ -121,8 +121,9 @@ header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,470px) clamp(200px,15vw,270px);
   gap:clamp(32px,4vw,72px);align-items:stretch;padding-top:clamp(40px,6vw,88px);padding-bottom:clamp(36px,5vw,72px)}
 .hero > .rise:first-child{display:flex;flex-direction:column;justify-content:center;min-width:0}
-h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(27px,2.95vw,42px);letter-spacing:.012em;
-  line-height:1.06;color:var(--body);text-wrap:balance}
+/* the heading is held to the width of the paragraph beneath it, whose 52ch comes to 528px */
+h1{margin-top:0;font-family:var(--serif);font-weight:400;font-size:clamp(25px,2.4vw,34px);letter-spacing:.012em;
+  line-height:1.06;color:var(--body);text-wrap:balance;width:100%;max-width:528px}
 .hero .serif{margin-top:26px;max-width:52ch;color:var(--body);font-size:17.5px;line-height:1.68}
 .hero .serif + .serif{margin-top:12px}
 .hero .serif:first-of-type::first-letter{font-weight:500;color:var(--accent)}
@@ -503,7 +504,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 <div class="band">
 <div class="wrap hero" id="top">
   <div class="rise">
-    <h1>Experimental and computational biologist.</h1>
+    <h1>Experimental and Computational Biologist</h1>
     <p class="serif">Most people who work on infection choose a room. One sits at a bench with a pipette and
       a plate of cells; another sits at a screen with a genome and a model. Most also choose an organism:
       viruses or bacteria, rarely both. I have never been able to stay in one room or with one organism. I

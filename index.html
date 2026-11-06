@@ -54,6 +54,7 @@
   --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52; --g9:#7A3F5E; --g10:#3F5E7A;
   --h0:#E8ECEF; --h1:#FFF1D6; --h2:#FFE0A8; --h3:#FFC65C; --h4:#FFA500;
   --close:#FFA500; --close-text:#141A1F; --close-mute:#4A3000; --close-line:rgba(20,26,31,.28);
+  --bar:#0047AB; --on-bar:#FFFFFF;
   --lift:none;
   --serif:"Literata",Georgia,"Times New Roman",serif;
   --ui:"Literata",Georgia,"Times New Roman",serif;
@@ -428,6 +429,13 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 #arc,#arc2{stroke:var(--brand)}
 .nav a[aria-current="true"]{border-bottom-color:var(--brand)}
 .stab[aria-selected="true"]{border-bottom-color:var(--brand)}
+/* the top row and its compact menu row, in one solid colour */
+header,.navm{background:var(--bar);border-bottom-color:var(--bar)}
+.mark,.mark:hover,.nav a,.navm a,.nav a:hover,.nav a[aria-current="true"],.navm a[aria-current="true"]{color:var(--on-bar)}
+.nav a:hover,.nav a[aria-current="true"],.navm a[aria-current="true"]{border-bottom-color:var(--on-bar)}
+header .btn,header .btn:hover{color:var(--on-bar);border-color:var(--on-bar);background:transparent}
+header .btn:hover{background:rgba(255,255,255,.14)}
+header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 .hero .serif:first-of-type::first-letter{color:#C97600}
 .close .serif{color:var(--close-text)}
 .close :focus-visible{outline-color:var(--close-text)}

@@ -94,7 +94,7 @@ em{font-style:italic}
 header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1px solid var(--line)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:24px;height:64px}
 .mark{display:flex;align-items:center;gap:12px;color:var(--ink);font-family:var(--serif);font-weight:500;font-size:19px;letter-spacing:.01em}
-.mark img{width:32px;height:32px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 2px var(--canvas),0 0 0 3px var(--line-strong)}
+.mark svg{flex:none;display:block}
 .mark:hover{text-decoration:none}
 .nav{display:flex;gap:2px;font-size:15.5px}
 .nav a{padding:5px 10px;color:var(--body);border-bottom:1px solid transparent;font-weight:500}
@@ -483,7 +483,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 
 <header>
   <div class="wrap top">
-    <a class="mark" href="#top"><img src="assets/portrait-square.jpg" alt="">Qasim Hussain</a>
+    <a class="mark" href="#top"><svg viewBox="0 0 64 64" width="28" height="28" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="3.1"/><path fill="currentColor" d="M43.97 50.29Q42.3 50.29 40.89 49.56Q39.48 48.83 38.17 47.22Q36.86 45.62 35.5 43.05Q34.66 43.27 33.77 43.39Q32.88 43.5 31.95 43.5Q28.03 43.5 25.16 41.8Q22.29 40.1 20.74 37.07Q19.19 34.04 19.19 30.01Q19.19 25.5 20.82 22.26Q22.45 19.01 25.41 17.26Q28.38 15.5 32.38 15.5Q36.14 15.5 38.96 17.13Q41.77 18.75 43.35 21.75Q44.93 24.74 44.93 28.82Q44.93 33.04 43.42 36.32Q41.91 39.6 39.1 41.47Q40.37 43.25 41.37 44.32Q42.38 45.39 43.32 45.87Q44.25 46.35 45.19 46.35Q46.6 46.35 47.77 45.93Q48.94 45.5 50.28 44.5L51.15 45.75Q49.99 47.36 48.85 48.36Q47.71 49.36 46.52 49.83Q45.33 50.29 43.97 50.29ZM32.39 40.8Q33.01 40.8 33.47 40.75Q33.93 40.71 34.2 40.61Q33.48 39.19 32.83 38.17Q32.18 37.15 31.56 36.51Q30.94 35.86 30.31 35.55Q29.68 35.25 28.98 35.25Q27.98 35.25 27.23 35.66Q26.47 36.07 25.77 36.9Q26.46 38.17 27.43 39.02Q28.4 39.88 29.66 40.34Q30.92 40.8 32.39 40.8ZM37.26 38.72Q38.58 37.42 39.27 35.09Q39.97 32.75 39.97 29.55Q39.97 26.78 39.41 24.67Q38.85 22.55 37.82 21.09Q36.78 19.64 35.27 18.89Q33.77 18.15 31.85 18.15Q30 18.15 28.56 18.84Q27.12 19.54 26.12 20.93Q25.12 22.31 24.6 24.39Q24.08 26.46 24.08 29.22Q24.08 30.93 24.31 32.38Q24.55 33.83 25.04 35.1Q26.09 33.98 27.15 33.45Q28.22 32.91 29.66 32.91Q30.96 32.91 32.17 33.53Q33.38 34.16 34.62 35.44Q35.86 36.73 37.26 38.72Z"/></svg>Qasim Hussain</a>
     <nav class="nav" id="navD" aria-label="Sections">
       <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
       <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#apps">Applications</a><a href="#publications">Publications</a>

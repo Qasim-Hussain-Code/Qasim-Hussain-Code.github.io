@@ -38,7 +38,7 @@ index.html                     the entire site: markup, styles and script
 assets/portrait-studio.jpg     portrait in the opening and on the social card, 928 by 1392
                                pixels, its base faded to white in the file itself
 assets/portrait.jpeg           the earlier river portrait, kept so it can be restored
-assets/portrait-square.jpg     square portrait, used as the avatar in the top bar
+assets/portrait-square.jpg     square river portrait, the earlier top bar photograph, kept so it can be restored
 assets/apple-touch-icon.png    the Q icon for phones that save the site to the home screen; the
                                tab icon itself is written into index.html
 assets/Qasim_Hussain_CV.pdf    curriculum vitae

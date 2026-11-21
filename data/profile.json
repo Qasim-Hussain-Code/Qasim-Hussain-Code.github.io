@@ -1,51 +1,51 @@
 {
-  "generated_at": "2026-11-20T18:11:51.613Z",
-  "public_repos": 93,
+  "generated_at": "2026-11-21T17:01:38.591Z",
+  "public_repos": 92,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 1830,
+      "downloads": 1837,
       "likes": 0
     },
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 747,
+      "downloads": 1276,
       "likes": 0
     },
     {
       "id": "spatial-transcriptomics-atlas-demo",
-      "downloads": 185,
+      "downloads": 191,
       "likes": 0
     },
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 180,
+      "downloads": 185,
       "likes": 0
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads": 117,
+      "downloads": 116,
       "likes": 0
     },
     {
       "id": "PanCancer_scRNA_Atlas",
-      "downloads": 98,
+      "downloads": 99,
       "likes": 0
     },
     {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 89,
+      "downloads": 88,
       "likes": 0
     },
     {
       "id": "qiime2_micobiome_analysis",
-      "downloads": 61,
+      "downloads": 62,
       "likes": 0
     },
     {
       "id": "B.longum_CAZyme_Profiling",
-      "downloads": 52,
+      "downloads": 50,
       "likes": 0
     },
     {

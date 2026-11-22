@@ -542,7 +542,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 
 <div class="wrap">
   <div class="figures">
-    <div><p class="n" id="fRepos">90</p><p class="k">public analysis pipelines on GitHub</p></div>
+    <div><p class="n" id="fRepos">89</p><p class="k">public analysis pipelines on GitHub</p></div>
     <div><p class="n" id="fData">19</p><p class="k">curated datasets on Hugging Face</p></div>
     <div><p class="n">2 + 1</p><p class="k">journal articles and a book chapter, two under review</p></div>
     <div><p class="n" id="fDay">52</p><p class="k" id="fDayK">consecutive days of Machine Learning for Biology</p></div>
@@ -810,14 +810,14 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     <div class="head">
       <h2>Applications</h2>
     </div>
-    <p class="tail" style="margin:6px 0 14px">Each is deployed and open source with links to the running
-      application and to its code.</p>
+    <p class="tail" style="margin:6px 0 14px">Each is deployed, with a link to the running application.
+      Controlomics, RESPONSA and Iron Scholar are open source, with links to their code.</p>
     <div class="apps">
       <div class="app">
         <p class="an">MouseBio_3D</p>
         <p class="ad">A three-dimensional laboratory mouse in the browser, built on the Digimouse CT and cryosection atlas, with each of its 434 structures marked as taken from the atlas, traced or simulated, and a dissection bench with fifteen guided tutorials.</p>
-        <p class="am">TypeScript, React, three.js, MIT licence for the code</p>
-        <p class="al"><a class="small" href="https://qasim-hussain-code.github.io/MouseBio_3D/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/MouseBio_3D">Source</a></p>
+        <p class="am">TypeScript, React, three.js</p>
+        <p class="al"><a class="small" href="https://qasim-hussain-code.github.io/MouseBio_3D/">Open the app</a></p>
       </div>
       <div class="app">
         <p class="an">Controlomics</p>
@@ -1125,7 +1125,7 @@ var CONFIG={
   hfUser:'QasimHussain',
   series:[                    /* defaults only; data/series.json is the file edited by hand */
     {name:'Machine Learning for Biology',start:'2026-07-24',length:70,chapters:7},
-    {name:'Immunology for Everybody',start:'2026-09-21',length:165,
+    {name:'Immunology for Everybody',start:'2026-09-21',length:165,chapters:6,
      chapterEnds:[15,26,39,48,57,66,72,81,92,103,112,119,130,138,147,158]}
   ],
   weeks:52
@@ -1183,7 +1183,7 @@ var REPOS=[
  ['campylobacter_amr_phenotype_prediction','ml'],['stanford-rna-fold','struct'],
  ['hybrid_genome_assembly','asm'],['long_reads_assembly','asm'],['short_reads_assembly','asm'],
  ['cell_profiler_nuclei_to_cytoplasm_ration','asm'],['iron-scholar','asm'],
- ['pcan_assembly_dependence','asm'],['controlomics','asm'],['MouseBio_3D','asm']
+ ['pcan_assembly_dependence','asm'],['controlomics','asm']
 ];
 var COL={},NAME={};
 GROUPS.forEach(function(g){COL[g.id]=g.c;NAME[g.id]=g.name;});

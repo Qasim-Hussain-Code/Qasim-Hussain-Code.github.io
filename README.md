@@ -42,11 +42,14 @@ assets/portrait-square.jpg     square river portrait, the earlier top bar photog
 assets/apple-touch-icon.png    the Q icon for phones that save the site to the home screen; the
                                tab icon itself is written into index.html
 assets/Qasim_Hussain_CV.pdf    curriculum vitae
-data/activity.json             daily contribution record, rewritten nightly
-data/profile.json              repository and dataset counts, written by the job
-data/series.json               chapters completed, the one value edited by hand
-scripts/refresh.mjs            the nightly refresh job
-.github/workflows/refresh.yml  runs the job every two hours
+assets/book-cover.webp         the cover of the book, shown in the Book section
+assets/certificates/           the certificates linked from Background, as PDFs
+data/activity.json             daily contribution record, rewritten by the job
+data/profile.json              repository and dataset counts, the download totals
+                               and the date the page itself last changed
+data/series.json               the daily writing series, edited by hand
+scripts/refresh.mjs            the refresh job
+.github/workflows/refresh.yml  asks for the job every two hours
 ```
 
 ## Publishing
@@ -66,18 +69,23 @@ repository secret `GH_TOKEN` and appears nowhere else: not in a file, not in a
 commit message, and not in this document.
 
 Once the secret exists, running the workflow "Refresh site data" from the
-Actions tab confirms that it works; thereafter it runs every two hours. A run
-rewrites `data/activity.json` and `data/profile.json` only when a figure has
-changed, and commits them under the repository owner's name, so the record on
-the page is never more than a few hours old and quiet days add no commits. Without the token the job still writes
-`data/profile.json`, and the page falls back to the public activity feed,
-which covers roughly ninety days. Nothing breaks; the window shown is simply
-shorter.
+Actions tab confirms that it works. The schedule then asks for a run every two
+hours, but GitHub drops scheduled jobs when it is busy: of the slots in the
+first ten weeks, about a third ran, and the longest gap was twelve hours. A run
+rewrites `data/activity.json` and `data/profile.json` when a figure has changed
+and commits them under the repository owner's name. In practice that is every
+run, because each of these commits is itself a contribution, which raises the
+day's count, which the next run then records.
 
-Two cautions are worth recording. Scheduled workflows can start late at busy
-times, so the calendar should not be expected to update at a precise minute. A fine grained token expires, and when it does the failure is
-silent: the page reverts to the shorter window. A reminder set a week before
-the expiry date avoids the surprise.
+Three cautions are worth recording. The record is the only source the calendar
+has: without the token, or if the request fails, the job leaves
+`data/activity.json` as it is and the page says the record could not be read
+rather than drawing a shorter or emptier year. A fine grained token expires,
+and until the job is changed to fail loudly the expiry is silent, so a reminder
+a week before the date avoids the surprise. The page's figures are fetched live
+from GitHub and Hugging Face on every visit, with `data/profile.json` as the
+fallback, so a visitor who exhausts GitHub's hourly allowance sees the stored
+figures instead.
 
 ## What is maintained by hand
 
@@ -107,9 +115,11 @@ both are present, `chapters` wins, so a slipped schedule can be corrected by
 hand.
 
 Everything else is either fetched live from GitHub and Hugging Face, or listed
-in the `REPOS` and `DSETS` arrays. A new repository is one line in `REPOS`, in
-the form `['repository_name','group_id']`; a new dataset needs nothing, because
-the table is read from Hugging Face on every load.
+in the `REPOS` and `DNAME` objects. A new repository is one line in `REPOS`, in
+the form `['repository_name','group_id']`; a new dataset appears on its own,
+because the table is read from Hugging Face on every load, but it is worth
+giving it a line in `DNAME`, which holds the written name of each dataset. A
+dataset with no line there is titled from its identifier.
 
 ## Known items
 

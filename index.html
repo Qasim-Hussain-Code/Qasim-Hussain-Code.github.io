@@ -542,9 +542,9 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 
 <div class="wrap">
   <div class="figures">
-    <div><p class="n" id="fRepos">89</p><p class="k">public analysis pipelines on GitHub</p></div>
+    <div><p class="n" id="fRepos">89</p><p class="k">public repositories on GitHub</p></div>
     <div><p class="n" id="fData">19</p><p class="k">curated datasets on Hugging Face</p></div>
-    <div><p class="n">2 + 1</p><p class="k">journal articles and a book chapter, two under review</p></div>
+    <div><p class="n" id="fPubs">2 + 1</p><p class="k" id="fPubsK">journal articles and a book chapter, two under review</p></div>
     <div><p class="n" id="fDay">52</p><p class="k" id="fDayK">consecutive days of Machine Learning for Biology</p></div>
   </div>
 </div>
@@ -753,7 +753,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <figure class="bk-cover"><img src="assets/book-cover.webp" width="400" height="600" loading="lazy"
         alt="Cover of Machine Learning for Biology by Qasim Hussain."></figure>
       <div>
-        <p class="bk-meta">A book in seven chapters, beta edition, 2026. Web edition, PDF (105 pages) and EPUB.</p>
+        <p class="bk-meta">A book in seven chapters, beta edition, 2026. Web edition, PDF (106 pages) and EPUB.</p>
         <p class="bk-lede">The daily series Machine Learning for Biology, rewritten as a book. Each chapter
           pairs one model with one biological question, from logistic regression on antibiotic resistance to <span class="nw">k-means</span> on
           immune cells, fixes its rules before any model is fitted, and reports what failed beside what held. Every
@@ -773,7 +773,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
         <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-7.html"><span class="n">7</span><span>Immune cell subtype discovery from single-cell RNA-seq</span><span class="m">k-means</span></a>
         </nav>
         <div class="bk-ed"><a class="btn key" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/">Read the book online</a>
-          <a class="btn" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.pdf">PDF, 105 pages</a>
+          <a class="btn" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.pdf">PDF, 106 pages</a>
           <a class="btn" href="https://qasim-hussain-code.github.io/machine-learning-for-biology/machine-learning-for-biology.epub">EPUB</a></div>
       </div>
     </div>
@@ -783,7 +783,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 <section id="code">
   <div class="wrap">
     <div class="head">
-      <h2>Public repositories</h2>
+      <h2>Repositories</h2>
     </div>
     <div class="ctl">
       <div id="chips" role="group" aria-label="Show one family of repositories" style="display:flex;flex-wrap:wrap;gap:8px"></div>
@@ -798,7 +798,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 <section id="data">
   <div class="wrap">
     <div class="head">
-      <h2>Curated datasets</h2>
+      <h2>Datasets</h2>
     </div>
     <div class="list" id="dsets"></div>
     <p class="tail">Complete collection at <a href="https://huggingface.co/QasimHussain">huggingface.co/QasimHussain</a>.</p>
@@ -920,7 +920,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     </div>
     <p class="sr" role="status" id="copyStatus"></p>
 
-    <div class="block" style="margin-top:44px">
+    <div class="block" id="posters" style="margin-top:44px">
       <h3 class="sub">Conference posters</h3>
       <p class="tail" style="margin:6px 0 14px">Authorship position stated for each.</p>
       <div class="duo">
@@ -971,7 +971,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
               <p class="de">University of Education, Township, Lahore, Pakistan.</p></div>
           </div>
         </div>
-        <div class="block">
+        <div class="block" id="teaching">
           <h3 class="sub">Teaching and public engagement</h3>
           <div class="rl">
             <div class="r"><p class="yr">August 2025 to January 2026</p>
@@ -994,7 +994,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
         </div>
       </div>
       <div>
-        <div class="block">
+        <div class="block" id="honours">
           <h3 class="sub">Honours and awards</h3>
           <div class="rl">
             <div class="r"><p class="yr">June 2026</p><p class="ti"><a href="assets/certificates/npust-outstanding-research-performance-award-2026.pdf">Award for Graduate Students with Outstanding Research Performance</a><span class="sr"> (certificate, PDF)</span></p>
@@ -1003,13 +1003,15 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
               <p class="de">Elected a scholar of the foundation for the Rotary year 2025 to 2026, Taiwan.</p></div>
             <div class="r"><p class="yr">2019</p><p class="ti">University Scholarship</p>
               <p class="de">University of Education, Lahore.</p></div>
-            <div class="r"><p class="yr">2017</p><p class="ti">College Scholarship and Prime Minister Laptop Award</p>
-              <p class="de">Webster Group of Colleges; Punjab Board of Technical Education.</p></div>
+            <div class="r"><p class="yr">2017</p><p class="ti">Prime Minister Laptop Award</p>
+              <p class="de">Punjab Board of Technical Education.</p></div>
+            <div class="r"><p class="yr">2017</p><p class="ti">College Scholarship</p>
+              <p class="de">Webster Group of Colleges.</p></div>
             <div class="r"><p class="yr">2015</p><p class="ti">Merit Scholarship</p>
               <p class="de">Punjab Educational Endowment Fund.</p></div>
           </div>
         </div>
-        <div class="block">
+        <div class="block" id="courses">
           <h3 class="sub">Assessed coursework</h3>
           <p class="tail" style="margin:6px 0 12px">A fourteen-month course in bioinformatics with Codanics, forty topics assessed by
             monthly quizzes and a final project, alongside thirty six hours of DataCamp courses in statistical
@@ -1176,7 +1178,7 @@ var REPOS=[
  ['cancer_survival_ml_pipeline','human'],['tmao_cardiovascular_risk_prediction','human'],
  ['PanCancer_scRNA_Atlas','sc'],['Human_Immune_Multiomics_Atlas','sc'],['msqrob2_lfq_proteomics_pipeline','prot'],['sage_lfq_proteomics_pipeline','prot'],['msqrob2_tmt_proteomics_pipeline','prot'],['MassCube_HIV_metabolomics','prot'],
  ['Spatial_Transcriptomics_Atlas','sc'],['alzheimer_cellular_vulnerability_sst_neurons_snRNA','sc'],
- ['immune_cell_subtype_discovery','sc'],
+ ['immune_cell_subtype_discovery','sc'],['influenza_vaccine_multiomics_pipeline','sc'],
  ['vina_gnina_pose_benchmark_pipeline','struct'],['vina_litpcba_virtual_screening_pipeline','struct'],
  ['proteinmpnn_hcv_e2_decoy_design_pipeline','struct'],['hiv_multimodal_binder_campaign_pipeline','struct'],
  ['aptamer_selex_generative_design_pipeline','ml'],['colabfold_boltz_structure_confidence_pipeline','struct'],['neoantigen_immunogenicity_prediction','ml'],['RESPONSA','ml'],['peptide_mhc_binding_prediction','ml'],
@@ -1238,31 +1240,63 @@ function sizeOf(id){return REPOS.filter(function(r){return r[1]===id;}).length;}
     drawChips();draw();
     var P=document.getElementById('sum-code');if(P)P.textContent=REPOS.length;
     var F=document.getElementById('fRepos');if(F)F.textContent=REPOS.length;
+    if(window.paintRepoRows)window.paintRepoRows();
   }).catch(function(){});
 })();
 
-/* ---------- datasets ---------- */
-var DSETS=[
- ['Human gut microbiome atlas','Human_Gut_Microbiome_Atlas',549],
- ['QIIME 2 microbiome analysis','qiime2_micobiome_analysis',375],
- ['Campylobacter pan-GWAS','Campylobacter-PanGWAS',147],
- ['Pan-biosynthetic gene cluster atlas','pan_biosynthetic_gene_cluster_atlas',109],
- ['Streptococcus pneumoniae pangenome','Nature2022_Spneumo_Pangenome',101],
- ['QIIME 2 antibiotic microbiome analysis','qiime2_antibiotic_microbiome_analysis',98],
- ['Bifidobacterium longum CAZyme profiling','B.longum_CAZyme_Profiling',76],
- ['Pseudomonas aeruginosa pan-immunophagomics','p.aeruginosa-panimmunophagomics',70],
- ['Helicobacter pylori pangenome','ppanggolin_pangenomics_helicobacter_pylori',58],
- ['HIV single cell atlas','hiv_scrnaseq_atlas',53]
-];
+/* ---------- datasets ----------
+   The names are written here because no Hugging Face card carries a pretty_name,
+   and a name built from the identifier reads as machine made. A dataset absent
+   from this list is titled from its identifier, so a new one still appears.
+   The figure is the download count since publication (downloadsAllTime). Until
+   it arrives the rows carry names and no number: a count is never guessed. */
+var DNAME={
+ 'Campylobacter-PanGWAS':'<em>Campylobacter</em> pan-GWAS',
+ 'Human_Gut_Microbiome_Atlas':'Human gut microbiome atlas',
+ 'Nature2022_Spneumo_Pangenome':'<em>Streptococcus pneumoniae</em> pangenome',
+ 'qiime2_micobiome_analysis':'QIIME 2 microbiome analysis',
+ 'ppanggolin_pangenomics_helicobacter_pylori':'<em>Helicobacter pylori</em> pangenome',
+ 'spatial-transcriptomics-atlas-demo':'Spatial transcriptomics atlas, demonstration',
+ 'hiv_scrnaseq_atlas':'HIV single cell atlas',
+ 'PanCancer_scRNA_Atlas':'Pan-cancer single cell atlas',
+ 'pan_biosynthetic_gene_cluster_atlas':'Pan-biosynthetic gene cluster atlas',
+ 'B.longum_CAZyme_Profiling':'<em>Bifidobacterium longum</em> CAZyme profiling',
+ 'qiime2_antibiotic_microbiome_analysis':'QIIME 2 antibiotic microbiome analysis',
+ 'viral_cancer_tcga':'Viral hepatocellular carcinoma, TCGA',
+ 'p.aeruginosa-panimmunophagomics':'<em>Pseudomonas aeruginosa</em> pan-immunophagomics',
+ 'RESPONSA':'RESPONSA drug sensitivity',
+ 'Human_Immune_Multiomics_Atlas':'Human immune multi-omics atlas',
+ 'transcriptome-health-dashboard-demo':'Transcriptome health dashboard, demonstration',
+ 'immuno-epitope-predictor-demo':'Immuno-epitope predictor, demonstration',
+ 'viralseq-qc-demo':'ViralSeq-QC, demonstration',
+ 'viral_attenuation_in_venezuelan_equine_encephalitis':'Venezuelan equine encephalitis attenuation'
+};
+var DIDS=Object.keys(DNAME);
+function dTitle(id){return id.replace(/[_-]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();});}
+function dName(id){return DNAME[id]||dTitle(id);}
+function num(n){return n.toLocaleString('en-GB');}
+var DLIST=DIDS.map(function(id){return {id:id,n:null};});
 function drawData(list){
+  DLIST=list;
   var host=document.getElementById('dsets');if(!host)return;
-  var max=Math.max.apply(null,list.map(function(d){return d[2];}))||1;
+  var counted=list.filter(function(d){return typeof d.n==='number';});
+  var max=counted.length?Math.max.apply(null,counted.map(function(d){return d.n;}))||1:1;
   host.innerHTML=list.slice(0,12).map(function(d){
-    return '<div class="drow"><span><a href="https://huggingface.co/datasets/'+CONFIG.hfUser+'/'+d[1]+'">'+d[0]+'</a></span>'+
-      '<span class="gauge"><i style="width:'+Math.round(d[2]/max*100)+'%"></i></span>'+
-      '<span class="dl">'+d[2].toLocaleString()+'</span></div>';}).join('');
+    var has=typeof d.n==='number';
+    return '<div class="drow"><span><a href="https://huggingface.co/datasets/'+CONFIG.hfUser+'/'+encodeURIComponent(d.id)+'">'+dName(d.id)+'</a></span>'+
+      '<span class="gauge">'+(has?'<i style="width:'+Math.round(d.n/max*100)+'%"></i>':'')+'</span>'+
+      '<span class="dl">'+(has?num(d.n):'')+'</span></div>';}).join('');
+  paintDataRows();
 }
-drawData(DSETS);
+/* the summary panel and this section read one list, so the two cannot disagree */
+function paintDataRows(){
+  var host=document.getElementById('sum-dsrows');if(!host)return;
+  host.innerHTML=DLIST.slice(0,8).map(function(d){
+    return '<div><span>'+dName(d.id)+'</span><span class="q">'+
+      (typeof d.n==='number'?num(d.n)+' downloads':'')+'</span></div>';}).join('');
+  if(window.fitSummary)window.fitSummary();
+}
+drawData(DLIST);
 
 /* ---------- day counters ---------- */
 function seriesDay(start){
@@ -1417,13 +1451,12 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
    written by the nightly job to data/profile.json are used instead. */
 (function(){
   function set(id,v){var el=document.getElementById(id);if(el)el.textContent=v;}
-  function title(id){return id.replace(/[_-]/g,' ').replace(/\b\w/g,function(m){return m.toUpperCase();});}
   /* GitHub's total includes this site's own repository, so it feeds only the
-     published count; the pipeline figures count the index (REPOS) */
+     published count; the repository figures count the index (REPOS) */
   function repos(n){set('ghCount',n);}
   function data(n,top){
     set('hfCount',n);set('fData',n);var s=document.getElementById('sum-data');if(s)s.textContent=n;
-    if(top&&top.length>=5)drawData(top.slice(0,12).map(function(d){return [title(d.id),d.id,d.downloads];}));
+    if(top&&top.length>=5)drawData(top.slice(0,12));
   }
   var stored=fetch('data/profile.json').then(function(r){return r.ok?r.json():null;}).catch(function(){return null;});
   fetch('https://api.github.com/users/'+CONFIG.githubUser).then(function(r){return r.ok?r.json():null;})
@@ -1431,41 +1464,74 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
       if(j&&j.public_repos)repos(j.public_repos);
       else return stored.then(function(p){if(p&&p.public_repos)repos(p.public_repos);});
     }).catch(function(){return stored.then(function(p){if(p&&p.public_repos)repos(p.public_repos);});});
-  fetch('https://huggingface.co/api/datasets?author='+CONFIG.hfUser+'&limit=200')
+  /* downloadsAllTime is the count since publication; the API's plain downloads
+     field covers the last thirty days only and would fall as well as rise */
+  fetch('https://huggingface.co/api/datasets?author='+CONFIG.hfUser+'&limit=200&expand%5B%5D=downloadsAllTime')
     .then(function(r){return r.ok?r.json():null;})
     .then(function(j){
       if(!Array.isArray(j)||!j.length)throw 0;
-      data(j.length,j.filter(function(d){return typeof d.downloads==='number';})
-        .sort(function(a,b){return b.downloads-a.downloads;})
-        .map(function(d){return {id:d.id.split('/')[1],downloads:d.downloads};}));
+      data(j.length,j.filter(function(d){return typeof d.downloadsAllTime==='number';})
+        .sort(function(a,b){return b.downloadsAllTime-a.downloadsAllTime;})
+        .map(function(d){return {id:d.id.split('/')[1],n:d.downloadsAllTime};}));
     })
-    .catch(function(){return stored.then(function(p){if(p&&p.datasets)data(p.datasets,p.top_datasets||[]);});});
+    .catch(function(){return stored.then(function(p){
+      if(!p||!p.datasets)return;
+      /* an older profile.json holds thirty day counts, which must not be shown
+         under a heading that says otherwise, so those rows keep their names only */
+      data(p.datasets,(p.top_datasets||[]).map(function(d){
+        return {id:d.id,n:typeof d.downloads_all_time==='number'?d.downloads_all_time:null};}));
+    });});
 })();
 
-/* ---------- summary panel ---------- */
+/* ---------- summary panel ----------
+   Every figure here is counted from the section it summarises, so adding a
+   publication, a poster, an award or a course moves both at once. */
 (function(){
+  var WORDS=['no','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
+  function word(n){return WORDS[n]!==undefined?WORDS[n]:String(n);}
+  function all(sel){return [].slice.call(document.querySelectorAll(sel));}
+  var pubs=all('#publications .pub');
+  function when(p){return p.querySelector('.when').textContent.trim();}
+  function badged(t){return pubs.filter(function(p){var b=p.querySelector('.badge.n');return b&&b.textContent.trim()===t;}).length;}
+  var nChap=badged('Book chapter'),
+      nArt=pubs.filter(function(p){return /^\d{4}$/.test(when(p));}).length-nChap,
+      nRev=pubs.filter(function(p){return when(p)==='Under review';}).length,
+      nPrep=pubs.filter(function(p){return when(p)==='In preparation';}).length,
+      nPost=all('#posters .r').length,
+      nFirst=all('#posters .yr').filter(function(e){return /first author/.test(e.textContent);}).length,
+      nHon=all('#honours .r').length;
+  /* a course listed inside a track counts, the track row that holds them does not */
+  var crows=all('#courses table.t tbody tr');
+  var nCourse=crows.filter(function(r,i){
+    var nxt=crows[i+1];return r.querySelector('td.in')||!(nxt&&nxt.querySelector('td.in'));}).length;
+  var sess=(all('#teaching .ti')[0]||{textContent:''}).textContent.match(/(\d[\d,]*)\s+service sessions/);
+  var nSess=sess?sess[1]:'';
+  var fp=document.getElementById('fPubs'),fpk=document.getElementById('fPubsK');
+  if(fp)fp.textContent=nArt+' + '+nChap;
+  if(fpk)fpk.textContent='journal articles and a book chapter, '+word(nRev)+' under review';
   var P=[
-   {k:'Code',h:'Public analysis pipelines',v:'<span id="sum-code">'+REPOS.length+'</span>',
-    u:'repositories in ten methodological families, most released under the MIT licence, with the count read live from GitHub.',
-    rows:GROUPS.map(function(g){return [g.name,sizeOf(g.id)+' repositories'];})},
-   {k:'Data',h:'Curated datasets',v:'<span id="sum-data">19</span>',
-    u:'datasets published with documentation on Hugging Face, ordered here by download count.',
-    rows:DSETS.slice(0,8).map(function(d){return [d[0],d[2]+' downloads'];})},
-   {k:'Publications',h:'Peer reviewed output',v:'2 + 1',
-    u:'journal articles and a book chapter, one of them as co-corresponding author, with two manuscripts under review and one review in preparation.',
+   {k:'Repositories',v:'<span id="sum-code">'+REPOS.length+'</span>',
+    u:'public repositories in <span id="sum-fams">ten</span> methodological families, most released under the MIT licence, with the count read live from GitHub.',
+    id:'sum-reporows',rows:GROUPS.map(function(g){return [g.name,sizeOf(g.id)+' repositories'];})},
+   {k:'Datasets',v:'<span id="sum-data">19</span>',
+    u:'curated datasets published with documentation on Hugging Face, ordered by downloads since publication.',
+    id:'sum-dsrows',rows:[]},
+   {k:'Publications',v:nArt+' + '+nChap,
+    u:'journal articles and a book chapter, one of them as co-corresponding author, with '+word(nRev)+' manuscript'+
+      (nRev===1?'':'s')+' under review and '+word(nPrep)+' review'+(nPrep===1?'':'s')+' in preparation.',
     rows:[['Biomolecules 15(12):1647','2025, co-corresponding'],
           ['Conserved internal genes and divergent HA and NA in bat influenza A viruses','2025'],
           ['Zoonosis, volume 1, pages 89 to 103','2023, book chapter'],
           ['Black Queen Cell Virus in southern Taiwan','Under review'],
           ['Flagellin N-D1 domain as a PEDV adjuvant','Under review'],
           ['Are <em>de novo</em> designed proteins immunogenic?','In preparation']]},
-   {k:'Conferences',h:'Posters presented',v:'4',
-    u:'conference posters in Taiwan across 2025 and 2026, two of them as first author.',
+   {k:'Conferences',v:String(nPost),
+    u:'conference posters in Taiwan across 2025 and 2026, '+word(nFirst)+' of them as first author.',
     rows:[['Antivirals against the PEDV spike protein','ISSI-SA 2026, first author'],
           ['Plant derived nanoparticles against parvovirus','Academia Sinica, 2026'],
           ['Molnupiravir against PEDV <em>in vitro</em>','NPUST 2025, first author'],
           ['Zoonotic threats from Formosan macaques','NCKU 2025']]},
-   {k:'Honours',h:'Awards and scholarships',v:'6',
+   {k:'Honours',v:String(nHon),
     u:'competitive awards and scholarships, most recently for research performance at NPUST.',
     rows:[['Award for Graduate Students with Outstanding Research Performance, NPUST','June 2026'],
           ['Chung Hwa Rotary Educational Foundation Scholarship','January 2026'],
@@ -1473,7 +1539,7 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
           ['Prime Minister Laptop Award','2017'],
           ['College Scholarship, Webster Group of Colleges','2017'],
           ['Merit Scholarship, Punjab Educational Endowment Fund','2015']]},
-   {k:'Training',h:'Assessed coursework',v:'12',
+   {k:'Training',v:String(nCourse),
     u:'assessed courses in bioinformatics, statistical computing and genomic data analysis, from Codanics, DataCamp and Harvard.',
     rows:[['Bioinformatics ka Chilla, Codanics','Nov 2025 to Dec 2026'],
           ['Analyzing Genomic Data in R, a track of four courses','16 hours'],
@@ -1484,7 +1550,7 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
           ['Introduction to R','4 hours'],
           ['R with Aammar, Codanics','Dec 2025'],
           ['Introduction to Databases with SQL','Harvard CS50, 2026']]},
-   {k:'Teaching',h:'Classroom service',v:'209',
+   {k:'Teaching',v:nSess,
     u:'teaching sessions completed in the Taiwanese state school system between August 2025 and January 2026.',
     rows:[['English Language Teaching Assistant','209 sessions'],
           ['ELTA orientation training','18 hours'],
@@ -1499,8 +1565,8 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     return '<button class="stab" type="button" role="tab" id="st'+j+'" aria-controls="sp'+j+'" aria-selected="'+(j===0)+'" tabindex="'+(j===0?0:-1)+'">'+p.k+'</button>';}).join('');
   panes.innerHTML=P.map(function(p,j){
     return '<div class="spane" role="tabpanel" id="sp'+j+'" aria-labelledby="st'+j+'" tabindex="0" data-on="'+(j===0?1:0)+'">'+
-      '<div class="lede"><span class="v">'+p.v+'</span><span class="u"><b style="color:var(--ink);font-weight:600">'+p.h+'.</b> '+p.u+'</span></div>'+
-      '<div class="rows">'+p.rows.map(function(r){
+      '<div class="lede"><span class="v">'+p.v+'</span><span class="u">'+p.u+'</span></div>'+
+      '<div class="rows"'+(p.id?' id="'+p.id+'"':'')+'>'+p.rows.map(function(r){
         return '<div><span>'+r[0]+'</span><span class="q">'+r[1]+'</span></div>';}).join('')+'</div></div>';
   }).join('');
   /* the panel keeps the height of its tallest pane, so the page below it never
@@ -1510,6 +1576,17 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     panes.style.minHeight=h+'px';
   }
   fit();window.fitSummary=fit;
+  /* the two panes that summarise live lists are filled from those same lists */
+  window.paintRepoRows=function(){
+    var host=document.getElementById('sum-reporows');if(!host)return;
+    var fams=GROUPS.map(function(g){return [g.name,g.id];});
+    if(sizeOf('other'))fams.push([NAME.other,'other']);
+    host.innerHTML=fams.map(function(f){
+      return '<div><span>'+f[0]+'</span><span class="q">'+sizeOf(f[1])+' repositories</span></div>';}).join('');
+    var w=document.getElementById('sum-fams');if(w)w.textContent=word(fams.length);
+    fit();
+  };
+  paintDataRows();window.paintRepoRows();
   var fitT;addEventListener('resize',function(){clearTimeout(fitT);fitT=setTimeout(fit,150);},{passive:true});
   if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
   /* the advance is a timer and the bar is a CSS transition, so nothing runs

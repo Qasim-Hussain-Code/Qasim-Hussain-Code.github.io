@@ -230,7 +230,9 @@ section{padding:clamp(56px,7vw,100px) 0 0}
 .cal{margin-top:22px;overflow-x:auto;padding-bottom:4px}
 .cal{--cell:11px;--cgap:3px}
 @media (min-width:1400px){.cal{--cgap:4px}}
-.cal{--lab:2.6em}
+/* a fixed label column, because an em is a different length in the month row
+   (11px) and in the grid (17px), which slid every month label a week to the left */
+.cal{--lab:34px}
 .calmonths{display:grid;grid-template-columns:var(--lab) repeat(var(--cols,52),minmax(var(--cell),1fr));gap:var(--cgap);margin-bottom:6px;font:400 11px/1 var(--mono);color:var(--mute)}
 .calmonths span{grid-row:1;white-space:nowrap;overflow:visible}
 .calgrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);grid-template-columns:var(--lab);grid-auto-columns:minmax(var(--cell),1fr);gap:var(--cgap);width:100%}
@@ -572,7 +574,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     <div class="live">
       <div class="card">
         <h3>Contributions to public repositories</h3>
-        <p class="say">One cell per day, darker where the day carried more commits. A day with no recorded
+        <p class="say">One cell per day, darker where the day carried more contributions. A day with no recorded
           contribution is left empty rather than filled in.</p>
         <div class="cal"><div class="calmonths" id="calmonths" aria-hidden="true"></div>
           <div class="calgrid" id="calgrid" aria-label="Calendar of daily contributions to public GitHub repositories."></div></div>
@@ -584,7 +586,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           <span>More</span><span style="margin-left:auto" id="calsrc" role="status">Loading</span>
         </p>
         <div class="tri">
-          <div><p class="n" id="stTot">0</p><p class="k">Contributions in the window</p></div>
+          <div><p class="n" id="stTot">0</p><p class="k">Contributions in the last 52 weeks</p></div>
           <div><p class="n" id="st90">0</p><p class="k">Contributions in the last 90 days</p></div>
           <div><p class="n" id="st10">0</p><p class="k">Days with 10 or more contributions</p></div>
           <div><p class="n" id="stBusy">0</p><p class="k" id="stBusyK">Contributions on the busiest day</p></div>
@@ -1299,11 +1301,20 @@ function paintDataRows(){
 drawData(DLIST);
 
 /* ---------- day counters ---------- */
-function seriesDay(start){
-  var s=new Date(start+'T00:00:00'),t=new Date();t.setHours(0,0,0,0);
-  var d=Math.floor((t-s)/86400000)+1;return d<1?1:d;
+/* The posts are numbered by the calendar in Taipei, where they are written. Counted
+   from the reader's own midnight instead, the number read one lower for most of the
+   day in the Americas and, under daylight saving, in Australia and New Zealand. */
+function todayISO(){
+  try{
+    var s=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    if(/^\d{4}-\d{2}-\d{2}$/.test(s))return s;
+  }catch(e){}
+  var t=new Date();
+  return t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
 }
-function seriesLive(start){var t=new Date();t.setHours(0,0,0,0);return t>=new Date(start+'T00:00:00');}
+function daysBetween(a,b){return Math.round((Date.parse(b+'T00:00:00Z')-Date.parse(a+'T00:00:00Z'))/86400000);}
+function seriesDay(start){var d=daysBetween(start,todayISO())+1;return d<1?1:d;}
+function seriesLive(start){return daysBetween(start,todayISO())>=0;}
 function seriesCount(s){var d=seriesDay(s.start);return s.length?Math.min(d,s.length):d;}
 function longDate(iso){return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});}
 function chapterMeta(n){return n===0?'no chapter complete yet':n+' chapter'+(n===1?'':'s')+' complete';}
@@ -1381,6 +1392,10 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
 (function(){
   var grid=document.getElementById('calgrid'),src=document.getElementById('calsrc'),
       span=CONFIG.weeks*7,counts={};
+  /* written out, so that every visitor sees the same three letters: a browser set
+     to British English abbreviates September as "Sept" beside "Oct" */
+  var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var FMT=new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric'});
   function render(label){
     var today=new Date();today.setHours(0,0,0,0);
     var first=new Date(today);
@@ -1400,49 +1415,57 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
       else if(i===cells.length-1){continue;}
       else break;
     }
-    var cols=Math.ceil(cells.length/7),months=[],prev=-1;
+    /* one label per month, and never within three columns of the one before it,
+       which is what made the first two print on top of each other */
+    var cols=Math.ceil(cells.length/7),months=[],prev=-1,last=-9;
     for(var w=0;w<cols;w++){
       var fd=new Date(cells[w*7].k+'T00:00:00'),m=fd.getMonth();
-      if(m!==prev){if(w===0||fd.getDate()<=7)months.push('<span style="grid-column:'+(w+2)+'">'+fd.toLocaleDateString('en-GB',{month:'short'})+'</span>');prev=m;}
+      if(m!==prev){
+        if(fd.getDate()<=7&&w-last>=3){months.push('<span style="grid-column:'+(w+2)+'">'+MON[m]+'</span>');last=w;}
+        prev=m;
+      }
     }
     var mrow=document.getElementById('calmonths');
     if(mrow){mrow.style.setProperty('--cols',cols);mrow.innerHTML=months.join('');}
     var wd=['Mon','','Wed','','Fri','',''].map(function(t){return '<span class="wd">'+t+'</span>';}).join('');
     grid.innerHTML=wd+cells.map(function(c){
-      var d=new Date(c.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});
+      var d=FMT.format(new Date(c.k+'T00:00:00'));
       var t=c.n+' contribution'+(c.n===1?'':'s')+' on '+d;
       return '<a class="d" href="https://github.com/'+CONFIG.githubUser+'?tab=overview&amp;from='+c.k+'&amp;to='+c.k+'" tabindex="-1" style="background:var(--h'+c.l+')" title="'+t+'" aria-label="'+t+'"></a>';
     }).join('');
     var s90=new Date(today);s90.setDate(s90.getDate()-89);
     var c90=cells.filter(function(c){return new Date(c.k+'T00:00:00')>=s90;}).reduce(function(a,c){return a+c.n;},0);
     var d10=cells.filter(function(c){return c.n>=10;}).length,busy=cells.reduce(function(m,c){return c.n>m.n?c:m;},cells[0]);
-    document.getElementById('stTot').textContent=total.toLocaleString();
-    document.getElementById('st90').textContent=c90.toLocaleString();
-    document.getElementById('st10').textContent=d10;
-    document.getElementById('stBusy').textContent=busy.n;
+    document.getElementById('stTot').textContent=num(total);
+    document.getElementById('st90').textContent=num(c90);
+    document.getElementById('st10').textContent=num(d10);
+    document.getElementById('stBusy').textContent=num(busy.n);
     document.getElementById('stBusyK').textContent='Contributions on the busiest day, '+new Date(busy.k+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'long'});
     src.textContent=label;
+    /* the strip is wider than its card at most widths, so it opens at the newest
+       weeks rather than at the oldest */
+    var box=document.querySelector('.cal');
+    if(box)box.scrollLeft=box.scrollWidth;
     grid.setAttribute('aria-label','Calendar of daily contributions to public GitHub repositories over the last '+
       CONFIG.weeks+' weeks: '+total+' contributions, '+c90+' in the last 90 days, '+d10+' days with 10 or more, most on one day '+busy.n+'. '+label+'.');
   }
+  /* The record is the only source. GitHub's public events feed was the fallback
+     until it stopped carrying the commits of a push and shortened to thirty days,
+     which turned a year of work into a few dozen marks; an empty calendar and a
+     plain sentence are honest, and a wrong one is not. */
   fetch('data/activity.json').then(function(r){if(!r.ok)throw 0;return r.json();})
     .then(function(j){
       if(!j||!Array.isArray(j.days)||!j.days.length)throw 0;
       j.days.forEach(function(d){counts[d.date]=d.count;});
-      render('GitHub contribution record, refreshed '+String(j.generated_at||'').slice(0,10));
+      var gen=String(j.generated_at||'').slice(0,10);
+      render('GitHub contribution record'+(/^\d{4}-\d{2}-\d{2}$/.test(gen)?', refreshed '+longDate(gen):''));
     })
     .catch(function(){
-      return fetch('https://api.github.com/users/'+CONFIG.githubUser+'/events/public?per_page=100')
-        .then(function(r){if(!r.ok)throw 0;return r.json();})
-        .then(function(ev){
-          ev.forEach(function(e){
-            var d=e.created_at.slice(0,10);
-            var n=(e.type==='PushEvent'&&e.payload&&e.payload.commits)?e.payload.commits.length:1;
-            counts[d]=(counts[d]||0)+n;});
-          render('Public GitHub activity feed, trailing 90 days');
-        });
-    })
-    .catch(function(){render('Activity record not reachable');});
+      src.textContent='Contribution record not reachable';
+      ['stTot','st90','st10','stBusy'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent='';});
+      var k=document.getElementById('stBusyK');if(k)k.textContent='Contributions on the busiest day';
+      grid.setAttribute('aria-label','The contribution record could not be read, so no calendar is shown.');
+    });
 })();
 
 /* ---------- live counts ----------
@@ -1688,7 +1711,13 @@ document.addEventListener('click',function(e){
   addEventListener('scroll',function(){top.classList.toggle('on',scrollY>900);},{passive:true});
 })();
 
-document.getElementById('stamp').textContent=new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'});
+/* The foot carries the date the page itself last changed, written into
+   data/profile.json by the nightly job. It is left empty rather than filled with
+   the reader's own month, which looked like a date of revision and was not one. */
+fetch('data/profile.json').then(function(r){return r.ok?r.json():null;}).then(function(p){
+  var el=document.getElementById('stamp'),d=p&&String(p.site_revised||'').slice(0,10);
+  if(el&&/^\d{4}-\d{2}-\d{2}$/.test(d||''))el.textContent='Page revised '+longDate(d);
+}).catch(function(){});
 </script>
 </body>
 </html>

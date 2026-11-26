@@ -47,15 +47,27 @@ async function profile() {
     TOKEN ? { headers: { Authorization: `bearer ${TOKEN}` } } : undefined);
   if (gh.ok) { const j = await gh.json(); out.public_repos = j.public_repos; }
 
-  const hf = await fetch(`https://huggingface.co/api/datasets?author=${HF}&limit=200`);
+  // downloadsAllTime is the count since publication. The API's plain downloads field
+  // covers the last thirty days, so it falls as well as rises and cannot be labelled
+  // a total; asking for the one field also shrinks the reply from 20 KB to about 3.
+  const hf = await fetch(`https://huggingface.co/api/datasets?author=${HF}&limit=200&expand%5B%5D=downloadsAllTime`);
   if (hf.ok) {
     const list = await hf.json();
     out.datasets = list.length;
     out.top_datasets = list
-      .filter(d => typeof d.downloads === 'number')
-      .sort((a, b) => b.downloads - a.downloads)
+      .filter(d => typeof d.downloadsAllTime === 'number')
+      .sort((a, b) => b.downloadsAllTime - a.downloadsAllTime)
       .slice(0, 12)
-      .map(d => ({ id: d.id.split('/')[1], downloads: d.downloads, likes: d.likes ?? 0 }));
+      .map(d => ({ id: d.id.split('/')[1], downloads_all_time: d.downloadsAllTime }));
+  }
+
+  // the date the page itself last changed, for the foot of the page; the two-hourly
+  // data commits do not touch index.html, so this moves only when the page does
+  const rev = await fetch(`https://api.github.com/repos/${USER}/${USER}.github.io/commits?path=index.html&per_page=1`,
+    TOKEN ? { headers: { Authorization: `bearer ${TOKEN}` } } : undefined);
+  if (rev.ok) {
+    const c = await rev.json();
+    if (Array.isArray(c) && c[0]?.commit?.committer?.date) out.site_revised = c[0].commit.committer.date.slice(0, 10);
   }
 
   const hm = await fetch(`https://huggingface.co/api/models?author=${HF}&limit=200`);

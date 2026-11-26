@@ -413,16 +413,25 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
 }
 
 @media print{
-  header,.navm,.buttons,.act,.stabs,.sbar,.ctl,.calkey,.skip,#toTop,.toc{display:none!important}
+  /* gone: the controls, and the calendar, whose cells are background colours that
+     a printer is told to drop, so it printed as an empty grid */
+  header,.navm,.buttons,.act,.stabs,.sbar,.ctl,.calkey,.skip,#toTop,.toc,
+  .cal,.bits button,.bk-links,#copyMail{display:none!important}
   body{background:#fff;color:#000;font-size:10.5pt}
   .band{background:#fff}
   .card,.list,.summary{border:1px solid #ccc;box-shadow:none}
   .shot img{box-shadow:none;border:0}
   .spane{position:relative!important;opacity:1!important;visibility:visible!important;transform:none!important}
-  section{padding-top:20px;break-inside:avoid}
+  /* whole sections refused to break, which left seven sheets nearly empty; an
+     entry, a publication or a card is the right thing to keep together */
+  section{padding-top:20px}
+  .entry,.pub,.rl .r,.app,.drow,.row{break-inside:avoid}
   .close{background:#fff;color:#000}
   .close h2,.close .serif,.reach a,footer{color:#000}
   a{color:#000;text-decoration:underline}
+  /* a link on paper is worth nothing without its address */
+  .go a::after,.pub .src a::after,.calgo a::after,.tail a::after,.app .al a::after,.bk-ed a::after{
+    content:" <" attr(href) ">";font-family:var(--mono);font-size:8.5pt;word-break:break-all}
 }
 
 /* the orange itself is used only as a surface under dark text; the darker
@@ -559,7 +568,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     </div>
     <div class="summary">
       <div class="stabs"><div role="tablist" aria-label="Summary of output" id="stabs"></div>
-        <button class="stab" type="button" id="spause" aria-pressed="false">Pause</button></div>
+        <button class="stab" type="button" id="spause" aria-label="Pause the automatic advance of the summary panel">Pause</button></div>
       <div class="sbar"><i id="sbar"></i></div>
       <div class="spanes" id="spanes"></div>
     </div>
@@ -816,26 +825,26 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       Controlomics, RESPONSA and Iron Scholar are open source, with links to their code.</p>
     <div class="apps">
       <div class="app">
-        <p class="an">MouseBio_3D</p>
+        <h3 class="an">MouseBio_3D</h3>
         <p class="ad">A three-dimensional laboratory mouse in the browser, built on the Digimouse CT and cryosection atlas, with each of its 434 structures marked as taken from the atlas, traced or simulated, and a dissection bench with fifteen guided tutorials.</p>
         <p class="am">TypeScript, React, three.js</p>
         <p class="al"><a class="small" href="https://qasim-hussain-code.github.io/MouseBio_3D/">Open the app</a></p>
       </div>
       <div class="app">
-        <p class="an">Controlomics</p>
+        <h3 class="an">Controlomics</h3>
         <p class="ad">A workspace for specifying, reviewing, executing and auditing the controls behind a
           computational biology claim, with source retrieval from Europe PMC and Crossref.</p>
         <p class="am">Python, MIT licence</p>
         <p class="al"><a class="small" href="https://qasim-hussain-code.github.io/controlomics/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/controlomics">Source</a></p>
       </div>
       <div class="app">
-        <p class="an">RESPONSA</p>
+        <h3 class="an">RESPONSA</h3>
         <p class="ad">Predicts drug sensitivity from gene expression, and shows its working: SHAP attribution, partial dependence, counterfactual perturbation and gene set enrichment.</p>
         <p class="am">Python, Streamlit, MIT licence</p>
         <p class="al"><a class="small" href="https://responsa.streamlit.app/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/RESPONSA">Source</a></p>
       </div>
       <div class="app">
-        <p class="an">Iron Scholar</p>
+        <h3 class="an">Iron Scholar</h3>
         <p class="ad">A training log, for people who annotate genomes between sets.</p>
         <p class="am">Python, Streamlit, MIT licence</p>
         <p class="al"><a class="small" href="https://iron-scholar.streamlit.app/">Open the app</a><a class="small" href="https://github.com/Qasim-Hussain-Code/iron-scholar">Source</a></p>
@@ -854,7 +863,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">2025</p>
         <div>
-          <p class="t">Evaluation of feline exosome mediated renal regeneration in adenine induced chronic kidney disease<span class="badge n">Research article</span><span class="badge">Co-corresponding author</span></p>
+          <h3 class="t">Evaluation of feline exosome mediated renal regeneration in adenine induced chronic kidney disease<span class="badge n">Research article</span><span class="badge">Co-corresponding author</span></h3>
           <p class="au">Lee CM, Villanueva BHA, Minh H, <b>Hussain Q</b>*, Chuang KP*</p>
           <p class="src"><em>Biomolecules</em> 15(12):1647. <a href="https://doi.org/10.3390/biom15121647">doi:10.3390/biom15121647</a></p>
           <p class="gist">An adenine induced rat model of chronic kidney disease treated with feline derived
@@ -868,7 +877,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">2025</p>
         <div>
-          <p class="t">Conserved internal PB2, PB1, PA, NP and M genes and divergent HA and NA in bat influenza A viruses H9N2, H17N10 and H18N11<span class="badge n">Research article</span></p>
+          <h3 class="t">Conserved internal PB2, PB1, PA, NP and M genes and divergent HA and NA in bat influenza A viruses H9N2, H17N10 and H18N11<span class="badge n">Research article</span></h3>
           <p class="au">Villanueva BHA, Gomez MC, <b>Hussain Q</b>, Hong QD, Chuang KP</p>
           <p class="src"><em>Recoletos Multidisciplinary Research Journal</em> 13(2Si):1 to 8. <a href="https://doi.org/10.32871/rmrj1302si.i2508">doi:10.32871/rmrj1302si.i2508</a></p>
           <p class="gist">Comparative sequence and phylogenetic analysis separating the conserved internal
@@ -881,7 +890,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">2023</p>
         <div>
-          <p class="t">The next pandemic: a comprehensive look into zoonotic emerging threats<span class="badge n">Book chapter</span></p>
+          <h3 class="t">The next pandemic: a comprehensive look into zoonotic emerging threats<span class="badge n">Book chapter</span></h3>
           <p class="au">Nadeem S, Tahir SB, Ahmad M, Aslam A, Farooq M, <b>Hussain Q</b>, Majid H, Usman SM, Bashir S, Maqsood H</p>
           <p class="src">In: Khan A, Rasheed M, Abbas RZ, editors. <em>Zoonosis</em>, volume 1, pages 89 to 103. Unique Scientific Publishers, Faisalabad. <a href="https://doi.org/10.47278/book.zoon/2023.007">doi:10.47278/book.zoon/2023.007</a></p>
           <p class="bits"><button class="small" data-bib="zoon2023">Copy BibTeX</button></p>
@@ -891,7 +900,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">Under review</p>
         <div>
-          <p class="t">Emergence of Black Queen Cell Virus in <em>Apis mellifera ligustica</em> of southern Taiwan: evidence from local genomic surveillance</p>
+          <h3 class="t">Emergence of Black Queen Cell Virus in <em>Apis mellifera ligustica</em> of southern Taiwan: evidence from local genomic surveillance</h3>
           <p class="au">Villanueva BHA, <b>Hussain Q</b>, Hong QD, Chen MH, Minh H, Huang HY, Tyan YC, Chuang KP</p>
           <p class="gist">Local genomic surveillance establishing the presence of a honeybee pathogen in a
             managed population in southern Taiwan.</p>
@@ -901,7 +910,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">Under review</p>
         <div>
-          <p class="t">Evaluating the adjuvanticity of the N-D1 domain of flagellin encompassing the hot spot region in combination with Porcine Epidemic Diarrhoea Virus</p>
+          <h3 class="t">Evaluating the adjuvanticity of the N-D1 domain of flagellin encompassing the hot spot region in combination with Porcine Epidemic Diarrhoea Virus</h3>
           <p class="au">Afzal H, Umar M, <b>Hussain Q</b>, Cheng LT*</p>
           <p class="gist">Assessment of a truncated flagellin domain as a vaccine adjuvant, tested in
             combination with PEDV antigen.</p>
@@ -911,7 +920,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <article class="pub">
         <p class="when">In preparation</p>
         <div>
-          <p class="t">Are <em>de novo</em> designed proteins immunogenic?<span class="badge n">Review article</span></p>
+          <h3 class="t">Are <em>de novo</em> designed proteins immunogenic?<span class="badge n">Review article</span></h3>
           <p class="au"><b>Hussain Q</b></p>
           <p class="gist">A review examining whether computationally designed proteins, which have no
             evolutionary history in the host, provoke an immune response, and what the available evidence
@@ -1101,8 +1110,10 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           relocate.</p>
         <div class="buttons">
           <a class="btn dark" href="mailto:qasimhussain6798@gmail.com">Write to me</a>
+          <button class="btn" type="button" id="copyMail" data-copy="qasimhussain6798@gmail.com">Copy address</button>
           <a class="btn" href="assets/Qasim_Hussain_CV.pdf">Curriculum vitae</a>
         </div>
+        <p class="sr" role="status" id="mailStatus"></p>
       </div>
     <div class="reach">
       <a href="mailto:qasimhussain6798@gmail.com">Email<span>qasimhussain6798@gmail.com</span></a>
@@ -1616,7 +1627,7 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
      per frame; both stop while the panel is off screen or the tab is hidden */
   var visible=true,timer=null,left=DUR,started=0;
   function setBar(pct,ms){bar.style.transition=ms?'transform '+ms+'ms linear':'none';bar.style.transform='scaleX('+(pct/100)+')';}
-  function running(){return !paused&&!hold&&visible&&!document.hidden;}
+  function running(){return !reduce&&!paused&&!hold&&visible&&!document.hidden;}
   function start(){
     if(timer||!running())return;
     started=performance.now();setBar(100-left/DUR*100,0);void bar.offsetWidth;setBar(100,left);
@@ -1635,7 +1646,9 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
   }
   function setPaused(p){
     paused=p;
-    pause.textContent=p?'Resume':'Pause';pause.setAttribute('aria-pressed',String(p));
+    /* the label itself says what the button will do, so a pressed state as well
+       would have a screen reader announce the two halves of one fact */
+    pause.textContent=p?'Resume':'Pause';
     pause.setAttribute('aria-label',p?'Resume the automatic advance of the summary panel':'Pause the automatic advance of the summary panel');
     if(p){stop();setBar(100,0);}else{left=DUR;setBar(0,0);start();}
   }
@@ -1653,9 +1666,12 @@ fetch('data/series.json').then(function(r){return r.ok?r.json():null;}).then(fun
     e.preventDefault();show(n);setPaused(true);tabs.children[n].focus();});
   pause.addEventListener('click',function(){setPaused(!paused);});
   var box=panes.parentNode;
+  /* Nothing may start the panel moving when the reader has asked for less motion,
+     so this returns before the listeners that resume it are attached: with them
+     attached first, a pointer crossing the panel set it going again. */
+  if(reduce){setBar(100,0);pause.hidden=true;return;}
   ['mouseenter','focusin'].forEach(function(ev){box.addEventListener(ev,function(){hold=true;stop();});});
   ['mouseleave','focusout'].forEach(function(ev){box.addEventListener(ev,function(){hold=false;left=DUR;setBar(0,0);start();});});
-  if(reduce){setBar(100,0);pause.hidden=true;return;}
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(es){visible=es[0].isIntersecting;sync();},{threshold:0}).observe(box);
   }
@@ -1686,6 +1702,17 @@ document.addEventListener('click',function(e){
   else manual();
 });
 
+/* ---------- the address, for a visitor whose computer opens no mail program ---------- */
+document.addEventListener('click',function(e){
+  var b=e.target.closest('[data-copy]');if(!b)return;
+  var txt=b.dataset.copy,label=b.textContent,st=document.getElementById('mailStatus');
+  function done(){b.textContent='Copied';if(st)st.textContent='The address is on the clipboard.';
+    setTimeout(function(){b.textContent=label;if(st)st.textContent='';},1600);}
+  function failed(){if(st)st.textContent='Copying was refused, so the address is shown in the list below.';}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(done,failed);
+  else failed();
+});
+
 /* ---------- navigation highlight and return to top ---------- */
 (function(){
   var links=[].slice.call(document.querySelectorAll('#navD a, #navM a'));
@@ -1699,8 +1726,9 @@ document.addEventListener('click',function(e){
         /* bring the current link into the strip by moving the strip alone; scrollIntoView
            would also move the page, which on a phone pulled the reader back up */
         var on=document.querySelector('#navM a[aria-current="true"]'),row=on&&on.parentNode;
-        if(row){var x=on.offsetLeft-(row.clientWidth-on.offsetWidth)/2;
-          if(row.scrollTo)row.scrollTo({left:x,behavior:'smooth'});else row.scrollLeft=x;}
+        if(row){var x=on.offsetLeft-(row.clientWidth-on.offsetWidth)/2,
+            soft=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if(row.scrollTo)row.scrollTo({left:x,behavior:soft?'smooth':'auto'});else row.scrollLeft=x;}
       });
     },{rootMargin:'-100px 0px -72% 0px',threshold:0});
     targets.forEach(function(t){io.observe(t);});

@@ -1,68 +1,57 @@
 {
-  "generated_at": "2026-11-25T16:34:20.284Z",
+  "generated_at": "2026-11-26T05:18:10.746Z",
   "public_repos": 93,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads": 2696,
-      "likes": 0
+      "downloads_all_time": 3558
     },
     {
       "id": "Human_Gut_Microbiome_Atlas",
-      "downloads": 1845,
-      "likes": 0
+      "downloads_all_time": 2783
     },
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads": 697,
-      "likes": 0
-    },
-    {
-      "id": "spatial-transcriptomics-atlas-demo",
-      "downloads": 210,
-      "likes": 0
-    },
-    {
-      "id": "hiv_scrnaseq_atlas",
-      "downloads": 151,
-      "likes": 0
-    },
-    {
-      "id": "PanCancer_scRNA_Atlas",
-      "downloads": 105,
-      "likes": 0
+      "downloads_all_time": 1612
     },
     {
       "id": "qiime2_micobiome_analysis",
-      "downloads": 74,
-      "likes": 0
+      "downloads_all_time": 750
     },
     {
-      "id": "ppanggolin_pangenomics_helicobacter_pylori",
-      "downloads": 71,
-      "likes": 0
-    },
-    {
-      "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads": 57,
-      "likes": 0
-    },
-    {
-      "id": "viral_cancer_tcga",
-      "downloads": 49,
-      "likes": 0
-    },
-    {
-      "id": "RESPONSA",
-      "downloads": 47,
-      "likes": 0
+      "id": "hiv_scrnaseq_atlas",
+      "downloads_all_time": 532
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
-      "downloads": 38,
-      "likes": 0
+      "downloads_all_time": 524
+    },
+    {
+      "id": "spatial-transcriptomics-atlas-demo",
+      "downloads_all_time": 481
+    },
+    {
+      "id": "pan_biosynthetic_gene_cluster_atlas",
+      "downloads_all_time": 453
+    },
+    {
+      "id": "PanCancer_scRNA_Atlas",
+      "downloads_all_time": 364
+    },
+    {
+      "id": "ppanggolin_pangenomics_helicobacter_pylori",
+      "downloads_all_time": 350
+    },
+    {
+      "id": "B.longum_CAZyme_Profiling",
+      "downloads_all_time": 325
+    },
+    {
+      "id": "viral_cancer_tcga",
+      "downloads_all_time": 231
     }
   ],
+  "site_revised": "2026-11-26",
   "models": 0
 }

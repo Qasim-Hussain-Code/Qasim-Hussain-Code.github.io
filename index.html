@@ -287,6 +287,11 @@ section{padding:clamp(56px,7vw,100px) 0 0}
   display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
 .entry .out .v{font-family:var(--serif);font-weight:400;font-size:25px;color:var(--ink);line-height:1.1;font-variant-numeric:tabular-nums}
 .entry .out .l{flex:1;min-width:180px;font-size:15px;color:var(--mute);line-height:1.5}
+/* the figure itself links to the file that records it, so it stays a figure and
+   not a coloured link */
+.entry .out .v a{color:inherit;text-decoration:underline;text-decoration-color:var(--line-strong);
+  text-underline-offset:5px;text-decoration-thickness:1px}
+.entry .out .v a:hover{text-decoration-color:currentColor}
 .entry .go{margin-top:12px;font-size:15px;font-weight:500}
 
 /* ==========================================================================
@@ -680,10 +685,13 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           <p><b>Question.</b> Bakta and Prokka both wrap Prodigal, so they agree on where genes begin and
             end. Where does the annotation diverge, and is that divergence systematic enough to predict?</p>
           <p><b>Method.</b> Comparison of 87,859 coding regions across 25 complete bacterial genomes, with a
-            classifier trained on sequence composition and genomic context.</p>
-          <p class="out"><span class="v">51.7 per cent</span><span class="l">of identically bounded coding
-            regions receive different product names, and the disagreement is predictable rather than random.</span></p>
-          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/bakta_prokka_disagreement_prediction">Repository</a></p>
+            random forest trained on sequence, genomic context and what each tool found in its database, validated
+            on five held-out genomes.</p>
+          <p class="out"><span class="v"><a href="https://github.com/Qasim-Hussain-Code/bakta_prokka_disagreement_prediction/blob/4f797c3fa09d4273af769c18b8d431eb69deeae1/README.md">51.7 per cent</a></span><span class="l">of the
+            50,210 coding regions both tools named receive different product names. Which ones can be predicted from
+            what the databases hold (MCC 0.303 on held-out genomes) but not from sequence alone (MCC 0.070).</span></p>
+          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/bakta_prokka_disagreement_prediction">Repository</a>
+            and <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-3.html">chapter 3</a> of the book</p>
         </div>
       </article>
 
@@ -693,13 +701,15 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           <p class="meta">cancer_survival_ml_pipeline<br>Python, gradient boosting against a Cox baseline</p>
         </div>
         <div class="qm">
-          <p><b>Question.</b> Does gradient boosting order patients by risk of death more accurately than
-            tumour stage alone, and by a margin large enough to be clinically interesting?</p>
-          <p><b>Method.</b> 586 patients with 185 events, with the proportional hazards model retained as the
-            reference rather than discarded once the machine learning result proved higher.</p>
-          <p class="out"><span class="v">0.729 against 0.674</span><span class="l">concordance index,
-            gradient boosting compared with stage. Both figures are reported together.</span></p>
-          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/cancer_survival_ml_pipeline">Repository</a></p>
+          <p><b>Question.</b> Does gradient boosting order patients by risk of recurrence or death more accurately
+            than tumour stage alone, and by a margin large enough to be clinically interesting?</p>
+          <p><b>Method.</b> Pooled colon and rectal records from the public cancer genome atlas, 586 patients with
+            185 events, with the proportional hazards model kept as the reference rather than discarded.</p>
+          <p class="out"><span class="v"><a href="https://github.com/Qasim-Hussain-Code/cancer_survival_ml_pipeline/blob/85d831ca383c8b9b4148a28b9311dd77917f572f/results/metrics/00_summary.json">0.729 against 0.674</a></span><span class="l">concordance index for
+            disease-free survival on 176 held-out patients, gradient boosting against stage alone. On colon cancer
+            alone the gain cannot be told from chance.</span></p>
+          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/cancer_survival_ml_pipeline">Repository</a>
+            and <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-4.html">chapter 4</a> of the book</p>
         </div>
       </article>
 
@@ -713,10 +723,12 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
             recurrent angina beyond what choline, betaine and carnitine already explain?</p>
           <p><b>Method.</b> Reanalysis of 750 patients following percutaneous coronary intervention. The
             outcome definition, covariates, calibration procedure and batch effect handling were written,
-            dated and published before the data were examined.</p>
-          <p class="out"><span class="v">750 patients</span><span class="l">analysed against a
-            pre-registration that cannot be revised once the result is known.</span></p>
-          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/tmao_cardiovascular_risk_prediction">Repository</a></p>
+            dated and committed before the code they govern was run.</p>
+          <p class="out"><span class="v"><a href="https://github.com/Qasim-Hussain-Code/tmao_cardiovascular_risk_prediction/blob/9985756c2db6b9dfcefcf78c91fd5b4f2b64f313/results/metrics/00_summary.json">AUC gain 0.026</a></span><span class="l">as pre-specified,
+            from adding TMAO to the precursors (0.008 to 0.044). The samples in the public deposit are ordered by
+            outcome, so the gain cannot be read as biology.</span></p>
+          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/tmao_cardiovascular_risk_prediction">Repository</a>
+            and <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-5.html">chapter 5</a> of the book</p>
         </div>
       </article>
 
@@ -731,8 +743,8 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           <p><b>Method.</b> An eight segment supercontig reference built from A/California/07/2009, with
             reference guided alignment and minor variant calling at 906.97 fold mean depth, executed within
             a 3.7 gigabyte memory ceiling.</p>
-          <p class="out"><span class="v">48 variants, Ts/Tv 7.8</span><span class="l">The transition bias
-            expected of an RNA dependent RNA polymerase, measured rather than assumed.</span></p>
+          <p class="out"><span class="v"><a href="https://github.com/Qasim-Hussain-Code/nf-core-viralrecon-influenza/blob/4aab7ca35c4cdc70b1b22aac9e9a64f2f0a24b63/README.md">48 variants, Ts/Tv 7.8</a></span><span class="l">consistent with the
+            transition bias of an RNA-dependent RNA polymerase.</span></p>
           <p class="go"><a href="https://github.com/Qasim-Hussain-Code/nf-core-viralrecon-influenza">Repository</a></p>
         </div>
       </article>
@@ -867,8 +879,8 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
           <p class="au">Lee CM, Villanueva BHA, Minh H, <b>Hussain Q</b>*, Chuang KP*</p>
           <p class="src"><em>Biomolecules</em> 15(12):1647. <a href="https://doi.org/10.3390/biom15121647">doi:10.3390/biom15121647</a></p>
           <p class="gist">An adenine induced rat model of chronic kidney disease treated with feline derived
-            exosomes. Functional recovery was not clearly attributable to treatment, and the paper reports
-            that plainly; the histopathological improvement is reported separately from the functional result.</p>
+            exosomes. Treated kidneys showed less renal degeneration, cyst formation and tubular dilation; no
+            functional improvement was clearly attributable to treatment.</p>
           <p class="bits"><button class="small" data-bib="biom2025">Copy BibTeX</button>
             <a class="small" href="https://pubmed.ncbi.nlm.nih.gov/41463302/">PubMed</a></p>
         </div>

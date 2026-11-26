@@ -496,11 +496,11 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     </div>
   </div>
 </header>
-<div class="navm"><div class="wrap row" id="navM">
+<nav class="navm" aria-label="Sections"><div class="wrap row" id="navM">
   <a href="#summary">Summary</a><a href="#practice">Activity</a><a href="#research">Research</a><a href="#book">Book</a>
   <a href="#code">Repositories</a><a href="#data">Datasets</a><a href="#apps">Applications</a><a href="#publications">Publications</a>
   <a href="#record">Background</a><a href="#methods">Skills</a><a href="#contact">Contact</a>
-</div></div>
+</div></nav>
 
 <main id="main">
 <div class="band">
@@ -786,7 +786,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
       <h2>Public repositories</h2>
     </div>
     <div class="ctl">
-      <div id="chips" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+      <div id="chips" role="group" aria-label="Show one family of repositories" style="display:flex;flex-wrap:wrap;gap:8px"></div>
       <input class="find" id="find" type="search" placeholder="Search, for example pangenome or influenza"
              aria-label="Search repositories by name">
     </div>
@@ -1087,7 +1087,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 </section>
 </main>
 
-<div class="close" id="contact">
+<section class="close" id="contact" aria-label="Contact">
   <div class="wrap">
     <div class="sc closelab">Contact</div>
     <div class="closegrid">
@@ -1111,7 +1111,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
     </div>
     <footer><span>Qasim Hussain, Taipei-Keelung metropolitan area, Taiwan.</span><span id="stamp"></span></footer>
   </div>
-</div>
+</section>
 <button class="icon" id="toTop" type="button" aria-label="Return to the top of the page">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>

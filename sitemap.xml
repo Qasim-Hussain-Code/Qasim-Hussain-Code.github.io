@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- A sitemap counts only at the root of the address it is served from, so the
+     pages of the book at /machine-learning-for-biology/ are listed here too. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://qasim-hussain-code.github.io/</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/preface.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-1.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-2.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-3.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-4.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-5.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-6.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-7.html</loc>
+  </url>
+  <url>
+    <loc>https://qasim-hussain-code.github.io/machine-learning-for-biology/epilogue.html</loc>
   </url>
 </urlset>

@@ -116,8 +116,8 @@ header{position:sticky;top:0;z-index:50;background:var(--canvas);border-bottom:1
 @media (max-width:1359px){.navm{display:block;position:sticky;top:64px;z-index:49}}
 
 /* ==========================================================================
-   3. Title page: the headline and introduction, the portrait unframed and
-      faded into the page, and a contents column on wide screens
+   3. Title page: the headline and introduction, the portrait unframed with
+      a straight edge, and a contents column on wide screens
    ========================================================================== */
 .band{position:relative;background:var(--canvas);border-bottom:1px solid var(--line)}
 .hero{position:relative;display:grid;grid-template-columns:minmax(0,1fr) clamp(360px,30vw,470px) clamp(200px,15vw,270px);
@@ -139,11 +139,12 @@ h1{margin-top:0;font-family:var(--serif);font-weight:600;font-size:clamp(25px,2.
 .btn:hover{border-color:var(--ink);text-decoration:none;background:var(--panel)}
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
-/* the portrait is never cropped: its fade is part of the photograph, so any crop would cut it */
+/* the portrait ends in a straight edge (option 31 of hero_designs/portrait100), so its box follows the photograph
+   exactly and the caption sits clear beneath it */
 .shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center}
-.shot img{position:relative;z-index:1;width:100%;flex:none;height:auto;aspect-ratio:2/3;max-height:620px;
+.shot img{position:relative;z-index:1;width:auto;max-width:100%;flex:none;height:auto;max-height:620px;margin:0 auto;
   object-fit:contain;object-position:50% 100%;display:block}
-.shot figcaption{position:relative;z-index:1;margin:-6px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
+.shot figcaption{position:relative;z-index:1;margin:12px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}
 .toc{align-self:start;min-width:0;padding-top:6px}
 .toc .sub{margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--rule);color:var(--ink)}
 /* lift the contents label so its capitals sit at the top of the opening */

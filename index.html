@@ -141,7 +141,11 @@ h1{margin-top:0;font-family:var(--serif);font-weight:600;font-size:clamp(25px,2.
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
 /* the portrait is never cropped: its fade is part of the photograph, so any crop would cut it */
-.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center}
+/* the photograph's backdrop is pure white; darken lets it take the colour of the paper, so no pale box shows
+   on the cool white of design 32. It is set on the figure, not the picture, because the entrance animation
+   makes the figure a group of its own and a picture blended inside it would keep its white box. */
+.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center;
+  mix-blend-mode:darken}
 .shot img{position:relative;z-index:1;width:100%;flex:none;height:auto;aspect-ratio:2/3;max-height:620px;
   object-fit:contain;object-position:50% 100%;display:block}
 .shot figcaption{position:relative;z-index:1;margin:-6px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}

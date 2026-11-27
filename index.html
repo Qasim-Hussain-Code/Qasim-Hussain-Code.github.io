@@ -753,17 +753,22 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 
       <article class="entry">
         <div>
-          <h3>Penicillin resistance across 604 pneumococcal isolates</h3>
-          <p class="meta">pyseer_bgwas_analysis<br>Shell, k-mer bacterial GWAS</p>
+          <h3>One position in <em>gyrA</em> predicts ciprofloxacin resistance in <em>Campylobacter</em></h3>
+          <p class="meta">campylobacter_amr_phenotype_prediction<br>Python, logistic regression against a one-feature rule</p>
         </div>
         <div class="qm">
-          <p><b>Question.</b> Which genetic determinants drive penicillin resistance in
-            <em>Streptococcus pneumoniae</em> once clonal background has been properly accounted for?</p>
-          <p><b>Method.</b> k-mer based genome wide association with pyseer across 604 clinical isolates,
-            using an explicit lineage model to control for population structure.</p>
-          <p class="out"><span class="v">604 isolates</span><span class="l">Determinants that survive
-            correction for population structure, rather than determinants that merely track it.</span></p>
-          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/pyseer_bgwas_analysis">Repository</a></p>
+          <p><b>Question.</b> Testing <em>Campylobacter</em> against a drug on the plate takes days, because the
+            organism grows slowly; sequencing takes one. Can the genome answer the question the plate answers?</p>
+          <p><b>Method.</b> Ciprofloxacin acts on DNA gyrase, so one rule was fixed in advance: an isolate is called
+            resistant if <em>gyrA</em> carries a substitution at position 86. The rule was set against a logistic
+            regression on every gene and mutation AMRFinderPlus reported, across 3,984 isolates from NCBI Pathogen
+            Detection, 824 of them resistant. Cross-validation was grouped by SNP cluster to keep related isolates
+            together.</p>
+          <p class="out"><span class="v"><a href="https://github.com/Qasim-Hussain-Code/campylobacter_amr_phenotype_prediction/blob/0e2b3df4c5878603cb278f069e6507b5238d220e/README.md">99.67 per cent</a></span><span class="l">accuracy
+            for that one rule, with 13 errors among 3,984 isolates. The model using all 84 gene entries reached 99.57
+            per cent and did not beat it.</span></p>
+          <p class="go"><a href="https://github.com/Qasim-Hussain-Code/campylobacter_amr_phenotype_prediction">Repository</a>
+            and <a href="https://qasim-hussain-code.github.io/machine-learning-for-biology/chapter-1.html">chapter 1</a> of the book</p>
         </div>
       </article>
 

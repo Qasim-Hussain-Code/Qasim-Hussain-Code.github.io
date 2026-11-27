@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T05:18:10.746Z",
+  "generated_at": "2026-11-27T13:21:42.954Z",
   "public_repos": 93,
   "datasets": 19,
   "top_datasets": [
@@ -13,7 +13,7 @@
     },
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads_all_time": 1612
+      "downloads_all_time": 1618
     },
     {
       "id": "qiime2_micobiome_analysis",
@@ -21,7 +21,7 @@
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads_all_time": 532
+      "downloads_all_time": 533
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
@@ -29,15 +29,15 @@
     },
     {
       "id": "spatial-transcriptomics-atlas-demo",
-      "downloads_all_time": 481
+      "downloads_all_time": 505
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
-      "downloads_all_time": 453
+      "downloads_all_time": 459
     },
     {
       "id": "PanCancer_scRNA_Atlas",
-      "downloads_all_time": 364
+      "downloads_all_time": 367
     },
     {
       "id": "ppanggolin_pangenomics_helicobacter_pylori",
@@ -49,9 +49,9 @@
     },
     {
       "id": "viral_cancer_tcga",
-      "downloads_all_time": 231
+      "downloads_all_time": 232
     }
   ],
-  "site_revised": "2026-11-26",
+  "site_revised": "2026-11-27",
   "models": 0
 }

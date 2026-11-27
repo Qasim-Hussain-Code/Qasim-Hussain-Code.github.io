@@ -42,15 +42,14 @@
 <style>
 /* ==========================================================================
    1. Tokens
-   Cool white paper (design 32), warm ink, one cobalt accent in the blue of the top
-   row (design 27) used sparingly, and eight
+   Cool white paper (design 32), warm ink, one bottle green accent used sparingly, and eight
    muted hues that carry meaning in the repository index and nowhere else.
    ========================================================================== */
 :root{
   --canvas:#FCFDFE; --sunken:#EFF3F6; --panel:#FCFDFE;
   --ink:#141A1F; --body:#333A42; --mute:#5B646E; --faint:#606972;
   --line:#DBE1E7; --line-soft:#EAEDF0; --line-strong:#7C858F; --rule:#141A1F;
-  --accent:#003A8C; --accent-hi:#002E70; --tint:#E8EDF7; --on-accent:#FFFFFF; --brand:#0047AB; --brand-hi:#003E96;
+  --accent:#9E5E00; --accent-hi:#7F4B00; --tint:#FFF3DC; --on-accent:#FFFFFF; --brand:#FFA500; --brand-hi:#E68F00;
   --g1:#3C5A8A; --g2:#2E6E5A; --g3:#9A4A38; --g4:#8A6A2A;
   --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52; --g9:#7A3F5E; --g10:#3F5E7A;
   /* each step darker than the one before: the old first step was lighter than an
@@ -446,10 +445,10 @@ footer{margin-top:36px;padding-top:22px;border-top:1px solid var(--close-line);
     content:" <" attr(href) ">";font-family:var(--mono);font-size:8.5pt;word-break:break-all}
 }
 
-/* the cobalt of the top row fills the key button under white text (design 27);
-   the darker cobalt token above carries every use of the colour as text */
-.btn.key{background:var(--brand);border-color:var(--brand);color:var(--on-accent)}
-.btn.key:hover{background:var(--brand-hi);border-color:var(--brand-hi);color:var(--on-accent)}
+/* the orange itself is used only as a surface under dark text; the darker
+   orange token above carries every use of the colour as text */
+.btn.key{background:var(--brand);border-color:var(--brand);color:var(--ink)}
+.btn.key:hover{background:var(--brand-hi);border-color:var(--brand-hi);color:var(--ink)}
 .sbar i{background:var(--brand)}
 .drow .gauge i{background:var(--brand)}
 #arc,#arc2{stroke:var(--brand)}
@@ -474,7 +473,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 .reach a span{font-size:13.5px}
 .close .buttons{margin-top:32px}
 .close .btn{border-color:var(--close-text);color:var(--close-text);background:transparent}
-.close .btn:hover{background:rgba(255,255,255,.14);border-color:var(--close-text)}
+.close .btn:hover{background:rgba(20,26,31,.08);border-color:var(--close-text)}
 .close .btn.dark{background:var(--close-text);border-color:var(--close-text);color:var(--close)}
 .close .btn.dark:hover{background:#000;border-color:#000;color:#fff}
 @media (max-width:880px){.closegrid{grid-template-columns:1fr;gap:36px}.closegrid .reach{margin-top:0}}

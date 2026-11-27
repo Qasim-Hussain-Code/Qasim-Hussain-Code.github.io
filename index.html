@@ -55,7 +55,7 @@
   /* each step darker than the one before: the old first step was lighter than an
      empty day, so the scale began by going backwards */
   --h0:#E8ECEF; --h1:#FFE7BE; --h2:#FFE0A8; --h3:#FFC65C; --h4:#FFA500;
-  --close:#FFA500; --close-text:#141A1F; --close-mute:#4A3000; --close-line:rgba(20,26,31,.28);
+  --close:#0047AB; --close-text:#FFFFFF; --close-mute:#CBD8EE; --close-line:rgba(255,255,255,.3);
   --bar:#0047AB; --on-bar:#FFFFFF;
   --lift:none;
   --serif:"Literata",Georgia,"Times New Roman",serif;
@@ -390,7 +390,7 @@ table.t td.in{padding-left:20px}
 .quad .sub + ul li:first-child{border-top:0}
 
 /* ==========================================================================
-   11. Close: a colophon band in bottle green
+   11. Close: a colophon band in the cobalt of the top row (design 92)
    ========================================================================== */
 .close{margin-top:clamp(72px,8vw,112px);background:var(--close);color:var(--close-text);
   padding:clamp(56px,7vw,92px) 0 28px}
@@ -470,7 +470,7 @@ header :focus-visible,.navm :focus-visible{outline-color:var(--on-bar)}
 .close .buttons{margin-top:32px}
 .close .btn{border-color:var(--close-text);color:var(--close-text);background:transparent}
 .close .btn:hover{background:rgba(20,26,31,.08);border-color:var(--close-text)}
-.close .btn.dark{background:var(--close-text);border-color:var(--close-text);color:#fff}
+.close .btn.dark{background:var(--close-text);border-color:var(--close-text);color:var(--close)}
 .close .btn.dark:hover{background:#000;border-color:#000;color:#fff}
 @media (max-width:880px){.closegrid{grid-template-columns:1fr;gap:36px}.closegrid .reach{margin-top:0}}
 

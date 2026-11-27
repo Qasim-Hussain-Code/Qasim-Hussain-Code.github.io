@@ -42,13 +42,13 @@
 <style>
 /* ==========================================================================
    1. Tokens
-   Cool white paper (design 32), warm ink, one bottle green accent used sparingly, and eight
+   Warm paper, warm ink, one bottle green accent used sparingly, and eight
    muted hues that carry meaning in the repository index and nowhere else.
    ========================================================================== */
 :root{
-  --canvas:#FCFDFE; --sunken:#EFF3F6; --panel:#FCFDFE;
+  --canvas:#FFFFFF; --sunken:#F3F5F6; --panel:#FFFFFF;
   --ink:#141A1F; --body:#333A42; --mute:#5B646E; --faint:#606972;
-  --line:#DBE1E7; --line-soft:#EAEDF0; --line-strong:#7C858F; --rule:#141A1F;
+  --line:#DDE1E5; --line-soft:#EAEDF0; --line-strong:#7C858F; --rule:#141A1F;
   --accent:#9E5E00; --accent-hi:#7F4B00; --tint:#FFF3DC; --on-accent:#FFFFFF; --brand:#FFA500; --brand-hi:#E68F00;
   --g1:#3C5A8A; --g2:#2E6E5A; --g3:#9A4A38; --g4:#8A6A2A;
   --g5:#5E4A85; --g6:#2E6878; --g7:#55702F; --g8:#6E5D52; --g9:#7A3F5E; --g10:#3F5E7A;
@@ -140,11 +140,7 @@ h1{margin-top:0;font-family:var(--serif);font-weight:600;font-size:clamp(25px,2.
 .btn.key{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
 .btn.key:hover{background:var(--accent-hi);border-color:var(--accent-hi)}
 /* the portrait is never cropped: its fade is part of the photograph, so any crop would cut it */
-/* the photograph's backdrop is pure white; darken lets it take the colour of the paper, so no pale box shows
-   on the cool white of design 32. It is set on the figure, not the picture, because the entrance animation
-   makes the figure a group of its own and a picture blended inside it would keep its white box. */
-.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center;
-  mix-blend-mode:darken}
+.shot{position:relative;display:flex;flex-direction:column;width:100%;margin:0;padding:0;min-width:0;align-self:center}
 .shot img{position:relative;z-index:1;width:100%;flex:none;height:auto;aspect-ratio:2/3;max-height:620px;
   object-fit:contain;object-position:50% 100%;display:block}
 .shot figcaption{position:relative;z-index:1;margin:-6px 6px 0;font:italic 400 13.5px/1.55 var(--serif);color:var(--mute);text-align:center}

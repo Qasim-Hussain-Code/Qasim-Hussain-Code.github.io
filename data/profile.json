@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-27T13:21:42.954Z",
+  "generated_at": "2026-11-28T14:50:06.574Z",
   "public_repos": 93,
   "datasets": 19,
   "top_datasets": [
     {
       "id": "Campylobacter-PanGWAS",
-      "downloads_all_time": 3558
+      "downloads_all_time": 3559
     },
     {
       "id": "Human_Gut_Microbiome_Atlas",
@@ -13,7 +13,7 @@
     },
     {
       "id": "Nature2022_Spneumo_Pangenome",
-      "downloads_all_time": 1618
+      "downloads_all_time": 1622
     },
     {
       "id": "qiime2_micobiome_analysis",
@@ -21,7 +21,7 @@
     },
     {
       "id": "hiv_scrnaseq_atlas",
-      "downloads_all_time": 533
+      "downloads_all_time": 537
     },
     {
       "id": "qiime2_antibiotic_microbiome_analysis",
@@ -29,7 +29,7 @@
     },
     {
       "id": "spatial-transcriptomics-atlas-demo",
-      "downloads_all_time": 505
+      "downloads_all_time": 517
     },
     {
       "id": "pan_biosynthetic_gene_cluster_atlas",
